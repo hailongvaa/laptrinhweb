@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Giỏ hàng | CarModel Store</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__top">
+            <div class="container">
+                <span>Hotline tư vấn: 1900-6868 &nbsp;|&nbsp; Giao hàng toàn quốc</span>
+                <a href="contact.html">Liên hệ cửa hàng</a>
+            </div>
+        </div>
+        <div class="site-header__main">
+            <div class="container">
+                <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
+                <nav class="main-nav" aria-label="Menu chính">
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="brands.html">Hãng xe</a></li>
+            <li><a href="products.html">Tất cả mô hình</a></li>
+            <li><a href="accessories.html">Phụ kiện</a></li>
+            <li><a href="preorder.html">Sắp ra mắt</a></li>
+            <li><a href="wishlist.html">Yêu thích</a></li>
+            
+                    </ul>
+                </nav>
+                <form class="search-form" action="products.html" method="get" role="search">
+                    <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                    <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                    <button type="submit">Tìm</button>
+                </form>
+                <div class="header-actions">
+                    <a href="login.html">Đăng nhập</a>
+                    <a href="cart.html">Giỏ hàng <span class="cart-pill">3</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-banner">
+        <div class="container">
+            <p class="breadcrumb"><a href="index.html">Trang chủ</a> / Giỏ hàng</p>
+            <h1 class="mt-0">Giỏ hàng của bạn</h1>
+        </div>
+    </div>
+    <main id="main" class="section container">
+        <div class="cart-layout">
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Mô hình</th><th>Tỉ lệ</th><th>Đơn giá</th><th>Số lượng</th><th>Thành tiền</th><th>Xoá</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ferrari F40</td><td>1:18</td><td>2.450.000đ</td><td><input type="number" value="1" min="1" style="width:60px;"></td><td>2.450.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
+                        <tr><td>Lamborghini Huracán STO</td><td>1:24</td><td>980.000đ</td><td><input type="number" value="2" min="1" style="width:60px;"></td><td>1.960.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
+                        <tr><td>Nissan GT-R Skyline R34</td><td>1:18</td><td>1.750.000đ</td><td><input type="number" value="1" min="1" style="width:60px;"></td><td>1.750.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <aside class="summary-card">
+                <h3 style="color:#fff;">Tóm tắt đơn hàng</h3>
+                <div class="summary-row"><span>Tạm tính</span><span>6.160.000đ</span></div>
+                <div class="summary-row"><span>Phí vận chuyển</span><span>30.000đ</span></div>
+                <div class="summary-row total"><span>Tổng cộng</span><span>6.190.000đ</span></div>
+                <a href="login.html" class="btn btn-primary btn-block" style="margin-top:1rem;">Tiến hành đặt hàng</a>
+                <p class="form-hint" style="color:#ccc;">* Giao diện minh hoạ, số liệu là dữ liệu mẫu viết cứng trong HTML.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CarModelStore</h4>
+                    <p style="font-size:.85rem;">Chuyên mô hình ô tô thu nhỏ tỉ lệ 1:18 - 1:64 cho người sưu tầm.
+                    Đồ án môn Lập trình Web &ndash; Chương 1 &amp; 2.</p>
+                </div>
+                <div>
+                    <h4>Mua sắm</h4>
+                    <ul>
+                        <li><a href="brands.html">Theo hãng xe</a></li>
+                        <li><a href="products.html">Tất cả mô hình</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Tài khoản</h4>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="register.html">Đăng ký</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn đặt hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 CarModelStore &ndash; Bài tập Chương 1 &amp; 2, môn Lập trình Web. Nhóm 05.
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

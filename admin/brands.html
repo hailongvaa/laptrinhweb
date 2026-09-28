@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Quản lý hãng xe | Quản trị CarModelStore</title>
+</head>
+<body class="admin-body">
+    <div class="admin-shell">
+        <aside class="admin-side">
+            <a href="dashboard.html" class="brand-logo">Car<span>Model</span>Admin</a>
+            <nav aria-label="Menu quản trị">
+                <ul>
+                    <li><a href="dashboard.html">Tổng quan</a></li>
+                <li><a href="products.html">Quản lý mô hình</a></li>
+                <li><a href="brands.html" aria-current="page">Quản lý hãng xe</a></li>
+                <li><a href="orders.html">Quản lý đơn hàng</a></li>
+                
+                </ul>
+            </nav>
+        </aside>
+        <div class="admin-main">
+            <div class="admin-topbar">
+                <div>
+                    <p class="breadcrumb" style="color:#777;"><a href="../index.html" style="color:#b8860b;">&larr; Về trang bán hàng</a></p>
+                    <h1 class="mt-0">Quản lý hãng xe</h1>
+                </div>
+                <div class="header-actions" style="color:#111;">
+                    <span>Xin chào, <strong>Admin</strong></span>
+                    <a href="../login.html" class="btn btn-outline btn-sm">Đăng xuất</a>
+                </div>
+            </div>
+            
+            <div class="admin-toolbar">
+                <p class="text-muted mt-0">Danh sách hãng xe đang phân loại mô hình</p>
+            </div>
+            <form class="form-card" style="margin-bottom:1.5rem;">
+                <div class="form-row">
+                    <label for="new-brand">Thêm hãng xe mới</label>
+                    <input type="text" id="new-brand" name="brand" placeholder="VD: Audi">
+                </div>
+                <button type="submit" class="btn btn-primary">Thêm hãng xe</button>
+            </form>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead><tr><th>Tên hãng xe</th><th>Xuất xứ</th><th>Số mô hình</th><th>Thao tác</th></tr></thead>
+                    <tbody>
+                        <tr><td>Ferrari</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
+                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>Lamborghini</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
+                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>BMW</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
+                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>Mercedes-Benz</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
+                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>Porsche</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
+                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>Ford</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
+                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>Toyota</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
+                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>Nissan</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
+                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

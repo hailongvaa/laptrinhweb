@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Đăng nhập | CarModel Store</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__top">
+            <div class="container">
+                <span>Hotline tư vấn: 1900-6868 &nbsp;|&nbsp; Giao hàng toàn quốc</span>
+                <a href="contact.html">Liên hệ cửa hàng</a>
+            </div>
+        </div>
+        <div class="site-header__main">
+            <div class="container">
+                <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
+                <nav class="main-nav" aria-label="Menu chính">
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="brands.html">Hãng xe</a></li>
+            <li><a href="products.html">Tất cả mô hình</a></li>
+            <li><a href="accessories.html">Phụ kiện</a></li>
+            <li><a href="preorder.html">Sắp ra mắt</a></li>
+            <li><a href="wishlist.html">Yêu thích</a></li>
+            
+                    </ul>
+                </nav>
+                <form class="search-form" action="products.html" method="get" role="search">
+                    <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                    <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                    <button type="submit">Tìm</button>
+                </form>
+                <div class="header-actions">
+                    <a href="login.html">Đăng nhập</a>
+                    <a href="cart.html">Giỏ hàng <span class="cart-pill">3</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" class="section container center" style="max-width:100%;">
+        <div class="form-card" style="margin:0 auto; text-align:left;">
+            <h1>Đăng nhập</h1>
+            <p class="text-muted" style="margin-top:0;">Đăng nhập để theo dõi đơn hàng và lưu mô hình yêu thích.</p>
+            <form action="account.html" method="post">
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="ban@vidu.com">
+                </div>
+                <div class="form-row">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                <p class="form-hint">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CarModelStore</h4>
+                    <p style="font-size:.85rem;">Chuyên mô hình ô tô thu nhỏ tỉ lệ 1:18 - 1:64 cho người sưu tầm.
+                    Đồ án môn Lập trình Web &ndash; Chương 1 &amp; 2.</p>
+                </div>
+                <div>
+                    <h4>Mua sắm</h4>
+                    <ul>
+                        <li><a href="brands.html">Theo hãng xe</a></li>
+                        <li><a href="products.html">Tất cả mô hình</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Tài khoản</h4>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="register.html">Đăng ký</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn đặt hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 CarModelStore &ndash; Bài tập Chương 1 &amp; 2, môn Lập trình Web. Nhóm 05.
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

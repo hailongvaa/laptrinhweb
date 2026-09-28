@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Trang chủ | CarModel Store</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__top">
+            <div class="container">
+                <span>Hotline tư vấn: 1900-6868 &nbsp;|&nbsp; Giao hàng toàn quốc</span>
+                <a href="contact.html">Liên hệ cửa hàng</a>
+            </div>
+        </div>
+        <div class="site-header__main">
+            <div class="container">
+                <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
+                <nav class="main-nav" aria-label="Menu chính">
+                    <ul>
+                        <li><a href="index.html" aria-current="page">Trang chủ</a></li>
+            <li><a href="brands.html">Hãng xe</a></li>
+            <li><a href="products.html">Tất cả mô hình</a></li>
+            <li><a href="accessories.html">Phụ kiện</a></li>
+            <li><a href="preorder.html">Sắp ra mắt</a></li>
+            <li><a href="wishlist.html">Yêu thích</a></li>
+            
+                    </ul>
+                </nav>
+                <form class="search-form" action="products.html" method="get" role="search">
+                    <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                    <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                    <button type="submit">Tìm</button>
+                </form>
+                <div class="header-actions">
+                    <a href="login.html">Đăng nhập</a>
+                    <a href="cart.html">Giỏ hàng <span class="cart-pill">3</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="promo-banner">
+        <strong>Cập nhật giá mới</strong> &ndash; Đợt tháng 10/2026: giá đã điều chỉnh theo tỉ giá nhập khẩu mới nhất, xem chi tiết tại từng mô hình.
+    </div>
+    <main id="main">
+        <section class="hero">
+            <div class="container">
+                <div>
+                    <h1>Mô hình ô tô thu nhỏ &ndash; phom dáng như xe thật</h1>
+                    <p>Hàng trăm mẫu mô hình đúc kim loại tỉ lệ 1:18 &ndash; 1:64, tái hiện chi tiết từ Ferrari, Lamborghini,
+                    BMW, Porsche... kèm phụ kiện trưng bày, giao hàng toàn quốc.</p>
+                    <a href="products.html" class="btn btn-primary">Khám phá bộ sưu tập</a>
+                    <a href="brands.html" class="btn btn-outline" style="margin-left:.6rem;">Xem theo hãng xe</a>
+                </div>
+                <div class="hero-visual">Ảnh banner mô hình ô tô nổi bật<br>(kết hợp ảnh tự dựng + ảnh thật khi triển khai)</div>
+            </div>
+        </section>
+
+        <section class="section container">
+            <div class="section-head">
+                <h2>Hãng xe nổi bật</h2>
+                <a href="brands.html">Xem tất cả hãng &rarr;</a>
+            </div>
+            <div class="grid grid--brands">
+                <a class="brand-card" href="brand-detail.html">
+                    Ferrari
+                    <small>6 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Lamborghini
+                    <small>7 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    BMW
+                    <small>8 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Mercedes-Benz
+                    <small>9 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Porsche
+                    <small>10 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Ford
+                    <small>11 mô hình</small>
+                </a>
+            </div>
+        </section>
+
+        <section class="section container">
+            <div class="section-head">
+                <h2>Mô hình bán chạy</h2>
+                <a href="products.html">Xem tất cả sản phẩm &rarr;</a>
+            </div>
+            <div class="grid">
+                <article class="car-card">
+                    <div class="car-card__media">
+                        
+                        <button class="wishlist-btn" data-product-id="sp01" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
+                        Ảnh mô hình<br>Ferrari F40
+                    </div>
+                    <div class="car-card__body">
+                        <span class="brand-badge">Ferrari</span>
+                        <h3 class="car-card__name">F40</h3>
+                        <p class="scale-label">Tỉ lệ 1:18 · Đúc kim loại tỉ lệ theo xe thật, mở cửa</p>
+                        <p class="star-rating"><span class="stars">★★★★★</span> 4.8 (126 đánh giá)</p>
+                        <p class="price-tag">2.450.000đ</p>
+                        <a class="btn btn-primary btn-block" href="product-detail.html">Xem chi tiết</a>
+                    </div>
+                </article>
+                <article class="car-card">
+                    <div class="car-card__media">
+                        
+                        <button class="wishlist-btn" data-product-id="sp02" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
+                        Ảnh mô hình<br>Ferrari 250 GTO
+                    </div>
+                    <div class="car-card__body">
+                        <span class="brand-badge">Ferrari</span>
+                        <h3 class="car-card__name">250 GTO</h3>
+                        <p class="scale-label">Tỉ lệ 1:24 · Đúc kim loại, hộp sưu tầm</p>
+                        <p class="star-rating"><span class="stars">★★★★★</span> 4.6 (84 đánh giá)</p>
+                        <p class="price-tag">1.290.000đ</p>
+                        <a class="btn btn-primary btn-block" href="product-detail.html">Xem chi tiết</a>
+                    </div>
+                </article>
+                <article class="car-card">
+                    <div class="car-card__media">
+                        
+                        <button class="wishlist-btn" data-product-id="sp03" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
+                        Ảnh mô hình<br>Lamborghini Countach LP500R
+                    </div>
+                    <div class="car-card__body">
+                        <span class="brand-badge">Lamborghini</span>
+                        <h3 class="car-card__name">Countach LP500R</h3>
+                        <p class="scale-label">Tỉ lệ 1:18 · Đúc kim loại, mở cửa & capo</p>
+                        <p class="star-rating"><span class="stars">★★★★★</span> 4.7 (97 đánh giá)</p>
+                        <p class="price-tag">2.190.000đ</p>
+                        <a class="btn btn-primary btn-block" href="product-detail.html">Xem chi tiết</a>
+                    </div>
+                </article>
+                <article class="car-card">
+                    <div class="car-card__media">
+                        
+                        <button class="wishlist-btn" data-product-id="sp04" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
+                        Ảnh mô hình<br>Lamborghini Huracán STO
+                    </div>
+                    <div class="car-card__body">
+                        <span class="brand-badge">Lamborghini</span>
+                        <h3 class="car-card__name">Huracán STO</h3>
+                        <p class="scale-label">Tỉ lệ 1:24 · Đúc kim loại, sơn nhám như bản thật</p>
+                        <p class="star-rating"><span class="stars">★★★★☆</span> 4.5 (63 đánh giá)</p>
+                        <p class="price-tag">980.000đ</p>
+                        <a class="btn btn-primary btn-block" href="product-detail.html">Xem chi tiết</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section container">
+            <div class="section-head">
+                <h2>Sắp ra mắt &ndash; Đặt hàng trước</h2>
+                <a href="preorder.html">Xem tất cả &rarr;</a>
+            </div>
+            <p class="text-muted" style="margin-top:-.6rem;">Đặt cọc trước để giữ suất cho các phiên bản giới hạn, số lượng có hạn.</p>
+            <div class="grid">
+                <article class="car-card">
+                    <div class="car-card__media">
+                        <span class="badge-preorder">Pre-order</span>
+                        <button class="wishlist-btn" data-product-id="sp13" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
+                        Ảnh mô hình<br>Bugatti Chiron Super Sport
+                    </div>
+                    <div class="car-card__body">
+                        <span class="brand-badge">Bugatti</span>
+                        <h3 class="car-card__name">Chiron Super Sport</h3>
+                        <p class="scale-label">Tỉ lệ 1:18 · Đúc kim loại cao cấp, số lượng giới hạn</p>
+                        <p class="star-rating"><span class="stars">★★★★★</span> 5.0 (19 đánh giá)</p>
+                        <p class="price-tag">3.450.000đ</p>
+                        <a class="btn btn-primary btn-block" href="product-detail.html">Đặt hàng trước</a>
+                    </div>
+                </article>
+                <article class="car-card">
+                    <div class="car-card__media">
+                        <span class="badge-preorder">Pre-order</span>
+                        <button class="wishlist-btn" data-product-id="sp14" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
+                        Ảnh mô hình<br>Koenigsegg Jesko
+                    </div>
+                    <div class="car-card__body">
+                        <span class="brand-badge">Koenigsegg</span>
+                        <h3 class="car-card__name">Jesko</h3>
+                        <p class="scale-label">Tỉ lệ 1:18 · Đúc kim loại, hộp trưng bày kính</p>
+                        <p class="star-rating"><span class="stars">★★★★★</span> 4.9 (12 đánh giá)</p>
+                        <p class="price-tag">3.190.000đ</p>
+                        <a class="btn btn-primary btn-block" href="product-detail.html">Đặt hàng trước</a>
+                    </div>
+                </article>
+                <article class="car-card">
+                    <div class="car-card__media">
+                        <span class="badge-preorder">Pre-order</span>
+                        <button class="wishlist-btn" data-product-id="sp15" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
+                        Ảnh mô hình<br>Pagani Utopia
+                    </div>
+                    <div class="car-card__body">
+                        <span class="brand-badge">Pagani</span>
+                        <h3 class="car-card__name">Utopia</h3>
+                        <p class="scale-label">Tỉ lệ 1:18 · Đúc kim loại cao cấp, sản xuất theo đơn đặt trước</p>
+                        <p class="star-rating"><span class="stars">★★★★★</span> 5.0 (7 đánh giá)</p>
+                        <p class="price-tag">3.650.000đ</p>
+                        <a class="btn btn-primary btn-block" href="product-detail.html">Đặt hàng trước</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CarModelStore</h4>
+                    <p style="font-size:.85rem;">Chuyên mô hình ô tô thu nhỏ tỉ lệ 1:18 - 1:64 cho người sưu tầm.
+                    Đồ án môn Lập trình Web &ndash; Chương 1 &amp; 2.</p>
+                </div>
+                <div>
+                    <h4>Mua sắm</h4>
+                    <ul>
+                        <li><a href="brands.html">Theo hãng xe</a></li>
+                        <li><a href="products.html">Tất cả mô hình</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Tài khoản</h4>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="register.html">Đăng ký</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn đặt hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 CarModelStore &ndash; Bài tập Chương 1 &amp; 2, môn Lập trình Web. Nhóm 05.
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
