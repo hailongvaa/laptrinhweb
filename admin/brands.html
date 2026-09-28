@@ -3,73 +3,656 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Hãng Xe | Quản Trị CarModel Store</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Quản lý hãng xe | Quản trị CarModelStore</title>
+    <!-- Admin Stylesheet -->
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
-<body class="admin-body">
-    <div class="admin-shell">
-        <aside class="admin-side">
-            <a href="dashboard.html" class="brand-logo">Car<span>Model</span>Admin</a>
-            <nav aria-label="Menu quản trị">
-                <ul>
-                    <li><a href="dashboard.html">Tổng quan</a></li>
-                <li><a href="products.html">Quản lý mô hình</a></li>
-                <li><a href="brands.html" aria-current="page">Quản lý hãng xe</a></li>
-                <li><a href="orders.html">Quản lý đơn hàng</a></li>
-                
-                </ul>
-            </nav>
-        </aside>
-        <div class="admin-main">
-            <div class="admin-topbar">
+<body>
+    <div class="admin-sidebar-overlay"></div>
+
+    <div class="admin-layout">
+        <!-- 1. SIDEBAR CỐ ĐỊNH -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar__brand">
+                <div class="brand-badge-icon">M</div>
                 <div>
-                    <p class="breadcrumb" style="color:#777;"><a href="../index.html" style="color:#b8860b;">&larr; Về trang bán hàng</a></p>
-                    <h1 class="mt-0">Quản lý hãng xe</h1>
+                    <div class="brand-text">Car<span>Model</span></div>
+                    <span class="brand-sub">ADMIN PORTAL</span>
                 </div>
-                <div class="header-actions" style="color:#111;">
-                    <span>Xin chào, <strong>Admin</strong></span>
-                    <a href="../login.html" class="btn btn-outline btn-sm">Đăng xuất</a>
-                </div>
-            </div>
-            
-            <div class="admin-toolbar">
-                <p class="text-muted mt-0">Danh sách hãng xe đang phân loại mô hình</p>
-            </div>
-            <form class="form-card" style="margin-bottom:1.5rem;">
-                <div class="form-row">
-                    <label for="new-brand">Thêm hãng xe mới</label>
-                    <input type="text" id="new-brand" name="brand" placeholder="VD: Audi">
-                </div>
-                <button type="submit" class="btn btn-primary">Thêm hãng xe</button>
-            </form>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead><tr><th>Tên hãng xe</th><th>Xuất xứ</th><th>Số mô hình</th><th>Thao tác</th></tr></thead>
-                    <tbody>
-                        <tr><td>Ferrari</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
-                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>Lamborghini</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
-                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>BMW</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
-                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>Mercedes-Benz</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
-                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>Porsche</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
-                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>Ford</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
-                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>Toyota</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
-                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>Nissan</td><td>Ý / Đức / Mỹ / Nhật (demo)</td><td>12</td>
-                            <td><button class="btn btn-outline btn-sm">Sửa</button> <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            
-                    </tbody>
-                </table>
             </div>
 
+            <div class="admin-sidebar__user">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <div class="user-name js-admin-name">Quản trị viên</div>
+                    <span class="user-role-badge js-admin-badge">Quản trị viên</span>
+                </div>
+            </div>
+
+            <nav class="admin-nav" aria-label="Điều hướng chính quản trị">
+                <div class="nav-section-title">Hệ thống</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="dashboard.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                            </svg>
+                            <span>Tổng quan (KPI)</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Quản lý kho xe</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="products.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2"></path>
+                                <polygon points="12 15 17 21 7 21 12 15"></polygon>
+                            </svg>
+                            <span>Sản phẩm xe</span>
+                            <span class="nav-badge">158</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-add.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            <span>Thêm mô hình mới</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="brands.html" class="admin-nav__link active">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                            </svg>
+                            <span>Hãng xe / Brand</span>
+                            <span class="nav-badge">16</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Kinh doanh</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="orders.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Đơn hàng</span>
+                            <span class="nav-badge nav-badge--danger">6 mới</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="admin-sidebar__footer">
+                <a href="../index.html" class="sidebar-action-btn" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    <span>Xem Website Store</span>
+                </a>
+                <button type="button" class="sidebar-action-btn sidebar-action-btn--logout js-admin-logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN AREA & TOPBAR -->
+        <div class="admin-main">
+            <!-- Header Topbar -->
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button type="button" class="mobile-toggle-btn js-sidebar-toggle" aria-label="Mở menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="topbar-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" placeholder="Tìm kiếm hãng xe...">
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <button type="button" class="topbar-icon-btn" title="Thông báo mới">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="icon-badge"></span>
+                    </button>
+
+                    <div class="topbar-user-pill">
+                        <div class="user-pill-avatar">AD</div>
+                        <div class="user-pill-meta">
+                            <span class="user-pill-email js-admin-email">admin@gmail.com</span>
+                            <span class="user-pill-badge js-admin-badge">Quản trị viên</span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-outline btn-sm js-admin-logout" title="Đăng xuất">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        <span>Đăng xuất</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Page Content -->
+            <main class="admin-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-header__left">
+                        <h1>Quản Lý Hãng Xe & Thương Hiệu</h1>
+                        <div class="breadcrumbs">
+                            <a href="dashboard.html">Admin</a>
+                            <span class="separator">/</span>
+                            <span class="current">Hãng xe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BỐ CỤC 2 CỘT (GRID SPLIT) -->
+                <div class="form-grid-layout" style="grid-template-columns: 1fr 2fr;">
+                    <!-- CỘT 1: FORM THÊM HÃNG XE NHANH -->
+                    <div class="form-panel">
+                        <h2 class="form-panel__title">Thêm Hãng Xe Mới</h2>
+                        <form id="addBrandForm">
+                            <div class="form-row">
+                                <label class="form-label" for="brandName">
+                                    Tên thương hiệu <span class="required">*</span>
+                                </label>
+                                <input type="text" id="brandName" class="form-control" 
+                                    placeholder="VD: Aston Martin, Ferrari..." required>
+                            </div>
+
+                            <div class="form-row">
+                                <label class="form-label" for="brandCountry">
+                                    Quốc gia / Xuất xứ <span class="required">*</span>
+                                </label>
+                                <select id="brandCountry" class="form-control" required>
+                                    <option value="">-- Chọn quốc gia --</option>
+                                    <option value="Ý (Italy)">Ý (Italy)</option>
+                                    <option value="Đức (Germany)">Đức (Germany)</option>
+                                    <option value="Anh (UK)">Anh (UK)</option>
+                                    <option value="Mỹ (USA)">Mỹ (USA)</option>
+                                    <option value="Nhật Bản (Japan)">Nhật Bản (Japan)</option>
+                                    <option value="Pháp (France)">Pháp (France)</option>
+                                    <option value="Thụy Điển (Sweden)">Thụy Điển (Sweden)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <label class="form-label" for="brandEstablished">
+                                    Năm thành lập
+                                </label>
+                                <input type="number" id="brandEstablished" class="form-control" 
+                                    min="1800" max="2026" placeholder="VD: 1947">
+                            </div>
+
+                            <div class="form-row">
+                                <label class="form-label" for="brandLogo">
+                                    Màu nhận diện thương hiệu
+                                </label>
+                                <input type="text" id="brandLogo" class="form-control" 
+                                    placeholder="VD: Đỏ Rosso Corsa / Vàng Modena">
+                            </div>
+
+                            <div class="form-row">
+                                <label class="form-label" for="brandDesc">
+                                    Giới thiệu ngắn
+                                </label>
+                                <textarea id="brandDesc" class="form-control" rows="3" 
+                                    placeholder="Đặc trưng dòng xe thể thao, siêu xe đua..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>Thêm Hãng Xe</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- CỘT 2: BẢNG DANH SÁCH CÁC HÃNG XE HIỆN CÓ -->
+                    <section class="table-card">
+                        <div class="table-card__header">
+                            <div>
+                                <h2 class="table-card__title">Danh Sách Hãng Xe Đối Tác</h2>
+                                <p style="font-size:0.8rem; color:var(--slate-400); margin-top:2px;">
+                                    Hiện có <strong id="brandTotalCount" style="color:var(--primary-blue);">8</strong> thương hiệu mô hình đang bán
+                                </p>
+                            </div>
+                            <div class="filter-input-search" style="min-width: 200px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <input type="text" id="searchBrandInput" placeholder="Lọc hãng xe...">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="data-table" id="brandsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Logo & Tên Hãng</th>
+                                        <th>Quốc gia</th>
+                                        <th>Mô hình trong kho</th>
+                                        <th>Trạng thái</th>
+                                        <th style="text-align: right;">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <div class="product-thumb" style="background:#fee2e2; font-weight:800; color:#dc2626;">
+                                                    FE
+                                                </div>
+                                                <div>
+                                                    <div class="product-info-name">Ferrari</div>
+                                                    <span class="product-info-code">Thành lập 1947 &bull; Maranello</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--info">Ý (Italy)</span></td>
+                                        <td><strong style="color:var(--slate-900);">34 mẫu</strong></td>
+                                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                                        <td style="text-align: right;">
+                                            <div class="action-buttons" style="justify-content: flex-end;">
+                                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <div class="product-thumb" style="background:#e0f2fe; font-weight:800; color:#0284c7;">
+                                                    PO
+                                                </div>
+                                                <div>
+                                                    <div class="product-info-name">Porsche</div>
+                                                    <span class="product-info-code">Thành lập 1931 &bull; Stuttgart</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--info">Đức (Germany)</span></td>
+                                        <td><strong style="color:var(--slate-900);">28 mẫu</strong></td>
+                                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                                        <td style="text-align: right;">
+                                            <div class="action-buttons" style="justify-content: flex-end;">
+                                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <div class="product-thumb" style="background:#fef3c7; font-weight:800; color:#d97706;">
+                                                    LA
+                                                </div>
+                                                <div>
+                                                    <div class="product-info-name">Lamborghini</div>
+                                                    <span class="product-info-code">Thành lập 1963 &bull; Sant'Agata</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--info">Ý (Italy)</span></td>
+                                        <td><strong style="color:var(--slate-900);">25 mẫu</strong></td>
+                                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                                        <td style="text-align: right;">
+                                            <div class="action-buttons" style="justify-content: flex-end;">
+                                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <div class="product-thumb" style="background:#f1f5f9; font-weight:800; color:#334155;">
+                                                    MB
+                                                </div>
+                                                <div>
+                                                    <div class="product-info-name">Mercedes-Benz</div>
+                                                    <span class="product-info-code">Thành lập 1926 &bull; Stuttgart</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--info">Đức (Germany)</span></td>
+                                        <td><strong style="color:var(--slate-900);">20 mẫu</strong></td>
+                                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                                        <td style="text-align: right;">
+                                            <div class="action-buttons" style="justify-content: flex-end;">
+                                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <div class="product-thumb" style="background:#e0f2fe; font-weight:800; color:#0284c7;">
+                                                    BMW
+                                                </div>
+                                                <div>
+                                                    <div class="product-info-name">BMW</div>
+                                                    <span class="product-info-code">Thành lập 1916 &bull; Munich</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--info">Đức (Germany)</span></td>
+                                        <td><strong style="color:var(--slate-900);">18 mẫu</strong></td>
+                                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                                        <td style="text-align: right;">
+                                            <div class="action-buttons" style="justify-content: flex-end;">
+                                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <div class="product-thumb" style="background:#fee2e2; font-weight:800; color:#b91c1c;">
+                                                    BU
+                                                </div>
+                                                <div>
+                                                    <div class="product-info-name">Bugatti</div>
+                                                    <span class="product-info-code">Thành lập 1909 &bull; Molsheim</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--info">Pháp (France)</span></td>
+                                        <td><strong style="color:var(--slate-900);">9 mẫu</strong></td>
+                                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                                        <td style="text-align: right;">
+                                            <div class="action-buttons" style="justify-content: flex-end;">
+                                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <div class="product-thumb" style="background:#e0f2fe; font-weight:800; color:#0369a1;">
+                                                    FO
+                                                </div>
+                                                <div>
+                                                    <div class="product-info-name">Ford</div>
+                                                    <span class="product-info-code">Thành lập 1903 &bull; Detroit</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--info">Mỹ (USA)</span></td>
+                                        <td><strong style="color:var(--slate-900);">14 mẫu</strong></td>
+                                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                                        <td style="text-align: right;">
+                                            <div class="action-buttons" style="justify-content: flex-end;">
+                                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <div class="product-thumb" style="background:#ffedd5; font-weight:800; color:#ea580c;">
+                                                    MC
+                                                </div>
+                                                <div>
+                                                    <div class="product-info-name">McLaren</div>
+                                                    <span class="product-info-code">Thành lập 1963 &bull; Woking</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--info">Anh (UK)</span></td>
+                                        <td><strong style="color:var(--slate-900);">10 mẫu</strong></td>
+                                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                                        <td style="text-align: right;">
+                                            <div class="action-buttons" style="justify-content: flex-end;">
+                                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </main>
         </div>
     </div>
+
+    <!-- Script RBAC & Auth -->
+    <script src="../assets/js/admin-auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var brandForm = document.getElementById('addBrandForm');
+            var brandsTableBody = document.querySelector('#brandsTable tbody');
+            var totalCountEl = document.getElementById('brandTotalCount');
+            var searchInput = document.getElementById('searchBrandInput');
+
+            function updateCount() {
+                var rows = brandsTableBody.querySelectorAll('tr');
+                if (totalCountEl) totalCountEl.textContent = rows.length;
+            }
+
+            // Thêm hãng mới vào bảng
+            if (brandForm) {
+                brandForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    var name = document.getElementById('brandName').value.trim();
+                    var country = document.getElementById('brandCountry').value;
+                    var year = document.getElementById('brandEstablished').value.trim() || '2026';
+
+                    var initials = name.slice(0, 2).toUpperCase();
+
+                    var newRow = document.createElement('tr');
+                    newRow.innerHTML = `
+                        <td>
+                            <div class="product-cell">
+                                <div class="product-thumb" style="background:#e0f2fe; font-weight:800; color:#0284c7;">
+                                    ${initials}
+                                </div>
+                                <div>
+                                    <div class="product-info-name">${name}</div>
+                                    <span class="product-info-code">Thành lập ${year}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="badge badge--info">${country}</span></td>
+                        <td><strong style="color:var(--slate-900);">0 mẫu</strong></td>
+                        <td><span class="badge badge--success">Đang phân phối</span></td>
+                        <td style="text-align: right;">
+                            <div class="action-buttons" style="justify-content: flex-end;">
+                                <button type="button" class="btn-action btn-action--edit js-edit-brand" title="Sửa hãng">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn-action btn-action--delete js-delete-brand" title="Xóa hãng">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+
+                    brandsTableBody.prepend(newRow);
+                    brandForm.reset();
+                    updateCount();
+                    attachRowEvents(newRow);
+                    alert('Thành công! Đã thêm hãng xe: "' + name + '" vào hệ thống!');
+                });
+            }
+
+            function attachRowEvents(row) {
+                var delBtn = row.querySelector('.js-delete-brand');
+                if (delBtn) {
+                    delBtn.addEventListener('click', function () {
+                        var name = row.querySelector('.product-info-name').textContent;
+                        if (confirm('Bạn có chắc chắn muốn xóa hãng xe: "' + name + '"?')) {
+                            row.remove();
+                            updateCount();
+                            alert('Đã xóa hãng xe thành công!');
+                        }
+                    });
+                }
+
+                var editBtn = row.querySelector('.js-edit-brand');
+                if (editBtn) {
+                    editBtn.addEventListener('click', function () {
+                        var name = row.querySelector('.product-info-name').textContent;
+                        var newName = prompt('Nhập tên mới cho hãng xe:', name);
+                        if (newName && newName.trim() !== '') {
+                            row.querySelector('.product-info-name').textContent = newName.trim();
+                            alert('Đã cập nhật tên hãng xe thành: ' + newName.trim());
+                        }
+                    });
+                }
+            }
+
+            document.querySelectorAll('#brandsTable tbody tr').forEach(attachRowEvents);
+
+            // Tìm kiếm hãng
+            if (searchInput) {
+                searchInput.addEventListener('input', function () {
+                    var q = searchInput.value.toLowerCase().trim();
+                    var rows = brandsTableBody.querySelectorAll('tr');
+                    rows.forEach(function (r) {
+                        var txt = r.textContent.toLowerCase();
+                        r.style.display = (!q || txt.indexOf(q) !== -1) ? '' : 'none';
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

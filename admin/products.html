@@ -3,71 +3,707 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Mô Hình Xe | Quản Trị CarModel Store</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Quản lý mô hình | Quản trị CarModelStore</title>
+    <!-- Admin Stylesheet -->
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
-<body class="admin-body">
-    <div class="admin-shell">
-        <aside class="admin-side">
-            <a href="dashboard.html" class="brand-logo">Car<span>Model</span>Admin</a>
-            <nav aria-label="Menu quản trị">
-                <ul>
-                    <li><a href="dashboard.html">Tổng quan</a></li>
-                <li><a href="products.html" aria-current="page">Quản lý mô hình</a></li>
-                <li><a href="brands.html">Quản lý hãng xe</a></li>
-                <li><a href="orders.html">Quản lý đơn hàng</a></li>
-                
-                </ul>
-            </nav>
-        </aside>
-        <div class="admin-main">
-            <div class="admin-topbar">
+<body>
+    <div class="admin-sidebar-overlay"></div>
+
+    <div class="admin-layout">
+        <!-- 1. SIDEBAR CỐ ĐỊNH -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar__brand">
+                <div class="brand-badge-icon">M</div>
                 <div>
-                    <p class="breadcrumb" style="color:#777;"><a href="../index.html" style="color:#b8860b;">&larr; Về trang bán hàng</a></p>
-                    <h1 class="mt-0">Quản lý mô hình</h1>
+                    <div class="brand-text">Car<span>Model</span></div>
+                    <span class="brand-sub">ADMIN PORTAL</span>
                 </div>
-                <div class="header-actions" style="color:#111;">
-                    <span>Xin chào, <strong>Admin</strong></span>
-                    <a href="../login.html" class="btn btn-outline btn-sm">Đăng xuất</a>
-                </div>
-            </div>
-            
-            <div class="admin-toolbar">
-                <p class="text-muted mt-0">Tổng cộng 5 mô hình</p>
-                <a href="product-add.html" class="btn btn-primary">+ Thêm mô hình mới</a>
-            </div>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead><tr><th>Mã SP</th><th>Tên mô hình</th><th>Hãng xe</th><th>Tỉ lệ</th><th>Giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
-                    <tbody>
-                        <tr><td>SP001</td><td>Ferrari F40</td><td>Ferrari</td><td>1:18</td><td>2.450.000đ</td>
-                            <td><span class="status-pill status-pill--ok">Còn hàng</span></td>
-                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
-                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>SP002</td><td>Ferrari 250 GTO</td><td>Ferrari</td><td>1:24</td><td>1.290.000đ</td>
-                            <td><span class="status-pill status-pill--ok">Còn hàng</span></td>
-                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
-                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>SP003</td><td>Lamborghini Huracán STO</td><td>Lamborghini</td><td>1:24</td><td>980.000đ</td>
-                            <td><span class="status-pill status-pill--pending">Hết hàng</span></td>
-                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
-                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>SP004</td><td>BMW M3 E30</td><td>BMW</td><td>1:18</td><td>1.650.000đ</td>
-                            <td><span class="status-pill status-pill--ok">Còn hàng</span></td>
-                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
-                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            <tr><td>SP005</td><td>Porsche 911 GT3 RS</td><td>Porsche</td><td>1:18</td><td>1.990.000đ</td>
-                            <td><span class="status-pill status-pill--ok">Còn hàng</span></td>
-                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
-                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
-                            
-                    </tbody>
-                </table>
             </div>
 
+            <div class="admin-sidebar__user">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <div class="user-name js-admin-name">Quản trị viên</div>
+                    <span class="user-role-badge js-admin-badge">Quản trị viên</span>
+                </div>
+            </div>
+
+            <nav class="admin-nav" aria-label="Điều hướng chính quản trị">
+                <div class="nav-section-title">Hệ thống</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="dashboard.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                            </svg>
+                            <span>Tổng quan (KPI)</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Quản lý kho xe</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="products.html" class="admin-nav__link active">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2"></path>
+                                <polygon points="12 15 17 21 7 21 12 15"></polygon>
+                            </svg>
+                            <span>Sản phẩm xe</span>
+                            <span class="nav-badge">158</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-add.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            <span>Thêm mô hình mới</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="brands.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                            </svg>
+                            <span>Hãng xe / Brand</span>
+                            <span class="nav-badge">16</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Kinh doanh</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="orders.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Đơn hàng</span>
+                            <span class="nav-badge nav-badge--danger">6 mới</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="admin-sidebar__footer">
+                <a href="../index.html" class="sidebar-action-btn" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    <span>Xem Website Store</span>
+                </a>
+                <button type="button" class="sidebar-action-btn sidebar-action-btn--logout js-admin-logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN AREA & TOPBAR -->
+        <div class="admin-main">
+            <!-- Header Topbar -->
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button type="button" class="mobile-toggle-btn js-sidebar-toggle" aria-label="Mở menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="topbar-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" placeholder="Tìm theo tên xe, mã mô hình...">
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <button type="button" class="topbar-icon-btn" title="Thông báo mới">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="icon-badge"></span>
+                    </button>
+
+                    <div class="topbar-user-pill">
+                        <div class="user-pill-avatar">AD</div>
+                        <div class="user-pill-meta">
+                            <span class="user-pill-email js-admin-email">admin@gmail.com</span>
+                            <span class="user-pill-badge js-admin-badge">Quản trị viên</span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-outline btn-sm js-admin-logout" title="Đăng xuất">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        <span>Đăng xuất</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Page Content -->
+            <main class="admin-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-header__left">
+                        <h1>Danh Sách Mô Hình Xe</h1>
+                        <div class="breadcrumbs">
+                            <a href="dashboard.html">Admin</a>
+                            <span class="separator">/</span>
+                            <a href="products.html">Kho xe</a>
+                            <span class="separator">/</span>
+                            <span class="current">Danh sách</span>
+                        </div>
+                    </div>
+                    <div class="page-header__actions">
+                        <a href="product-add.html" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <span>+ Thêm mô hình mới</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- THANH TÌM KIẾM & BỘ LỌC -->
+                <div class="admin-filter-bar">
+                    <div class="filter-group-left">
+                        <div class="filter-input-search">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="productSearch" placeholder="Lọc theo tên xe hoặc mã SP...">
+                        </div>
+
+                        <select class="filter-select" id="brandFilter">
+                            <option value="">-- Tất cả Hãng xe --</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Porsche">Porsche</option>
+                            <option value="Lamborghini">Lamborghini</option>
+                            <option value="Mercedes-Benz">Mercedes-Benz</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Bugatti">Bugatti</option>
+                            <option value="Ford">Ford</option>
+                            <option value="McLaren">McLaren</option>
+                        </select>
+
+                        <select class="filter-select" id="scaleFilter">
+                            <option value="">-- Tất cả Tỉ lệ --</option>
+                            <option value="1:18">Tỉ lệ 1:18</option>
+                            <option value="1:24">Tỉ lệ 1:24</option>
+                            <option value="1:43">Tỉ lệ 1:43</option>
+                            <option value="1:64">Tỉ lệ 1:64</option>
+                        </select>
+
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">-- Tất cả Trạng thái --</option>
+                            <option value="con-hang">Còn hàng</option>
+                            <option value="het-hang">Hết hàng</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline btn-sm" id="resetFilterBtn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 4v6h-6"></path>
+                                <path d="M1 20v-6h6"></path>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                            </svg>
+                            <span>Đặt lại</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TABLE CRUD ĐẦY ĐỦ -->
+                <section class="table-card">
+                    <div class="table-card__header">
+                        <div style="font-weight: 600; color: var(--slate-700);">
+                            Đang hiển thị <span id="productCount" style="color:var(--primary-blue); font-weight:700;">8</span> / 158 mô hình trong kho
+                        </div>
+                        <div class="action-buttons">
+                            <button type="button" class="btn btn-outline btn-sm" id="bulkDeleteBtn" style="color:var(--accent-red);">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                                <span>Xoá mục đã chọn</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="data-table" id="productsTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px; text-align: center;">
+                                        <input type="checkbox" id="selectAllCheckbox" title="Chọn tất cả" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </th>
+                                    <th style="width: 70px;">Hình ảnh</th>
+                                    <th>Tên mô hình / Xe</th>
+                                    <th>Hãng xe</th>
+                                    <th>Tỉ lệ</th>
+                                    <th>Giá bán (VNĐ)</th>
+                                    <th>Tồn kho</th>
+                                    <th>Trạng thái</th>
+                                    <th style="text-align: right; min-width: 110px;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Hàng 1 -->
+                                <tr data-brand="Ferrari" data-scale="1:18" data-status="con-hang">
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" class="row-checkbox" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </td>
+                                    <td>
+                                        <div class="product-thumb" style="background:#fee2e2;">
+                                            <span style="font-size:0.65rem; font-weight:700; color:#dc2626;">FERRARI</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="product-info-name">Ferrari F40 LM Competizione (1989)</div>
+                                        <span class="product-info-code">Mã SP: MOD-FE-001</span>
+                                    </td>
+                                    <td><strong style="color:var(--slate-800);">Ferrari</strong></td>
+                                    <td><span class="scale-pill">1:18</span></td>
+                                    <td><strong style="color:var(--slate-900);">2.850.000₫</strong></td>
+                                    <td><span style="font-weight:600; color:var(--slate-800);">14 chiếc</span></td>
+                                    <td><span class="badge badge--success">Còn hàng</span></td>
+                                    <td style="text-align: right;">
+                                        <div class="action-buttons" style="justify-content: flex-end;">
+                                            <a href="product-add.html?id=MOD-FE-001" class="btn-action btn-action--edit" title="Sửa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <button type="button" class="btn-action btn-action--delete js-delete-row" title="Xóa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Hàng 2 -->
+                                <tr data-brand="Porsche" data-scale="1:18" data-status="con-hang">
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" class="row-checkbox" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </td>
+                                    <td>
+                                        <div class="product-thumb" style="background:#e0f2fe;">
+                                            <span style="font-size:0.65rem; font-weight:700; color:#0284c7;">PORSCHE</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="product-info-name">Porsche 911 GT3 RS (992) Weissach Package</div>
+                                        <span class="product-info-code">Mã SP: MOD-PO-002</span>
+                                    </td>
+                                    <td><strong style="color:var(--slate-800);">Porsche</strong></td>
+                                    <td><span class="scale-pill">1:18</span></td>
+                                    <td><strong style="color:var(--slate-900);">3.200.000₫</strong></td>
+                                    <td><span style="font-weight:600; color:var(--slate-800);">8 chiếc</span></td>
+                                    <td><span class="badge badge--success">Còn hàng</span></td>
+                                    <td style="text-align: right;">
+                                        <div class="action-buttons" style="justify-content: flex-end;">
+                                            <a href="product-add.html?id=MOD-PO-002" class="btn-action btn-action--edit" title="Sửa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <button type="button" class="btn-action btn-action--delete js-delete-row" title="Xóa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Hàng 3 -->
+                                <tr data-brand="Lamborghini" data-scale="1:24" data-status="het-hang">
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" class="row-checkbox" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </td>
+                                    <td>
+                                        <div class="product-thumb" style="background:#fef3c7;">
+                                            <span style="font-size:0.62rem; font-weight:700; color:#d97706;">LAMBO</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="product-info-name">Lamborghini Countach LPI 800-4</div>
+                                        <span class="product-info-code">Mã SP: MOD-LA-003</span>
+                                    </td>
+                                    <td><strong style="color:var(--slate-800);">Lamborghini</strong></td>
+                                    <td><span class="scale-pill">1:24</span></td>
+                                    <td><strong style="color:var(--slate-900);">1.450.000₫</strong></td>
+                                    <td><span style="font-weight:600; color:var(--accent-red);">0 chiếc</span></td>
+                                    <td><span class="badge badge--danger">Hết hàng</span></td>
+                                    <td style="text-align: right;">
+                                        <div class="action-buttons" style="justify-content: flex-end;">
+                                            <a href="product-add.html?id=MOD-LA-003" class="btn-action btn-action--edit" title="Sửa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <button type="button" class="btn-action btn-action--delete js-delete-row" title="Xóa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Hàng 4 -->
+                                <tr data-brand="Mercedes-Benz" data-scale="1:18" data-status="con-hang">
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" class="row-checkbox" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </td>
+                                    <td>
+                                        <div class="product-thumb" style="background:#f1f5f9;">
+                                            <span style="font-size:0.62rem; font-weight:700; color:#334155;">BENZ</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="product-info-name">Mercedes-AMG ONE F1 Engine (2023)</div>
+                                        <span class="product-info-code">Mã SP: MOD-ME-004</span>
+                                    </td>
+                                    <td><strong style="color:var(--slate-800);">Mercedes-Benz</strong></td>
+                                    <td><span class="scale-pill">1:18</span></td>
+                                    <td><strong style="color:var(--slate-900);">3.650.000₫</strong></td>
+                                    <td><span style="font-weight:600; color:var(--slate-800);">6 chiếc</span></td>
+                                    <td><span class="badge badge--success">Còn hàng</span></td>
+                                    <td style="text-align: right;">
+                                        <div class="action-buttons" style="justify-content: flex-end;">
+                                            <a href="product-add.html?id=MOD-ME-004" class="btn-action btn-action--edit" title="Sửa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <button type="button" class="btn-action btn-action--delete js-delete-row" title="Xóa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Hàng 5 -->
+                                <tr data-brand="BMW" data-scale="1:43" data-status="con-hang">
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" class="row-checkbox" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </td>
+                                    <td>
+                                        <div class="product-thumb" style="background:#e0f2fe;">
+                                            <span style="font-size:0.65rem; font-weight:700; color:#0284c7;">BMW</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="product-info-name">BMW M3 E30 DTM #31 Roberto Ravaglia</div>
+                                        <span class="product-info-code">Mã SP: MOD-BM-005</span>
+                                    </td>
+                                    <td><strong style="color:var(--slate-800);">BMW</strong></td>
+                                    <td><span class="scale-pill">1:43</span></td>
+                                    <td><strong style="color:var(--slate-900);">850.000₫</strong></td>
+                                    <td><span style="font-weight:600; color:var(--slate-800);">25 chiếc</span></td>
+                                    <td><span class="badge badge--success">Còn hàng</span></td>
+                                    <td style="text-align: right;">
+                                        <div class="action-buttons" style="justify-content: flex-end;">
+                                            <a href="product-add.html?id=MOD-BM-005" class="btn-action btn-action--edit" title="Sửa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <button type="button" class="btn-action btn-action--delete js-delete-row" title="Xóa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Hàng 6 -->
+                                <tr data-brand="Bugatti" data-scale="1:18" data-status="con-hang">
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" class="row-checkbox" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </td>
+                                    <td>
+                                        <div class="product-thumb" style="background:#fee2e2;">
+                                            <span style="font-size:0.62rem; font-weight:700; color:#b91c1c;">BUGATTI</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="product-info-name">Bugatti Chiron Super Sport 300+ Limited</div>
+                                        <span class="product-info-code">Mã SP: MOD-BU-006</span>
+                                    </td>
+                                    <td><strong style="color:var(--slate-800);">Bugatti</strong></td>
+                                    <td><span class="scale-pill">1:18</span></td>
+                                    <td><strong style="color:var(--slate-900);">4.100.000₫</strong></td>
+                                    <td><span style="font-weight:600; color:var(--slate-800);">4 chiếc</span></td>
+                                    <td><span class="badge badge--success">Còn hàng</span></td>
+                                    <td style="text-align: right;">
+                                        <div class="action-buttons" style="justify-content: flex-end;">
+                                            <a href="product-add.html?id=MOD-BU-006" class="btn-action btn-action--edit" title="Sửa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <button type="button" class="btn-action btn-action--delete js-delete-row" title="Xóa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Hàng 7 -->
+                                <tr data-brand="Ford" data-scale="1:24" data-status="con-hang">
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" class="row-checkbox" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </td>
+                                    <td>
+                                        <div class="product-thumb" style="background:#e0f2fe;">
+                                            <span style="font-size:0.65rem; font-weight:700; color:#0369a1;">FORD</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="product-info-name">Ford GT Heritage Edition Le Mans 1966</div>
+                                        <span class="product-info-code">Mã SP: MOD-FO-007</span>
+                                    </td>
+                                    <td><strong style="color:var(--slate-800);">Ford</strong></td>
+                                    <td><span class="scale-pill">1:24</span></td>
+                                    <td><strong style="color:var(--slate-900);">1.250.000₫</strong></td>
+                                    <td><span style="font-weight:600; color:var(--slate-800);">18 chiếc</span></td>
+                                    <td><span class="badge badge--success">Còn hàng</span></td>
+                                    <td style="text-align: right;">
+                                        <div class="action-buttons" style="justify-content: flex-end;">
+                                            <a href="product-add.html?id=MOD-FO-007" class="btn-action btn-action--edit" title="Sửa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <button type="button" class="btn-action btn-action--delete js-delete-row" title="Xóa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Hàng 8 -->
+                                <tr data-brand="McLaren" data-scale="1:64" data-status="het-hang">
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" class="row-checkbox" style="cursor:pointer; accent-color:var(--primary-blue);">
+                                    </td>
+                                    <td>
+                                        <div class="product-thumb" style="background:#ffedd5;">
+                                            <span style="font-size:0.62rem; font-weight:700; color:#ea580c;">MCLAREN</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="product-info-name">McLaren Senna GTR Papaya Orange</div>
+                                        <span class="product-info-code">Mã SP: MOD-MC-008</span>
+                                    </td>
+                                    <td><strong style="color:var(--slate-800);">McLaren</strong></td>
+                                    <td><span class="scale-pill">1:64</span></td>
+                                    <td><strong style="color:var(--slate-900);">450.000₫</strong></td>
+                                    <td><span style="font-weight:600; color:var(--accent-red);">0 chiếc</span></td>
+                                    <td><span class="badge badge--danger">Hết hàng</span></td>
+                                    <td style="text-align: right;">
+                                        <div class="action-buttons" style="justify-content: flex-end;">
+                                            <a href="product-add.html?id=MOD-MC-008" class="btn-action btn-action--edit" title="Sửa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <button type="button" class="btn-action btn-action--delete js-delete-row" title="Xóa mô hình">
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Phân trang -->
+                    <div class="pagination">
+                        <div>Đang xem trang <strong>1</strong> của <strong>20</strong> (158 mô hình)</div>
+                        <div class="pagination-pages">
+                            <button type="button" class="page-btn" disabled>&laquo; Trước</button>
+                            <button type="button" class="page-btn active">1</button>
+                            <button type="button" class="page-btn">2</button>
+                            <button type="button" class="page-btn">3</button>
+                            <button type="button" class="page-btn">Sau &raquo;</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
     </div>
+
+    <!-- Script RBAC & Auth -->
+    <script src="../assets/js/admin-auth.js"></script>
+    <!-- Script tương tác CRUD Client-side -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Master Select All Checkbox
+            var selectAll = document.getElementById('selectAllCheckbox');
+            var rowCheckboxes = document.querySelectorAll('.row-checkbox');
+
+            if (selectAll) {
+                selectAll.addEventListener('change', function () {
+                    var isChecked = selectAll.checked;
+                    rowCheckboxes.forEach(function (cb) {
+                        cb.checked = isChecked;
+                    });
+                });
+            }
+
+            // Xóa dòng đơn lẻ mô phỏng
+            var deleteButtons = document.querySelectorAll('.js-delete-row');
+            deleteButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var row = btn.closest('tr');
+                    var name = row.querySelector('.product-info-name').textContent;
+                    if (confirm('Bạn có chắc chắn muốn xoá mô hình: "' + name + '" khỏi hệ thống?')) {
+                        row.remove();
+                        updateCounter();
+                        alert('Đã xoá mô hình thành công!');
+                    }
+                });
+            });
+
+            // Xoá nhiều dòng đã chọn
+            var bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
+            if (bulkDeleteBtn) {
+                bulkDeleteBtn.addEventListener('click', function () {
+                    var selected = document.querySelectorAll('.row-checkbox:checked');
+                    if (selected.length === 0) {
+                        alert('Vui lòng tích chọn ít nhất một mô hình để xoá!');
+                        return;
+                    }
+                    if (confirm('Bạn có chắc chắn muốn xoá ' + selected.length + ' mô hình đã chọn?')) {
+                        selected.forEach(function (cb) {
+                            cb.closest('tr').remove();
+                        });
+                        if (selectAll) selectAll.checked = false;
+                        updateCounter();
+                        alert('Đã xoá thành công ' + selected.length + ' mô hình!');
+                    }
+                });
+            }
+
+            // Bộ lọc tìm kiếm & dropdowns
+            var searchInput = document.getElementById('productSearch');
+            var brandFilter = document.getElementById('brandFilter');
+            var scaleFilter = document.getElementById('scaleFilter');
+            var statusFilter = document.getElementById('statusFilter');
+            var resetBtn = document.getElementById('resetFilterBtn');
+
+            function applyFilter() {
+                var query = (searchInput.value || '').trim().toLowerCase();
+                var brand = brandFilter.value;
+                var scale = scaleFilter.value;
+                var status = statusFilter.value;
+
+                var rows = document.querySelectorAll('#productsTable tbody tr');
+                var count = 0;
+
+                rows.forEach(function (row) {
+                    var rowText = row.textContent.toLowerCase();
+                    var rowBrand = row.getAttribute('data-brand') || '';
+                    var rowScale = row.getAttribute('data-scale') || '';
+                    var rowStatus = row.getAttribute('data-status') || '';
+
+                    var matchesQuery = !query || rowText.indexOf(query) !== -1;
+                    var matchesBrand = !brand || rowBrand === brand;
+                    var matchesScale = !scale || rowScale === scale;
+                    var matchesStatus = !status || rowStatus === status;
+
+                    if (matchesQuery && matchesBrand && matchesScale && matchesStatus) {
+                        row.style.display = '';
+                        count++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                var countEl = document.getElementById('productCount');
+                if (countEl) countEl.textContent = count;
+            }
+
+            function updateCounter() {
+                var visibleRows = document.querySelectorAll('#productsTable tbody tr:not([style*="display: none"])');
+                var countEl = document.getElementById('productCount');
+                if (countEl) countEl.textContent = visibleRows.length;
+            }
+
+            if (searchInput) searchInput.addEventListener('input', applyFilter);
+            if (brandFilter) brandFilter.addEventListener('change', applyFilter);
+            if (scaleFilter) scaleFilter.addEventListener('change', applyFilter);
+            if (statusFilter) statusFilter.addEventListener('change', applyFilter);
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function () {
+                    searchInput.value = '';
+                    brandFilter.value = '';
+                    scaleFilter.value = '';
+                    statusFilter.value = '';
+                    applyFilter();
+                });
+            }
+        });
+    </script>
 </body>
 </html>

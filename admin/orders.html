@@ -3,62 +3,595 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Đơn Hàng | Quản Trị CarModel Store</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Quản lý đơn hàng | Quản trị CarModelStore</title>
+    <!-- Admin Stylesheet -->
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
-<body class="admin-body">
-    <div class="admin-shell">
-        <aside class="admin-side">
-            <a href="dashboard.html" class="brand-logo">Car<span>Model</span>Admin</a>
-            <nav aria-label="Menu quản trị">
-                <ul>
-                    <li><a href="dashboard.html">Tổng quan</a></li>
-                <li><a href="products.html">Quản lý mô hình</a></li>
-                <li><a href="brands.html">Quản lý hãng xe</a></li>
-                <li><a href="orders.html" aria-current="page">Quản lý đơn hàng</a></li>
-                
-                </ul>
-            </nav>
-        </aside>
-        <div class="admin-main">
-            <div class="admin-topbar">
+<body>
+    <div class="admin-sidebar-overlay"></div>
+
+    <div class="admin-layout">
+        <!-- 1. SIDEBAR CỐ ĐỊNH -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar__brand">
+                <div class="brand-badge-icon">M</div>
                 <div>
-                    <p class="breadcrumb" style="color:#777;"><a href="../index.html" style="color:#b8860b;">&larr; Về trang bán hàng</a></p>
-                    <h1 class="mt-0">Quản lý đơn hàng</h1>
+                    <div class="brand-text">Car<span>Model</span></div>
+                    <span class="brand-sub">ADMIN PORTAL</span>
                 </div>
-                <div class="header-actions" style="color:#111;">
-                    <span>Xin chào, <strong>Admin</strong></span>
-                    <a href="../login.html" class="btn btn-outline btn-sm">Đăng xuất</a>
-                </div>
-            </div>
-            
-            <div class="admin-toolbar">
-                <p class="text-muted mt-0">Tổng cộng 4 đơn hàng</p>
-            </div>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead><tr><th>Mã đơn</th><th>Khách hàng</th><th>Ngày đặt</th><th>Tổng tiền</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
-                    <tbody>
-                        <tr><td>#DH1032</td><td>Nguyễn Văn A</td><td>26/09/2026</td><td>2.450.000đ</td>
-                            <td><span class="status-pill status-pill--pending">Chờ xác nhận</span></td>
-                            <td><button class="btn btn-outline btn-sm">Xem</button></td></tr>
-                            <tr><td>#DH1031</td><td>Trần Thị B</td><td>25/09/2026</td><td>1.650.000đ</td>
-                            <td><span class="status-pill status-pill--ok">Đã giao</span></td>
-                            <td><button class="btn btn-outline btn-sm">Xem</button></td></tr>
-                            <tr><td>#DH1030</td><td>Lê Văn C</td><td>25/09/2026</td><td>1.990.000đ</td>
-                            <td><span class="status-pill status-pill--ok">Đã giao</span></td>
-                            <td><button class="btn btn-outline btn-sm">Xem</button></td></tr>
-                            <tr><td>#DH1029</td><td>Phạm Thị D</td><td>24/09/2026</td><td>980.000đ</td>
-                            <td><span class="status-pill status-pill--pending">Đã huỷ</span></td>
-                            <td><button class="btn btn-outline btn-sm">Xem</button></td></tr>
-                            
-                    </tbody>
-                </table>
             </div>
 
+            <div class="admin-sidebar__user">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <div class="user-name js-admin-name">Quản trị viên</div>
+                    <span class="user-role-badge js-admin-badge">Quản trị viên</span>
+                </div>
+            </div>
+
+            <nav class="admin-nav" aria-label="Điều hướng chính quản trị">
+                <div class="nav-section-title">Hệ thống</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="dashboard.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                            </svg>
+                            <span>Tổng quan (KPI)</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Quản lý kho xe</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="products.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2"></path>
+                                <polygon points="12 15 17 21 7 21 12 15"></polygon>
+                            </svg>
+                            <span>Sản phẩm xe</span>
+                            <span class="nav-badge">158</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-add.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            <span>Thêm mô hình mới</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="brands.html" class="admin-nav__link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                            </svg>
+                            <span>Hãng xe / Brand</span>
+                            <span class="nav-badge">16</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Kinh doanh</div>
+                <ul class="admin-nav__list">
+                    <li>
+                        <a href="orders.html" class="admin-nav__link active">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Đơn hàng</span>
+                            <span class="nav-badge nav-badge--danger">6 mới</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="admin-sidebar__footer">
+                <a href="../index.html" class="sidebar-action-btn" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    <span>Xem Website Store</span>
+                </a>
+                <button type="button" class="sidebar-action-btn sidebar-action-btn--logout js-admin-logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN AREA & TOPBAR -->
+        <div class="admin-main">
+            <!-- Header Topbar -->
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button type="button" class="mobile-toggle-btn js-sidebar-toggle" aria-label="Mở menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="topbar-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" placeholder="Tìm theo mã đơn, người mua...">
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <button type="button" class="topbar-icon-btn" title="Thông báo mới">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="icon-badge"></span>
+                    </button>
+
+                    <div class="topbar-user-pill">
+                        <div class="user-pill-avatar">AD</div>
+                        <div class="user-pill-meta">
+                            <span class="user-pill-email js-admin-email">admin@gmail.com</span>
+                            <span class="user-pill-badge js-admin-badge">Quản trị viên</span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-outline btn-sm js-admin-logout" title="Đăng xuất">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        <span>Đăng xuất</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Page Content -->
+            <main class="admin-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-header__left">
+                        <h1>Quản Lý Đơn Đặt Hàng</h1>
+                        <div class="breadcrumbs">
+                            <a href="dashboard.html">Admin</a>
+                            <span class="separator">/</span>
+                            <span class="current">Đơn hàng</span>
+                        </div>
+                    </div>
+                    <div class="page-header__actions">
+                        <button type="button" class="btn btn-outline btn-sm" onclick="window.print()">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                <rect x="6" y="14" width="12" height="8"></rect>
+                            </svg>
+                            <span>In danh sách</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- BỘ LỌC ĐƠN HÀNG THEO TABS VÀ TÌM KIẾM -->
+                <div class="admin-filter-bar">
+                    <div class="filter-tabs" id="orderStatusTabs">
+                        <button type="button" class="filter-tab active" data-status="all">Tất cả (6)</button>
+                        <button type="button" class="filter-tab" data-status="pending">Chờ xử lý (2)</button>
+                        <button type="button" class="filter-tab" data-status="shipping">Đang giao (2)</button>
+                        <button type="button" class="filter-tab" data-status="completed">Đã hoàn thành (1)</button>
+                        <button type="button" class="filter-tab" data-status="cancelled">Đã hủy (1)</button>
+                    </div>
+
+                    <div class="filter-input-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="orderSearchInput" placeholder="Tìm theo mã đơn hoặc SĐT...">
+                    </div>
+                </div>
+
+                <!-- BẢNG DANH SÁCH ĐƠN HÀNG CHI TIẾT -->
+                <section class="table-card">
+                    <div class="table-card__header">
+                        <div style="font-weight: 600; color: var(--slate-700);">
+                            Danh sách các đơn mua mô hình ô tô thu nhỏ
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="data-table" id="ordersTable">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Khách hàng</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Phương thức TT</th>
+                                    <th>Trạng thái đơn</th>
+                                    <th>Ngày tạo</th>
+                                    <th style="text-align: right;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Đơn 1 -->
+                                <tr data-status="pending" 
+                                    data-order-id="#ORD-2026-001" 
+                                    data-customer="Nguyễn Văn Hoàng" 
+                                    data-phone="0912.345.678" 
+                                    data-address="Phòng 402, Tòa Keangnam Landmark 72, Nam Từ Liêm, Hà Nội" 
+                                    data-payment="COD (Thanh toán khi nhận hàng)" 
+                                    data-items="1x Ferrari F40 LM Competizione (1:18 - Đỏ Rosso Corsa)" 
+                                    data-total="2.850.000₫" 
+                                    data-status-label="Chờ xử lý" 
+                                    data-status-badge="badge--warning">
+                                    <td><strong>#ORD-2026-001</strong></td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--slate-900);">Nguyễn Văn Hoàng</div>
+                                        <span style="font-size:0.75rem; color:var(--slate-400);">Hà Nội</span>
+                                    </td>
+                                    <td>0912.345.678</td>
+                                    <td><strong style="color:var(--slate-900);">2.850.000₫</strong></td>
+                                    <td><span class="scale-pill">COD</span></td>
+                                    <td><span class="badge badge--warning js-status-pill">Chờ xử lý</span></td>
+                                    <td>28/09/2026</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-outline btn-sm js-view-order">
+                                            Xem chi tiết
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Đơn 2 -->
+                                <tr data-status="shipping" 
+                                    data-order-id="#ORD-2026-002" 
+                                    data-customer="Trần Minh Quân" 
+                                    data-phone="0988.765.432" 
+                                    data-address="125 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh" 
+                                    data-payment="Chuyển khoản ngân hàng (VietQR)" 
+                                    data-items="1x Porsche 911 GT3 RS Weissach (1:18 - Xanh Miami)" 
+                                    data-total="3.200.000₫" 
+                                    data-status-label="Đang giao" 
+                                    data-status-badge="badge--info">
+                                    <td><strong>#ORD-2026-002</strong></td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--slate-900);">Trần Minh Quân</div>
+                                        <span style="font-size:0.75rem; color:var(--slate-400);">TP. HCM</span>
+                                    </td>
+                                    <td>0988.765.432</td>
+                                    <td><strong style="color:var(--slate-900);">3.200.000₫</strong></td>
+                                    <td><span class="scale-pill" style="background:#e0f2fe; color:#0284c7;">VietQR</span></td>
+                                    <td><span class="badge badge--info js-status-pill">Đang giao</span></td>
+                                    <td>28/09/2026</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-outline btn-sm js-view-order">
+                                            Xem chi tiết
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Đơn 3 -->
+                                <tr data-status="completed" 
+                                    data-order-id="#ORD-2026-003" 
+                                    data-customer="Lê Quốc Bảo" 
+                                    data-phone="0903.112.233" 
+                                    data-address="45 Trần Phú, Phường Hải Châu 1, Quận Hải Châu, Đà Nẵng" 
+                                    data-payment="Thẻ tín dụng quốc tế (Visa/Mastercard)" 
+                                    data-items="1x Lamborghini Countach LPI 800-4 (1:24 - Trắng)" 
+                                    data-total="1.450.000₫" 
+                                    data-status-label="Đã hoàn thành" 
+                                    data-status-badge="badge--success">
+                                    <td><strong>#ORD-2026-003</strong></td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--slate-900);">Lê Quốc Bảo</div>
+                                        <span style="font-size:0.75rem; color:var(--slate-400);">Đà Nẵng</span>
+                                    </td>
+                                    <td>0903.112.233</td>
+                                    <td><strong style="color:var(--slate-900);">1.450.000₫</strong></td>
+                                    <td><span class="scale-pill" style="background:#f0fdf4; color:#16a34a;">Visa</span></td>
+                                    <td><span class="badge badge--success js-status-pill">Đã hoàn thành</span></td>
+                                    <td>27/09/2026</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-outline btn-sm js-view-order">
+                                            Xem chi tiết
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Đơn 4 -->
+                                <tr data-status="pending" 
+                                    data-order-id="#ORD-2026-004" 
+                                    data-customer="Phạm Thị Thu Trang" 
+                                    data-phone="0934.556.778" 
+                                    data-address="Số 18 Lý Thường Kiệt, TP. Hải Phòng" 
+                                    data-payment="COD (Thanh toán khi nhận hàng)" 
+                                    data-items="1x BMW M3 E30 DTM #31 (1:43 - Trắng đua)" 
+                                    data-total="850.000₫" 
+                                    data-status-label="Chờ xử lý" 
+                                    data-status-badge="badge--warning">
+                                    <td><strong>#ORD-2026-004</strong></td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--slate-900);">Phạm Thị Thu Trang</div>
+                                        <span style="font-size:0.75rem; color:var(--slate-400);">Hải Phòng</span>
+                                    </td>
+                                    <td>0934.556.778</td>
+                                    <td><strong style="color:var(--slate-900);">850.000₫</strong></td>
+                                    <td><span class="scale-pill">COD</span></td>
+                                    <td><span class="badge badge--warning js-status-pill">Chờ xử lý</span></td>
+                                    <td>27/09/2026</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-outline btn-sm js-view-order">
+                                            Xem chi tiết
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Đơn 5 -->
+                                <tr data-status="shipping" 
+                                    data-order-id="#ORD-2026-005" 
+                                    data-customer="Đặng Hải Long" 
+                                    data-phone="0977.889.900" 
+                                    data-address="Biệt thự Vinhome Riverside, Long Biên, Hà Nội" 
+                                    data-payment="Chuyển khoản ngân hàng (VietQR)" 
+                                    data-items="1x Mercedes-AMG ONE (1:18) + 1x Bugatti Chiron Super Sport (1:18)" 
+                                    data-total="7.750.000₫" 
+                                    data-status-label="Đang giao" 
+                                    data-status-badge="badge--info">
+                                    <td><strong>#ORD-2026-005</strong></td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--slate-900);">Đặng Hải Long</div>
+                                        <span style="font-size:0.75rem; color:var(--slate-400);">Hà Nội</span>
+                                    </td>
+                                    <td>0977.889.900</td>
+                                    <td><strong style="color:var(--slate-900);">7.750.000₫</strong></td>
+                                    <td><span class="scale-pill" style="background:#e0f2fe; color:#0284c7;">VietQR</span></td>
+                                    <td><span class="badge badge--info js-status-pill">Đang giao</span></td>
+                                    <td>26/09/2026</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-outline btn-sm js-view-order">
+                                            Xem chi tiết
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Đơn 6 -->
+                                <tr data-status="cancelled" 
+                                    data-order-id="#ORD-2026-006" 
+                                    data-customer="Vũ Thế Anh" 
+                                    data-phone="0966.123.999" 
+                                    data-address="12 Đại Cồ Việt, Hai Bà Trưng, Hà Nội" 
+                                    data-payment="COD (Thanh toán khi nhận hàng)" 
+                                    data-items="1x McLaren Senna GTR (1:64 - Cam)" 
+                                    data-total="450.000₫" 
+                                    data-status-label="Đã hủy" 
+                                    data-status-badge="badge--danger">
+                                    <td><strong>#ORD-2026-006</strong></td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--slate-900);">Vũ Thế Anh</div>
+                                        <span style="font-size:0.75rem; color:var(--slate-400);">Hà Nội</span>
+                                    </td>
+                                    <td>0966.123.999</td>
+                                    <td><strong style="color:var(--slate-900);">450.000₫</strong></td>
+                                    <td><span class="scale-pill">COD</span></td>
+                                    <td><span class="badge badge--danger js-status-pill">Đã hủy</span></td>
+                                    <td>25/09/2026</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-outline btn-sm js-view-order">
+                                            Xem chi tiết
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
         </div>
     </div>
+
+    <!-- MODAL CHI TIẾT ĐƠN HÀNG VÀ CẬP NHẬT TRẠNG THÁI -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalOrderTitle">Chi Tiết Đơn Hàng #ORD-2026-001</h3>
+                <button type="button" class="modal-close-btn js-close-modal" aria-label="Đóng modal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+                    <div>
+                        <div style="font-size:0.75rem; color:var(--slate-400); text-transform:uppercase; font-weight:700;">Người nhận hàng</div>
+                        <div id="modalCustomerName" style="font-weight:700; color:var(--slate-900); font-size:1rem; margin-top:2px;">Nguyễn Văn Hoàng</div>
+                        <div id="modalCustomerPhone" style="font-size:0.85rem; color:var(--slate-600); margin-top:2px;">0912.345.678</div>
+                    </div>
+                    <div>
+                        <div style="font-size:0.75rem; color:var(--slate-400); text-transform:uppercase; font-weight:700;">Phương thức thanh toán</div>
+                        <div id="modalPayment" style="font-weight:600; color:var(--slate-900); margin-top:2px;">COD</div>
+                        <div id="modalOrderTotal" style="font-weight:700; color:var(--accent-red); font-size:1.1rem; margin-top:2px;">2.850.000₫</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.25rem;">
+                    <div style="font-size:0.75rem; color:var(--slate-400); text-transform:uppercase; font-weight:700;">Địa chỉ giao xe mô hình</div>
+                    <div id="modalAddress" style="font-size:0.88rem; color:var(--slate-800); margin-top:3px; background:var(--slate-100); padding:0.6rem 0.8rem; border-radius:4px;">
+                        Phòng 402, Tòa Keangnam Landmark 72, Nam Từ Liêm, Hà Nội
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="font-size:0.75rem; color:var(--slate-400); text-transform:uppercase; font-weight:700; margin-bottom: 0.5rem;">Sản phẩm đặt mua</div>
+                    <div id="modalItemsList" style="background:#ffffff; border:1px solid var(--border-light); border-radius:4px; padding:0.75rem; font-size:0.9rem; font-weight:500;">
+                        1x Ferrari F40 LM Competizione (1:18 - Đỏ Rosso Corsa)
+                    </div>
+                </div>
+
+                <!-- CẬP NHẬT TRẠNG THÁI -->
+                <div style="background:var(--slate-100); padding:1rem; border-radius:8px; border:1px solid var(--border-light);">
+                    <label class="form-label" for="updateStatusSelect" style="font-weight:700;">
+                        Cập nhật trạng thái đơn hàng:
+                    </label>
+                    <div style="display:flex; gap:0.75rem; margin-top:0.4rem;">
+                        <select id="updateStatusSelect" class="form-control" style="flex:1;">
+                            <option value="pending">Chờ xử lý</option>
+                            <option value="shipping">Đang giao</option>
+                            <option value="completed">Đã hoàn thành</option>
+                            <option value="cancelled">Đã hủy</option>
+                        </select>
+                        <button type="button" class="btn btn-primary" id="saveOrderStatusBtn">
+                            Lưu trạng thái
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline js-close-modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script RBAC & Auth -->
+    <script src="../assets/js/admin-auth.js"></script>
+
+    <!-- Script tương tác Modal & Bộ lọc trạng thái đơn -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentActiveRow = null;
+            var modal = document.getElementById('orderModal');
+            var closeButtons = document.querySelectorAll('.js-close-modal');
+
+            // Mở modal xem chi tiết đơn
+            var viewButtons = document.querySelectorAll('.js-view-order');
+            viewButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var row = btn.closest('tr');
+                    currentActiveRow = row;
+
+                    var orderId = row.getAttribute('data-order-id');
+                    var customer = row.getAttribute('data-customer');
+                    var phone = row.getAttribute('data-phone');
+                    var address = row.getAttribute('data-address');
+                    var payment = row.getAttribute('data-payment');
+                    var items = row.getAttribute('data-items');
+                    var total = row.getAttribute('data-total');
+                    var status = row.getAttribute('data-status');
+
+                    document.getElementById('modalOrderTitle').textContent = 'Chi Tiết Đơn Hàng ' + orderId;
+                    document.getElementById('modalCustomerName').textContent = customer;
+                    document.getElementById('modalCustomerPhone').textContent = phone;
+                    document.getElementById('modalAddress').textContent = address;
+                    document.getElementById('modalPayment').textContent = payment;
+                    document.getElementById('modalOrderTotal').textContent = total;
+                    document.getElementById('modalItemsList').textContent = items;
+
+                    var statusSelect = document.getElementById('updateStatusSelect');
+                    if (statusSelect) statusSelect.value = status;
+
+                    modal.classList.add('is-active');
+                });
+            });
+
+            // Đóng modal
+            closeButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    modal.classList.remove('is-active');
+                });
+            });
+
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.classList.remove('is-active');
+                }
+            });
+
+            // Lưu cập nhật trạng thái đơn hàng
+            var saveStatusBtn = document.getElementById('saveOrderStatusBtn');
+            if (saveStatusBtn) {
+                saveStatusBtn.addEventListener('click', function () {
+                    if (!currentActiveRow) return;
+
+                    var newStatus = document.getElementById('updateStatusSelect').value;
+                    var pill = currentActiveRow.querySelector('.js-status-pill');
+
+                    var statusMap = {
+                        'pending': { text: 'Chờ xử lý', class: 'badge--warning' },
+                        'shipping': { text: 'Đang giao', class: 'badge--info' },
+                        'completed': { text: 'Đã hoàn thành', class: 'badge--success' },
+                        'cancelled': { text: 'Đã hủy', class: 'badge--danger' }
+                    };
+
+                    var conf = statusMap[newStatus];
+                    if (conf && pill) {
+                        currentActiveRow.setAttribute('data-status', newStatus);
+                        pill.className = 'badge ' + conf.class + ' js-status-pill';
+                        pill.textContent = conf.text;
+                        alert('Đã cập nhật trạng thái đơn ' + currentActiveRow.getAttribute('data-order-id') + ' thành: "' + conf.text + '"!');
+                        modal.classList.remove('is-active');
+                    }
+                });
+            }
+
+            // Bộ lọc Tabs trạng thái
+            var tabs = document.querySelectorAll('#orderStatusTabs .filter-tab');
+            var searchInput = document.getElementById('orderSearchInput');
+
+            function filterOrders() {
+                var activeTab = document.querySelector('#orderStatusTabs .filter-tab.active');
+                var currentStatus = activeTab ? activeTab.getAttribute('data-status') : 'all';
+                var query = (searchInput.value || '').trim().toLowerCase();
+
+                var rows = document.querySelectorAll('#ordersTable tbody tr');
+                rows.forEach(function (r) {
+                    var rStatus = r.getAttribute('data-status');
+                    var rText = r.textContent.toLowerCase();
+
+                    var matchesStatus = (currentStatus === 'all') || (rStatus === currentStatus);
+                    var matchesQuery = !query || (rText.indexOf(query) !== -1);
+
+                    if (matchesStatus && matchesQuery) {
+                        r.style.display = '';
+                    } else {
+                        r.style.display = 'none';
+                    }
+                });
+            }
+
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    tabs.forEach(function (t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    filterOrders();
+                });
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', filterOrders);
+            }
+        });
+    </script>
 </body>
 </html>

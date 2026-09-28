@@ -47,7 +47,7 @@
         <div class="form-card" style="margin:0 auto; text-align:left;">
             <h1>Đăng nhập</h1>
             <p class="text-muted" style="margin-top:0;">Đăng nhập để theo dõi đơn hàng và lưu mô hình yêu thích.</p>
-            <form action="account.html" method="post">
+            <form action="account.html" method="post" id="login-form">
                 <div class="form-row">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required placeholder="ban@vidu.com">
@@ -58,6 +58,15 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                 <p class="form-hint">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+                
+                <!-- Hộp thông tin tài khoản Admin để chấm bài / thử nghiệm -->
+                <div style="margin-top:1.5rem; padding:1rem; background:#f8fafc; border:1px dashed #cbd5e1; border-radius:6px; font-size:0.85rem;">
+                    <div style="font-weight:700; color:#0f172a; margin-bottom:4px;">🔑 Tài khoản Quản trị viên (Admin):</div>
+                    <div style="color:#475569;">Email: <code style="color:#2563eb; font-weight:600;">admin@gmail.com</code> | Mật khẩu: <code style="color:#2563eb; font-weight:600;">123456</code></div>
+                    <button type="button" id="quick-login-admin" class="btn btn-outline btn-sm" style="margin-top:8px; width:100%;">
+                        Điền nhanh & Đăng nhập Admin
+                    </button>
+                </div>
             </form>
         </div>
     </main>
@@ -100,5 +109,6 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/admin-auth.js"></script>
 </body>
 </html>
