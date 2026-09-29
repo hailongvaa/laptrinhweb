@@ -9,35 +9,46 @@
     <title>Liên hệ | CarModel Store</title>
 </head>
 <body>
+    <!-- HEADER ĐỒNG BỘ: TRANG LIÊN HỆ -->
     <header class="site-header">
         <div class="site-header__top">
-            <div class="container">
-                <span>Hotline tư vấn: 1900-6868 &nbsp;|&nbsp; Giao hàng toàn quốc</span>
-                <a href="contact.html">Liên hệ cửa hàng</a>
+            <div class="container header-top-flex">
+                <div class="hotline-box">
+                    <span class="phone-vibrate-icon">📞</span>
+                    <div class="hotline-text">
+                        <span class="hotline-label">Hotline tư vấn</span>
+                        <a href="tel:19006868" class="hotline-number">1900-6868</a>
+                    </div>
+                    <span class="hotline-divider">|</span>
+                    <span class="shipping-note">Giao hàng toàn quốc</span>
+                </div>
+                <div class="top-auth">
+                    <a href="login.html" class="top-login-link">Đăng nhập</a>
+                </div>
             </div>
         </div>
         <div class="site-header__main">
-            <div class="container">
+            <div class="container main-header-flex">
                 <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
                 <nav class="main-nav" aria-label="Menu chính">
                     <ul>
-                        <li><a href="index.html" aria-current="page">Trang chủ</a></li>
-            <li><a href="brands.html">Hãng xe</a></li>
-            <li><a href="products.html">Tất cả mô hình</a></li>
-            <li><a href="accessories.html">Phụ kiện</a></li>
-            <li><a href="preorder.html">Sắp ra mắt</a></li>
-            <li><a href="wishlist.html">Yêu thích</a></li>
-            
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="brands.html">Hãng xe</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="preorder.html">Sắp ra mắt</a></li>
+                        <li><a href="contact.html" aria-current="page">Liên hệ</a></li>
                     </ul>
                 </nav>
-                <form class="search-form" action="products.html" method="get" role="search">
-                    <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
-                    <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
-                    <button type="submit">Tìm</button>
-                </form>
-                <div class="header-actions">
-                    <a href="login.html">Đăng nhập</a>
-                    <a href="cart.html">Giỏ hàng <span class="cart-pill">3</span></a>
+                <div class="header-right-actions">
+                    <form class="search-form" action="products.html" method="get" role="search">
+                        <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                        <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                        <button type="submit">Tìm</button>
+                    </form>
+                    <a href="cart.html" class="cart-icon-btn" title="Xem giỏ hàng" aria-label="Giỏ hàng">
+                        <span class="cart-cart-symbol">🛒</span>
+                        <span class="cart-badge">3</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -53,11 +64,28 @@
         <div class="form-card form-card--wide">
             <p><strong>Địa chỉ:</strong> 123 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</p>
             <p><strong>Hotline:</strong> 1900-6868 &nbsp;|&nbsp; <strong>Email:</strong> cskh@carmodelstore.vn</p>
-            <form>
-                <div class="form-row"><label for="c-name">Họ tên</label><input type="text" id="c-name"></div>
-                <div class="form-row"><label for="c-msg">Nội dung</label><textarea id="c-msg" rows="4"></textarea></div>
-                <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
-            </form>
+      <form action="#" method="post">
+    <!-- 1. Ô Họ tên -->
+    <div class="form-row">
+        <label for="name">Họ tên</label>
+        <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
+    </div>
+
+    <!-- 2. Ô Email khách hàng (thêm mới dưới họ tên) -->
+    <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+    </div>
+
+    <!-- 3. Ô Nội dung -->
+    <div class="form-row">
+        <label for="message">Nội dung</label>
+        <textarea id="message" name="message" rows="5" placeholder="Nhập câu hỏi hoặc thông tin mô hình bạn cần tư vấn..." required></textarea>
+    </div>
+
+    <!-- 4. Nút Gửi liên hệ -->
+    <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
+</form>
         </div>
     </main>
 

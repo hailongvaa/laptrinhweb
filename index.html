@@ -9,35 +9,59 @@
     <title>Trang chủ | CarModel Store</title>
 </head>
 <body>
+   <!-- HEADER: HOTLINE ĐIỆN THOẠI RUNG + MENU 1 DÒNG + ICON XE ĐẨY GIỎ HÀNG -->
     <header class="site-header">
+        <!-- THANH TOPBAR TRÊN CÙNG -->
         <div class="site-header__top">
-            <div class="container">
-                <span>Hotline tư vấn: 1900-6868 &nbsp;|&nbsp; Giao hàng toàn quốc</span>
-                <a href="contact.html">Liên hệ cửa hàng</a>
+            <div class="container header-top-flex">
+                <!-- Hotline: Điện thoại vàng rung + Chữ ở trên, số ở dưới -->
+                <div class="hotline-box">
+                    <span class="phone-vibrate-icon">📞</span>
+                    <div class="hotline-text">
+                        <span class="hotline-label">Hotline tư vấn</span>
+                        <a href="tel:19006868" class="hotline-number">1900-6868</a>
+                    </div>
+                    <span class="hotline-divider">|</span>
+                    <span class="shipping-note">Giao hàng toàn quốc</span>
+                </div>
+
+                <!-- Đăng nhập chuyển lên trên góc phải (thay thế phần liên hệ cũ) -->
+                <div class="top-auth">
+                    <a href="login.html" class="top-login-link">Đăng nhập</a>
+                </div>
             </div>
         </div>
+
+        <!-- THANH HEADER CHÍNH (TẤT CẢ NẰM TRÊN CÙNG 1 HÀNG NGANG) -->
         <div class="site-header__main">
-            <div class="container">
+            <div class="container main-header-flex">
+                <!-- Logo thương hiệu -->
                 <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
+
+                <!-- Menu chính 5 mục trên cùng 1 dòng: Trang chủ, Hãng xe, Sản phẩm, Sắp ra mắt, Liên hệ -->
                 <nav class="main-nav" aria-label="Menu chính">
                     <ul>
                         <li><a href="index.html" aria-current="page">Trang chủ</a></li>
-            <li><a href="brands.html">Hãng xe</a></li>
-            <li><a href="products.html">Tất cả mô hình</a></li>
-            <li><a href="accessories.html">Phụ kiện</a></li>
-            <li><a href="preorder.html">Sắp ra mắt</a></li>
-            <li><a href="wishlist.html">Yêu thích</a></li>
-            
+                        <li><a href="brands.html">Hãng xe</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="preorder.html">Sắp ra mắt</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
                     </ul>
                 </nav>
-                <form class="search-form" action="products.html" method="get" role="search">
-                    <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
-                    <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
-                    <button type="submit">Tìm</button>
-                </form>
-                <div class="header-actions">
-                    <a href="login.html">Đăng nhập</a>
-                    <a href="cart.html">Giỏ hàng <span class="cart-pill">3</span></a>
+
+                <!-- Cùng dòng bên phải: Ô tìm kiếm + Icon xe đẩy giỏ hàng -->
+                <div class="header-right-actions">
+                    <form class="search-form" action="products.html" method="get" role="search">
+                        <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                        <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                        <button type="submit">Tìm</button>
+                    </form>
+
+                    <!-- Icon xe đẩy giỏ hàng (không để chữ) kèm số lượng -->
+                    <a href="cart.html" class="cart-icon-btn" title="Xem giỏ hàng" aria-label="Giỏ hàng">
+                        <span class="cart-cart-symbol">🛒</span>
+                        <span class="cart-badge">3</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -47,18 +71,54 @@
         <strong>Cập nhật giá mới</strong> &ndash; Đợt tháng 10/2026: giá đã điều chỉnh theo tỉ giá nhập khẩu mới nhất, xem chi tiết tại từng mô hình.
     </div>
     <main id="main">
-        <section class="hero">
+        >
             <div class="container">
                 <div>
-                    <h1>Mô hình ô tô thu nhỏ &ndash; phom dáng như xe thật</h1>
-                    <p>Hàng trăm mẫu mô hình đúc kim loại tỉ lệ 1:18 &ndash; 1:64, tái hiện chi tiết từ Ferrari, Lamborghini,
-                    BMW, Porsche... kèm phụ kiện trưng bày, giao hàng toàn quốc.</p>
-                    <a href="products.html" class="btn btn-primary">Khám phá bộ sưu tập</a>
-                    <a href="brands.html" class="btn btn-outline" style="margin-left:.6rem;">Xem theo hãng xe</a>
+         <!-- HERO BANNER: GRADIENT VÀNG KIM & ĐEN THAN CHÌ -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-card">
+                <!-- CỘT TRÁI: TIÊU ĐỀ TIẾNG ANH PHÓNG TO VÀNG ĐẬM & MÔ TẢ -->
+                <div class="hero-left">
+                    <h1 class="hero-main-title">AUTOSCALE EXCLUSIVE COLLECTION</h1>
+                    <p class="hero-desc">
+                        Hàng trăm mẫu mô hình đúc kim loại, tái hiện tinh xảo từng chi tiết từ Ferrari, Porsche, Lamborghini... kèm giải pháp sa bàn trưng bày đẳng cấp.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="products.html" class="btn btn-gold-blend">Khám phá bộ sưu tập</a>
+                        <a href="brands.html" class="btn btn-outline-white">Xem theo hãng xe</a>
+                    </div>
                 </div>
-                <div class="hero-visual">Ảnh banner mô hình ô tô nổi bật<br>(kết hợp ảnh tự dựng + ảnh thật khi triển khai)</div>
+
+                <!-- CỘT PHẢI: KHUNG TRƯNG BÀY CÓ ẢNH & ĐIỀU HƯỚNG 4 BỘ SƯU TẬP -->
+                <div class="hero-right">
+                    <div class="collection-showcase-box">
+                        <!-- Nút điều hướng trái/phải -->
+                        <div class="showcase-nav-bar">
+                            <span class="collection-counter" id="collectionCounter">Bộ sưu tập 01 / 04</span>
+                            <div class="nav-arrow-group">
+                                <button type="button" class="btn-arrow" id="prevSlideBtn" aria-label="Bộ sưu tập trước">❮</button>
+                                <button type="button" class="btn-arrow" id="nextSlideBtn" aria-label="Bộ sưu tập tiếp theo">❯</button>
+                            </div>
+                        </div>
+
+                        <!-- Khung hình ảnh mô hình xe -->
+                        <div class="showcase-img-wrap">
+                            <img id="collectionImg" src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80" alt="Mô hình siêu xe">
+                            <span class="showcase-badge" id="collectionScale">Tỉ lệ 1:18 Precision</span>
+                        </div>
+
+                        <!-- Chi tiết thông tin bộ sưu tập -->
+                        <div class="showcase-content">
+                            <h3 class="collection-name" id="collectionName">HYPERCAR DINH CAO: PORSCHE 911 & FERRARI F40</h3>
+                            <p class="collection-feature" id="collectionFeature">Sơn hấp nhiệt 3 lớp • Mở toàn phần cửa xe & khoang động cơ</p>
+                            <a href="product-detail.html" class="btn-showcase-link" id="collectionLink">Xem chi tiết bộ sưu tập này →</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <section class="section container">
             <div class="section-head">
@@ -101,9 +161,11 @@
             <div class="grid">
                 <article class="car-card">
                     <div class="car-card__media">
-                        
+                        <!-- <div><img src="asset/img/product.jpg" /></div> -->
                         <button class="wishlist-btn" data-product-id="sp01" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
-                        Ảnh mô hình<br>Ferrari F40
+                        <div class="car-card-img">
+                            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80" alt="Mô hình xe đồ chơi Lamborghini Countach">
+                        </div>
                     </div>
                     <div class="car-card__body">
                         <span class="brand-badge">Ferrari</span>
@@ -116,9 +178,10 @@
                 </article>
                 <article class="car-card">
                     <div class="car-card__media">
-                        
                         <button class="wishlist-btn" data-product-id="sp02" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
-                        Ảnh mô hình<br>Ferrari 250 GTO
+                        <div class="car-card-img">
+                            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80" alt="Mô hình xe đồ chơi Lamborghini Countach">
+                        </div>
                     </div>
                     <div class="car-card__body">
                         <span class="brand-badge">Ferrari</span>
@@ -131,9 +194,10 @@
                 </article>
                 <article class="car-card">
                     <div class="car-card__media">
-                        
                         <button class="wishlist-btn" data-product-id="sp03" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
-                        Ảnh mô hình<br>Lamborghini Countach LP500R
+                        <div class="car-card-img">
+                            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80" alt="Mô hình xe đồ chơi Lamborghini Countach">
+                        </div>
                     </div>
                     <div class="car-card__body">
                         <span class="brand-badge">Lamborghini</span>
@@ -148,7 +212,9 @@
                     <div class="car-card__media">
                         
                         <button class="wishlist-btn" data-product-id="sp04" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
-                        Ảnh mô hình<br>Lamborghini Huracán STO
+                       <div class="car-card-img">
+                            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80" alt="Mô hình xe đồ chơi Lamborghini Countach">
+                        </div>
                     </div>
                     <div class="car-card__body">
                         <span class="brand-badge">Lamborghini</span>
@@ -173,7 +239,10 @@
                     <div class="car-card__media">
                         <span class="badge-preorder">Pre-order</span>
                         <button class="wishlist-btn" data-product-id="sp13" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
-                        Ảnh mô hình<br>Bugatti Chiron Super Sport
+                        <div class="car-card-img">
+    <span class="badge-preorder">PRE-ORDER</span>
+    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" alt="Mô hình xe Bugatti Chiron">
+</div>
                     </div>
                     <div class="car-card__body">
                         <span class="brand-badge">Bugatti</span>
@@ -188,7 +257,10 @@
                     <div class="car-card__media">
                         <span class="badge-preorder">Pre-order</span>
                         <button class="wishlist-btn" data-product-id="sp14" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
-                        Ảnh mô hình<br>Koenigsegg Jesko
+                        <div class="car-card-img">
+    <span class="badge-preorder">PRE-ORDER</span>
+    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" alt="Mô hình xe Koenigsegg Jesko">
+</div>
                     </div>
                     <div class="car-card__body">
                         <span class="brand-badge">Koenigsegg</span>
@@ -203,7 +275,10 @@
                     <div class="car-card__media">
                         <span class="badge-preorder">Pre-order</span>
                         <button class="wishlist-btn" data-product-id="sp15" aria-label="Lưu vào yêu thích" title="Lưu vào yêu thích">♡</button>
-                        Ảnh mô hình<br>Pagani Utopia
+                        <div class="car-card-img">
+    <span class="badge-preorder">PRE-ORDER</span>
+    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" alt="Mô hình xe Pagani Utopia">
+</div>
                     </div>
                     <div class="car-card__body">
                         <span class="brand-badge">Pagani</span>
@@ -256,5 +331,432 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
+<!-- SCRIPT ĐIỀU HƯỚNG 4 TRANG BỘ SƯU TẬP ĐỘC LẬP -->
+    <script>
+        // Dữ liệu 4 bộ sưu tập độc lập (ảnh, tỉ lệ, tên, đặc điểm, link)
+        const collections = [
+            {
+                counter: "Bộ sưu tập 01 / 04",
+                scale: "Tỉ lệ 1:18 Precision",
+                name: "HYPERCAR ĐỈNH CAO: PORSCHE 911 & FERRARI F40",
+                feature: "Sơn hấp nhiệt 3 lớp • Mở toàn phần cửa xe & khoang động cơ",
+                img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 02 / 04",
+                scale: "Tỉ lệ 1:24 Exclusive",
+                name: "LAMBORGHINI AVENTADOR SVJ & SIÁN FKP 37",
+                feature: "Vỏ hợp kim đúc đầm tay • Đèn LED pha sáng thực tế",
+                img: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 03 / 04",
+                scale: "Tỉ lệ 1:64 Mini Track",
+                name: "HỘP TRƯNG BÀY DIORAMA SA BÀN GARA TOKYO",
+                feature: "Kèm hộp mica chống bụi & hệ thống đèn led trần gara",
+                img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80",
+                link: "accessories.html"
+            },
+            {
+                counter: "Bộ sưu tập 04 / 04",
+                scale: "Tỉ lệ 1:18 Limited",
+                name: "MCLAREN P1 GTR RACING EDITION (BẢN GIỚI HẠN)",
+                feature: "Cánh gió sợi carbon • Vô lăng đánh lái theo bánh trước",
+                img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80",
+                link: "preorder.html"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const counterEl = document.getElementById("collectionCounter");
+        const scaleEl = document.getElementById("collectionScale");
+        const nameEl = document.getElementById("collectionName");
+        const featureEl = document.getElementById("collectionFeature");
+        const imgEl = document.getElementById("collectionImg");
+        const linkEl = document.getElementById("collectionLink");
+
+        function updateShowcase(index) {
+            const item = collections[index];
+            imgEl.style.opacity = 0.4;
+            setTimeout(() => {
+                counterEl.textContent = item.counter;
+                scaleEl.textContent = item.scale;
+                nameEl.textContent = item.name;
+                featureEl.textContent = item.feature;
+                imgEl.src = item.img;
+                linkEl.href = item.link;
+                imgEl.style.opacity = 1;
+            }, 150);
+        }
+
+        document.getElementById("prevSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === 0) ? collections.length - 1 : currentIndex - 1;
+            updateShowcase(currentIndex);
+        });
+
+        document.getElementById("nextSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === collections.length - 1) ? 0 : currentIndex + 1;
+            updateShowcase(currentIndex);
+        });
+    </script>
+<!-- SCRIPT ĐIỀU HƯỚNG 4 TRANG BỘ SƯU TẬP ĐỘC LẬP -->
+    <script>
+        // Dữ liệu 4 bộ sưu tập độc lập (ảnh, tỉ lệ, tên, đặc điểm, link)
+        const collections = [
+            {
+                counter: "Bộ sưu tập 01 / 04",
+                scale: "Tỉ lệ 1:18 Precision",
+                name: "HYPERCAR ĐỈNH CAO: PORSCHE 911 & FERRARI F40",
+                feature: "Sơn hấp nhiệt 3 lớp • Mở toàn phần cửa xe & khoang động cơ",
+                img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 02 / 04",
+                scale: "Tỉ lệ 1:24 Exclusive",
+                name: "LAMBORGHINI AVENTADOR SVJ & SIÁN FKP 37",
+                feature: "Vỏ hợp kim đúc đầm tay • Đèn LED pha sáng thực tế",
+                img: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 03 / 04",
+                scale: "Tỉ lệ 1:64 Mini Track",
+                name: "HỘP TRƯNG BÀY DIORAMA SA BÀN GARA TOKYO",
+                feature: "Kèm hộp mica chống bụi & hệ thống đèn led trần gara",
+                img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80",
+                link: "accessories.html"
+            },
+            {
+                counter: "Bộ sưu tập 04 / 04",
+                scale: "Tỉ lệ 1:18 Limited",
+                name: "MCLAREN P1 GTR RACING EDITION (BẢN GIỚI HẠN)",
+                feature: "Cánh gió sợi carbon • Vô lăng đánh lái theo bánh trước",
+                img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80",
+                link: "preorder.html"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const counterEl = document.getElementById("collectionCounter");
+        const scaleEl = document.getElementById("collectionScale");
+        const nameEl = document.getElementById("collectionName");
+        const featureEl = document.getElementById("collectionFeature");
+        const imgEl = document.getElementById("collectionImg");
+        const linkEl = document.getElementById("collectionLink");
+
+        function updateShowcase(index) {
+            const item = collections[index];
+            imgEl.style.opacity = 0.4;
+            setTimeout(() => {
+                counterEl.textContent = item.counter;
+                scaleEl.textContent = item.scale;
+                nameEl.textContent = item.name;
+                featureEl.textContent = item.feature;
+                imgEl.src = item.img;
+                linkEl.href = item.link;
+                imgEl.style.opacity = 1;
+            }, 150);
+        }
+
+        document.getElementById("prevSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === 0) ? collections.length - 1 : currentIndex - 1;
+            updateShowcase(currentIndex);
+        });
+
+        document.getElementById("nextSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === collections.length - 1) ? 0 : currentIndex + 1;
+            updateShowcase(currentIndex);
+        });
+    </script>
+<!-- SCRIPT ĐIỀU HƯỚNG 4 TRANG BỘ SƯU TẬP ĐỘC LẬP -->
+    <script>
+        // Dữ liệu 4 bộ sưu tập độc lập (ảnh, tỉ lệ, tên, đặc điểm, link)
+        const collections = [
+            {
+                counter: "Bộ sưu tập 01 / 04",
+                scale: "Tỉ lệ 1:18 Precision",
+                name: "HYPERCAR ĐỈNH CAO: PORSCHE 911 & FERRARI F40",
+                feature: "Sơn hấp nhiệt 3 lớp • Mở toàn phần cửa xe & khoang động cơ",
+                img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 02 / 04",
+                scale: "Tỉ lệ 1:24 Exclusive",
+                name: "LAMBORGHINI AVENTADOR SVJ & SIÁN FKP 37",
+                feature: "Vỏ hợp kim đúc đầm tay • Đèn LED pha sáng thực tế",
+                img: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 03 / 04",
+                scale: "Tỉ lệ 1:64 Mini Track",
+                name: "HỘP TRƯNG BÀY DIORAMA SA BÀN GARA TOKYO",
+                feature: "Kèm hộp mica chống bụi & hệ thống đèn led trần gara",
+                img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80",
+                link: "accessories.html"
+            },
+            {
+                counter: "Bộ sưu tập 04 / 04",
+                scale: "Tỉ lệ 1:18 Limited",
+                name: "MCLAREN P1 GTR RACING EDITION (BẢN GIỚI HẠN)",
+                feature: "Cánh gió sợi carbon • Vô lăng đánh lái theo bánh trước",
+                img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80",
+                link: "preorder.html"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const counterEl = document.getElementById("collectionCounter");
+        const scaleEl = document.getElementById("collectionScale");
+        const nameEl = document.getElementById("collectionName");
+        const featureEl = document.getElementById("collectionFeature");
+        const imgEl = document.getElementById("collectionImg");
+        const linkEl = document.getElementById("collectionLink");
+
+        function updateShowcase(index) {
+            const item = collections[index];
+            imgEl.style.opacity = 0.4;
+            setTimeout(() => {
+                counterEl.textContent = item.counter;
+                scaleEl.textContent = item.scale;
+                nameEl.textContent = item.name;
+                featureEl.textContent = item.feature;
+                imgEl.src = item.img;
+                linkEl.href = item.link;
+                imgEl.style.opacity = 1;
+            }, 150);
+        }
+
+        document.getElementById("prevSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === 0) ? collections.length - 1 : currentIndex - 1;
+            updateShowcase(currentIndex);
+        });
+
+        document.getElementById("nextSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === collections.length - 1) ? 0 : currentIndex + 1;
+            updateShowcase(currentIndex);
+        });
+    </script>
+<!-- SCRIPT ĐIỀU HƯỚNG 4 TRANG BỘ SƯU TẬP ĐỘC LẬP -->
+    <script>
+        // Dữ liệu 4 bộ sưu tập độc lập (ảnh, tỉ lệ, tên, đặc điểm, link)
+        const collections = [
+            {
+                counter: "Bộ sưu tập 01 / 04",
+                scale: "Tỉ lệ 1:18 Precision",
+                name: "HYPERCAR ĐỈNH CAO: PORSCHE 911 & FERRARI F40",
+                feature: "Sơn hấp nhiệt 3 lớp • Mở toàn phần cửa xe & khoang động cơ",
+                img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 02 / 04",
+                scale: "Tỉ lệ 1:24 Exclusive",
+                name: "LAMBORGHINI AVENTADOR SVJ & SIÁN FKP 37",
+                feature: "Vỏ hợp kim đúc đầm tay • Đèn LED pha sáng thực tế",
+                img: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 03 / 04",
+                scale: "Tỉ lệ 1:64 Mini Track",
+                name: "HỘP TRƯNG BÀY DIORAMA SA BÀN GARA TOKYO",
+                feature: "Kèm hộp mica chống bụi & hệ thống đèn led trần gara",
+                img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80",
+                link: "accessories.html"
+            },
+            {
+                counter: "Bộ sưu tập 04 / 04",
+                scale: "Tỉ lệ 1:18 Limited",
+                name: "MCLAREN P1 GTR RACING EDITION (BẢN GIỚI HẠN)",
+                feature: "Cánh gió sợi carbon • Vô lăng đánh lái theo bánh trước",
+                img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80",
+                link: "preorder.html"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const counterEl = document.getElementById("collectionCounter");
+        const scaleEl = document.getElementById("collectionScale");
+        const nameEl = document.getElementById("collectionName");
+        const featureEl = document.getElementById("collectionFeature");
+        const imgEl = document.getElementById("collectionImg");
+        const linkEl = document.getElementById("collectionLink");
+
+        function updateShowcase(index) {
+            const item = collections[index];
+            imgEl.style.opacity = 0.4;
+            setTimeout(() => {
+                counterEl.textContent = item.counter;
+                scaleEl.textContent = item.scale;
+                nameEl.textContent = item.name;
+                featureEl.textContent = item.feature;
+                imgEl.src = item.img;
+                linkEl.href = item.link;
+                imgEl.style.opacity = 1;
+            }, 150);
+        }
+
+        document.getElementById("prevSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === 0) ? collections.length - 1 : currentIndex - 1;
+            updateShowcase(currentIndex);
+        });
+
+        document.getElementById("nextSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === collections.length - 1) ? 0 : currentIndex + 1;
+            updateShowcase(currentIndex);
+        });
+    </script>
+<!-- SCRIPT ĐIỀU HƯỚNG 4 TRANG BỘ SƯU TẬP ĐỘC LẬP -->
+    <script>
+        // Dữ liệu 4 bộ sưu tập độc lập (ảnh, tỉ lệ, tên, đặc điểm, link)
+        const collections = [
+            {
+                counter: "Bộ sưu tập 01 / 04",
+                scale: "Tỉ lệ 1:18 Precision",
+                name: "HYPERCAR ĐỈNH CAO: PORSCHE 911 & FERRARI F40",
+                feature: "Sơn hấp nhiệt 3 lớp • Mở toàn phần cửa xe & khoang động cơ",
+                img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 02 / 04",
+                scale: "Tỉ lệ 1:24 Exclusive",
+                name: "LAMBORGHINI AVENTADOR SVJ & SIÁN FKP 37",
+                feature: "Vỏ hợp kim đúc đầm tay • Đèn LED pha sáng thực tế",
+                img: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 03 / 04",
+                scale: "Tỉ lệ 1:64 Mini Track",
+                name: "HỘP TRƯNG BÀY DIORAMA SA BÀN GARA TOKYO",
+                feature: "Kèm hộp mica chống bụi & hệ thống đèn led trần gara",
+                img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80",
+                link: "accessories.html"
+            },
+            {
+                counter: "Bộ sưu tập 04 / 04",
+                scale: "Tỉ lệ 1:18 Limited",
+                name: "MCLAREN P1 GTR RACING EDITION (BẢN GIỚI HẠN)",
+                feature: "Cánh gió sợi carbon • Vô lăng đánh lái theo bánh trước",
+                img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80",
+                link: "preorder.html"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const counterEl = document.getElementById("collectionCounter");
+        const scaleEl = document.getElementById("collectionScale");
+        const nameEl = document.getElementById("collectionName");
+        const featureEl = document.getElementById("collectionFeature");
+        const imgEl = document.getElementById("collectionImg");
+        const linkEl = document.getElementById("collectionLink");
+
+        function updateShowcase(index) {
+            const item = collections[index];
+            imgEl.style.opacity = 0.4;
+            setTimeout(() => {
+                counterEl.textContent = item.counter;
+                scaleEl.textContent = item.scale;
+                nameEl.textContent = item.name;
+                featureEl.textContent = item.feature;
+                imgEl.src = item.img;
+                linkEl.href = item.link;
+                imgEl.style.opacity = 1;
+            }, 150);
+        }
+
+        document.getElementById("prevSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === 0) ? collections.length - 1 : currentIndex - 1;
+            updateShowcase(currentIndex);
+        });
+
+        document.getElementById("nextSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === collections.length - 1) ? 0 : currentIndex + 1;
+            updateShowcase(currentIndex);
+        });
+    </script><!-- SCRIPT ĐIỀU HƯỚNG 4 TRANG BỘ SƯU TẬP ĐỘC LẬP -->
+    <script>
+        // Dữ liệu 4 bộ sưu tập độc lập (ảnh, tỉ lệ, tên, đặc điểm, link)
+        const collections = [
+            {
+                counter: "Bộ sưu tập 01 / 04",
+                scale: "Tỉ lệ 1:18 Precision",
+                name: "HYPERCAR ĐỈNH CAO: PORSCHE 911 & FERRARI F40",
+                feature: "Sơn hấp nhiệt 3 lớp • Mở toàn phần cửa xe & khoang động cơ",
+                img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 02 / 04",
+                scale: "Tỉ lệ 1:24 Exclusive",
+                name: "LAMBORGHINI AVENTADOR SVJ & SIÁN FKP 37",
+                feature: "Vỏ hợp kim đúc đầm tay • Đèn LED pha sáng thực tế",
+                img: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=700&q=80",
+                link: "product-detail.html"
+            },
+            {
+                counter: "Bộ sưu tập 03 / 04",
+                scale: "Tỉ lệ 1:64 Mini Track",
+                name: "HỘP TRƯNG BÀY DIORAMA SA BÀN GARA TOKYO",
+                feature: "Kèm hộp mica chống bụi & hệ thống đèn led trần gara",
+                img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80",
+                link: "accessories.html"
+            },
+            {
+                counter: "Bộ sưu tập 04 / 04",
+                scale: "Tỉ lệ 1:18 Limited",
+                name: "MCLAREN P1 GTR RACING EDITION (BẢN GIỚI HẠN)",
+                feature: "Cánh gió sợi carbon • Vô lăng đánh lái theo bánh trước",
+                img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80",
+                link: "preorder.html"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const counterEl = document.getElementById("collectionCounter");
+        const scaleEl = document.getElementById("collectionScale");
+        const nameEl = document.getElementById("collectionName");
+        const featureEl = document.getElementById("collectionFeature");
+        const imgEl = document.getElementById("collectionImg");
+        const linkEl = document.getElementById("collectionLink");
+
+        function updateShowcase(index) {
+            const item = collections[index];
+            imgEl.style.opacity = 0.4;
+            setTimeout(() => {
+                counterEl.textContent = item.counter;
+                scaleEl.textContent = item.scale;
+                nameEl.textContent = item.name;
+                featureEl.textContent = item.feature;
+                imgEl.src = item.img;
+                linkEl.href = item.link;
+                imgEl.style.opacity = 1;
+            }, 150);
+        }
+
+        document.getElementById("prevSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === 0) ? collections.length - 1 : currentIndex - 1;
+            updateShowcase(currentIndex);
+        });
+
+        document.getElementById("nextSlideBtn").addEventListener("click", () => {
+            currentIndex = (currentIndex === collections.length - 1) ? 0 : currentIndex + 1;
+            updateShowcase(currentIndex);
+        });
+    </script>
+</body>
+
 </body>
 </html>

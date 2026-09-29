@@ -1,45 +1,42 @@
 /* =========================================================
-   CARMODEL STORE — stylesheet dùng chung cho toàn bộ website
-   Đồ án: Website bán mô hình ô tô thu nhỏ (Chương 1 & 2)
-   Phong cách: Trắng chủ đạo + Header Bạc Kim + Ô Hãng Than Chì + Điểm nhấn Vàng Kim
+   CARMODEL STORE — LUXURY PLATINUM & GOLD EDITION
+   Phong cách: Trắng chủ đạo + Bạc kim ánh đen + Đen nhẹ ánh Vàng Kim + Ô Bạc kim đậm
    ========================================================= */
 
 :root {
-  /* Tông Than chì (Charcoal) */
-  --graphite-950: #14171c;
-  --graphite-900: #1c2026;
-  --graphite-800: #262b34;
-  --graphite-700: #3b424e;
-  --graphite-600: #596373;
-  --graphite-100: #e8ecf2;
+  /* Tông Đen nhẹ / Obsidian sang trọng */
+  --black-soft: #16181d;
+  --black-midnight: #1f232b;
+  --black-surface: #282d37;
 
-  /* Nền Trắng chủ đạo & Giấy bạc */
+  /* Hệ màu Bạc kim (Platinum) đa sắc thái */
+  --platinum-light: #f8fafc;
+  --platinum-base: #e2e8f0;
+  --platinum-dark: #3a414d;        /* Bạc kim đậm thay cho than chì cũ */
+  --platinum-darker: #2d333d;      /* Bạc kim đậm chiều sâu */
+  --platinum-border: #64748b;      /* Viền ánh kim loại */
+  --platinum-shadow: rgba(148, 163, 184, 0.25);
+
+  /* Ánh Vàng kim Hoàng Gia lấp lánh (Shimmering Gold) */
+  --gold-primary: #d4af37;
+  --gold-glow: #f6e05e;
+  --gold-dark: #aa841e;
+  --gold-gradient: linear-gradient(135deg, #f6e05e 0%, #d4af37 50%, #997519 100%);
+  --gold-border: rgba(212, 175, 55, 0.5);
+
+  /* Mau nen tong the & Chu */
   --bg-main: #f8fafc;
   --bg-card: #ffffff;
-  --border-light: #e2e8f0;
-  --border-mid: #cbd5e1;
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
 
-  /* Bạc kim (Platinum) cho Header */
-  --platinum-light: #f1f5f9;
-  --platinum-base: #e2e8f0;
-  --platinum-border: #cbd5e1;
-  --platinum-text: #1e293b;
-
-  /* Điểm nhấn Vàng Kim (Royal Gold) */
-  --gold-primary: #c59b27;
-  --gold-hover: #b0881e;
-  --gold-light: #fffbeb;
-  --gold-border: rgba(197, 155, 39, 0.4);
-
-  /* Bổ trợ */
-  --danger-red: #dc2626;
-  --status-amber: #d97706;
-  --ok-green: #16a34a;
+  --danger-red: #e11d48;
+  --ok-green: #10b981;
 
   --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-body: "Inter", "Segoe UI", sans-serif;
 
-  --radius: 6px;
+  --radius: 8px;
   --gap: 1.25rem;
   --container: 1200px;
 }
@@ -51,7 +48,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   background: var(--bg-main);
-  color: var(--graphite-800);
+  color: var(--text-dark);
   line-height: 1.6;
 }
 
@@ -60,8 +57,8 @@ img { max-width: 100%; display: block; }
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   text-transform: uppercase;
-  letter-spacing: .03em;
-  color: var(--graphite-950);
+  letter-spacing: .04em;
+  color: var(--black-soft);
   margin: 0 0 .5rem;
 }
 
@@ -73,12 +70,12 @@ a { color: inherit; text-decoration: none; }
   padding: 0 1.5rem;
 }
 
-/* ---------- 1. HEADER BẠC KIM (PLATINUM HEADER) ---------- */
+/* ---------- 1. TOPBAR & MAIN HEADER ---------- */
 .site-header__top {
-  background: var(--graphite-950);
+  background: var(--black-soft);
   color: var(--platinum-base);
   font-size: .8rem;
-  border-bottom: 1px solid var(--graphite-800);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .site-header__top .container {
   display: flex;
@@ -90,79 +87,117 @@ a { color: inherit; text-decoration: none; }
 .site-header__top a:hover { text-decoration: underline; }
 
 .site-header__main {
-  background: linear-gradient(180deg, #ffffff 0%, var(--platinum-base) 100%);
-  border-bottom: 2px solid var(--gold-primary);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: #ffffff;
+  border-bottom: 2px solid var(--platinum-base);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
 }
 .site-header__main .container {
   display: flex;
   align-items: center;
   gap: var(--gap);
-  padding-top: .9rem;
-  padding-bottom: .9rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   flex-wrap: wrap;
 }
 
 .brand-logo {
   font-family: var(--font-display);
-  font-size: 1.7rem;
-  color: var(--graphite-950);
+  font-size: 1.75rem;
+  color: var(--black-soft);
   white-space: nowrap;
   letter-spacing: 1px;
 }
-.brand-logo span { color: var(--gold-primary); }
-
-.main-nav {
-  flex: 1;
+.brand-logo span { 
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.main-nav { flex: 1; }
 .main-nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2rem;
   margin: 0;
   padding: 0;
+  align-items: center;
   flex-wrap: wrap;
 }
-.main-nav a {
-  color: var(--graphite-800);
-  font-size: .95rem;
-  font-weight: 700;
-  padding: .3rem 0;
-  border-bottom: 2px solid transparent;
-  transition: all .2s ease;
+
+/* ---------- THANH MENU: BỎ KHUNG CHỮ NHẬT, ĐỔI THÀNH CHỮ VÀNG ĐẬM VÀ GẠCH CHÂN ---------- */
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.6rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.main-nav a:hover,
-.main-nav a[aria-current="page"] {
-  border-bottom-color: var(--gold-primary);
-  color: var(--gold-primary);
+
+.main-nav a {
+  background: transparent !important;   /* Xoá sạch mọi màu nền khung cũ */
+  border: none !important;              /* Bỏ đường viền khung chữ nhật */
+  box-shadow: none !important;          /* Bỏ hiệu ứng đổ bóng của nút */
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.5rem 0;                   /* Chỉ đệm trên dưới, để gạch chân nằm sát chữ */
+  position: relative;
+  transition: color 0.25s ease;
+  text-decoration: none;
+}
+
+/* Khi rê chuột vào mục bất kỳ */
+.main-nav a:hover {
+  color: #b8860b;                      /* Đổi sang màu vàng kim */
+}
+
+/* TRANG HIỆN TẠI ĐANG ĐỨNG (ACTIVE / ARIA-CURRENT): CHỮ VÀNG ĐẬM + GẠCH CHÂN ĐIỂM NHẤN */
+.main-nav a[aria-current="page"],
+.main-nav a.active {
+  color: #b8860b !important;           /* Vàng đậm sang trọng (Dark Goldenrod) */
+  font-weight: 700 !important;
+}
+
+/* Đường gạch chân điểm nhấn phát sáng nhẹ bên dưới trang đang đứng */
+.main-nav a[aria-current="page"]::after,
+.main-nav a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #b8860b);
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.4);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: .9rem;
+  gap: 1rem;
 }
 .header-actions a {
-  color: var(--graphite-900);
-  font-size: .88rem;
+  color: var(--text-dark);
+  font-size: .9rem;
   font-weight: 700;
 }
 .cart-pill {
-  background: var(--gold-primary);
-  color: #fff;
+  background: var(--gold-gradient);
+  color: #1a1805;
   border-radius: 999px;
-  padding: .2rem .65rem;
+  padding: .2rem .7rem;
   font-size: .8rem;
-  font-weight: 700;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.35);
 }
 
-.search-form {
-  display: flex;
-  min-width: 220px;
-}
+.search-form { display: flex; min-width: 230px; }
 .search-form input {
   flex: 1;
-  border: 1px solid var(--platinum-border);
+  border: 1px solid var(--platinum-base);
   background: #fff;
   padding: .5rem .7rem;
   font-size: .85rem;
@@ -172,131 +207,536 @@ a { color: inherit; text-decoration: none; }
 .search-form input:focus { border-color: var(--gold-primary); }
 .search-form button {
   border: none;
-  background: var(--graphite-900);
+  background: linear-gradient(135deg, var(--black-midnight), var(--black-soft));
   color: var(--gold-primary);
-  padding: 0 .9rem;
+  padding: 0 1rem;
   font-weight: 700;
   border-radius: 0 var(--radius) var(--radius) 0;
   cursor: pointer;
-  transition: background .2s;
+  border: 1px solid var(--black-soft);
+  border-left: none;
+  transition: all .2s;
 }
 .search-form button:hover {
-  background: var(--graphite-950);
-}
-
-/* ---------- 2. NÚT BẤM (BUTTONS) ---------- */
-.btn {
-  display: inline-block;
-  padding: .65rem 1.3rem;
-  border-radius: var(--radius);
-  font-weight: 700;
-  font-size: .9rem;
-  cursor: pointer;
-  border: 1px solid transparent;
-  text-align: center;
-  transition: all .25s ease;
-}
-.btn-primary { 
-  background: var(--graphite-950); 
-  color: #fff; 
-  border-color: var(--graphite-950); 
-}
-.btn-primary:hover { 
-  background: var(--gold-primary); 
-  border-color: var(--gold-primary);
   color: #fff;
-}
-.btn-outline { 
-  background: transparent; 
-  border-color: var(--graphite-900); 
-  color: var(--graphite-900); 
-}
-.btn-outline:hover { 
-  background: var(--graphite-900); 
-  color: #fff; 
-}
-.btn-silver { 
-  background: var(--platinum-base); 
-  color: var(--graphite-950); 
-  border-color: var(--platinum-border); 
-}
-.btn-silver:hover { 
-  background: var(--border-mid); 
-}
-.btn-gold {
   background: var(--gold-primary);
-  color: #fff;
 }
-.btn-gold:hover {
-  background: var(--gold-hover);
-}
-.btn-danger { background: var(--danger-red); color: #fff; }
-.btn-block { width: 100%; }
-.btn-sm { padding: .35rem .8rem; font-size: .78rem; }
 
-/* ---------- 3. HERO BANNER ---------- */
+/* ---------- 2. KHU VỰC HERO: ĐEN NHẸ + VÀNG KIM LẤP LÁNH ---------- */
 .hero {
-  background: radial-gradient(circle at 75% 50%, var(--graphite-800) 0%, var(--graphite-950) 100%);
+  background: radial-gradient(circle at 75% 40%, #252b36 0%, var(--black-soft) 85%);
   color: #fff;
-  padding: 3.5rem 0;
-  border-bottom: 3px solid var(--gold-primary);
+  padding: 4rem 0;
+  border-bottom: 2px solid var(--gold-primary);
+  box-shadow: inset 0 -10px 30px rgba(0,0,0,0.5);
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-glow), transparent);
 }
 .hero .container {
   display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 2rem;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 2.5rem;
   align-items: center;
 }
 .hero h1 {
-  color: #fff;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.1;
-  margin-bottom: .8rem;
+  color: #ffffff;
+  font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
-.hero h1 span { color: var(--gold-primary); }
-.hero p { color: var(--platinum-base); max-width: 46ch; }
+.hero h1 span {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-shadow: none;
+}
+.hero p {
+  color: var(--platinum-base);
+  font-size: 1.05rem;
+  max-width: 48ch;
+  line-height: 1.65;
+}
 .hero-visual {
-  background: var(--graphite-900);
-  border: 1px dashed var(--gold-primary);
+  background: linear-gradient(145deg, #1e232c, #14171d);
+  border: 1.5px dashed var(--gold-border);
   border-radius: var(--radius);
   aspect-ratio: 4/3;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--platinum-light);
-  font-size: .85rem;
+  color: var(--platinum-base);
+  font-size: .9rem;
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 15px rgba(212, 175, 55, 0.1);
+}
+/* ==========================================================
+   HERO BANNER - GRADIENT VÀNG KIM & ĐEN THAN CHÌ
+   ========================================================== */
+.hero-section {
+  padding: 1.5rem 0 2rem;
 }
 
-/* ---------- 4. TIÊU ĐỀ SECTION ---------- */
-.section { padding: 3rem 0; }
+/* Khung lớn: Gradient chuyển từ Đen than chì sang Vàng kim hoàng gia */
+.hero-card {
+  background: linear-gradient(135deg, #0f1115 0%, #1a1e24 45%, #2a2415 80%, #3d2f10 100%);
+  border: 1px solid #d4af37;
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: center;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(212, 175, 55, 0.3);
+}
+
+/* Cột trái */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Tiêu đề tiếng Anh phóng to màu vàng đậm */
+.hero-main-title {
+  color: #e5b83b;
+  font-size: 2.45rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(229, 184, 59, 0.25);
+}
+
+.hero-desc {
+  color: #e2e8f0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.btn-gold-blend {
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: #0f172a !important;
+  font-weight: 700;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gold-blend:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
+
+.btn-outline-white {
+  border: 1px solid #475569;
+  color: #ffffff;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-white:hover {
+  border-color: #d4af37;
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+/* Cột phải: Khung trưng bày bộ sưu tập */
+.collection-showcase-box {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 12px;
+  padding: 1.25rem;
+  backdrop-filter: blur(8px);
+}
+
+.showcase-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.collection-counter {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.nav-arrow-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #d4af37;
+  background: #1e293b;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.btn-arrow:hover {
+  background: #d4af37;
+  color: #0f172a;
+  transform: scale(1.08);
+}
+
+/* Khung ảnh xe */
+.showcase-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.9rem;
+}
+
+.showcase-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.showcase-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.collection-name {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  line-height: 1.4;
+}
+
+.collection-feature {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  margin: 0 0 1rem;
+}
+
+.btn-showcase-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.btn-showcase-link:hover {
+  opacity: 0.9;
+}
+
+/* Responsive khi xem trên điện thoại/màn hình nhỏ */
+@media (max-width: 900px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+  }
+  .hero-main-title {
+    font-size: 1.9rem;
+  }
+}
+/* ==========================================================
+   HERO BANNER - GRADIENT VÀNG KIM & ĐEN THAN CHÌ
+   ========================================================== */
+.hero-section {
+  padding: 1.5rem 0 2rem;
+}
+
+/* Khung lớn: Gradient chuyển từ Đen than chì sang Vàng kim hoàng gia */
+.hero-card {
+  background: linear-gradient(135deg, #0f1115 0%, #1a1e24 45%, #2a2415 80%, #3d2f10 100%);
+  border: 1px solid #d4af37;
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: center;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(212, 175, 55, 0.3);
+}
+
+/* Cột trái */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Tiêu đề tiếng Anh phóng to màu vàng đậm */
+.hero-main-title {
+  color: #e5b83b;
+  font-size: 2.45rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(229, 184, 59, 0.25);
+}
+
+.hero-desc {
+  color: #e2e8f0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.btn-gold-blend {
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: #0f172a !important;
+  font-weight: 700;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gold-blend:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
+
+.btn-outline-white {
+  border: 1px solid #475569;
+  color: #ffffff;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-white:hover {
+  border-color: #d4af37;
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+/* Cột phải: Khung trưng bày bộ sưu tập */
+.collection-showcase-box {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 12px;
+  padding: 1.25rem;
+  backdrop-filter: blur(8px);
+}
+
+.showcase-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.collection-counter {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.nav-arrow-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #d4af37;
+  background: #1e293b;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.btn-arrow:hover {
+  background: #d4af37;
+  color: #0f172a;
+  transform: scale(1.08);
+}
+
+/* Khung ảnh xe */
+.showcase-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.9rem;
+}
+
+.showcase-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.showcase-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.collection-name {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  line-height: 1.4;
+}
+
+.collection-feature {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  margin: 0 0 1rem;
+}
+
+.btn-showcase-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.btn-showcase-link:hover {
+  opacity: 0.9;
+}
+
+/* Responsive khi xem trên điện thoại/màn hình nhỏ */
+@media (max-width: 900px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+  }
+  .hero-main-title {
+    font-size: 1.9rem;
+  }
+}
+/* NÚT KHÁM PHÁ BỘ SƯU TẬP (VÀNG KIM HOÀNG GIA) */
+.btn-primary {
+  background: var(--gold-gradient) !important;
+  color: #171302 !important;
+  border: none !important;
+  font-weight: 800 !important;
+  letter-spacing: .03em;
+  padding: .75rem 1.6rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+  transition: all .3s ease !important;
+  display: inline-block;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.55);
+  color: #000 !important;
+}
+
+/* ---------- 3. TIÊU ĐỀ SECTION ---------- */
+.section { padding: 3.5rem 0; }
 .section-head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--border-light);
-  padding-bottom: .6rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 2px solid var(--platinum-base);
+  padding-bottom: .7rem;
 }
 .section-head h2 {
   position: relative;
   display: inline-block;
-  color: var(--graphite-950);
+  color: var(--black-soft);
 }
 .section-head h2::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.65rem;
-  width: 50px;
-  height: 2px;
-  background: var(--gold-primary);
+  bottom: -0.75rem;
+  width: 60px;
+  height: 3px;
+  background: var(--gold-gradient);
 }
 .section-head a { font-size: .88rem; font-weight: 700; color: var(--gold-primary); }
-.section-head a:hover { text-decoration: underline; }
+.section-head a:hover { color: var(--gold-dark); text-decoration: underline; }
 
-/* ---------- 5. CÁC Ô HÃNG XE (MÀU THAN CHÌ SANG TRỌNG) ---------- */
+/* ---------- 4. CÁC Ô HÃNG XE: MÀU BẠC KIM ĐẬM (DARK PLATINUM) ---------- */
 .grid {
   display: grid;
   gap: var(--gap);
@@ -305,27 +745,35 @@ a { color: inherit; text-decoration: none; }
 .grid--brands { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 
 .brand-card {
-  background: linear-gradient(145deg, var(--graphite-900), var(--graphite-950));
-  color: #fff;
+  background: linear-gradient(145deg, #3d4552 0%, #2f3540 60%, #232830 100%);
+  color: #f1f5f9;
   border-radius: var(--radius);
-  padding: 1.5rem 1rem;
+  padding: 1.6rem 1rem;
   text-align: center;
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   letter-spacing: .05em;
-  border: 1px solid var(--graphite-700);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-  transition: all .3s ease;
+  border: 1px solid var(--platinum-border);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.15);
+  transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.brand-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
 }
 .brand-card:hover {
+  transform: translateY(-5px);
   border-color: var(--gold-primary);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(197, 155, 39, 0.25);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 15px rgba(212, 175, 55, 0.3);
   color: var(--gold-primary);
 }
 .brand-card small {
   display: block;
-  color: var(--platinum-base);
+  color: #cbd5e1;
   font-family: var(--font-body);
   font-size: .75rem;
   margin-top: .4rem;
@@ -333,38 +781,39 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0;
 }
 
-/* ---------- 6. THẺ MÔ HÌNH XE (CAR CARD) ---------- */
+/* ---------- 5. CÁC Ô CÓ KHUNG (CAR CARD, FILTER, FORM, TABLE) ---------- */
 .car-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--platinum-base);
   border-radius: var(--radius);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 .car-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: var(--gold-border);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08), 0 0 10px rgba(212, 175, 55, 0.15);
 }
 .car-card__media {
   aspect-ratio: 4/3;
   background: #f1f5f9;
-  color: var(--graphite-600);
+ /* background-image: url('assets/img/product.jpg'); */
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: .78rem;
+  font-size: .8rem;
   text-align: center;
   padding: .5rem;
   position: relative;
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--platinum-base);
 }
 .car-card__body { padding: 1rem 1.1rem; flex: 1; display: flex; flex-direction: column; }
 .brand-badge {
-  font-size: .7rem;
+  font-size: .72rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--gold-primary);
@@ -372,34 +821,47 @@ a { color: inherit; text-decoration: none; }
 }
 .car-card__name { 
   font-size: 1.05rem; 
-  color: var(--graphite-950);
+  color: var(--black-soft);
   margin: .3rem 0 .4rem; 
 }
 .scale-label {
   font-size: .75rem;
-  color: var(--graphite-600);
+  color: var(--text-muted);
   margin-bottom: .6rem;
 }
 .price-tag {
   font-family: var(--font-display);
   font-size: 1.25rem;
-  color: var(--graphite-950);
+  color: var(--black-soft);
   margin: 0 0 .4rem;
   font-weight: 700;
 }
 
-/* ---------- Đánh giá sao ---------- */
+/* Nút trong thẻ xe */
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--platinum-dark);
+  color: var(--platinum-dark);
+  font-weight: 700;
+  transition: all .25s ease;
+}
+.btn-outline:hover {
+  background: var(--platinum-dark);
+  color: #fff;
+  border-color: var(--platinum-dark);
+}
+
+/* Star rating & Wishlist */
 .star-rating {
   display: flex;
   align-items: center;
   gap: .3rem;
   font-size: .8rem;
-  color: var(--graphite-600);
+  color: var(--text-muted);
   margin-bottom: .6rem;
 }
-.star-rating .stars { color: var(--gold-primary); letter-spacing: 1px; font-size: .9rem; }
+.star-rating .stars { color: var(--gold-primary); letter-spacing: 1px; }
 
-/* ---------- Wishlist Button & Pre-order Badge ---------- */
 .wishlist-btn {
   position: absolute;
   top: .6rem;
@@ -407,241 +869,159 @@ a { color: inherit; text-decoration: none; }
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px solid var(--border-light);
-  background: rgba(255,255,255,.95);
-  color: var(--graphite-600);
-  font-size: 1rem;
+  border: 1px solid var(--platinum-base);
+  background: rgba(255,255,255,0.95);
+  color: var(--text-muted);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all .2s ease;
+  transition: all .2s;
 }
-.wishlist-btn.is-active,
-.wishlist-btn:hover { color: var(--danger-red); border-color: var(--danger-red); }
+.wishlist-btn:hover { color: var(--danger-red); border-color: var(--danger-red); transform: scale(1.1); }
 
 .badge-preorder {
   position: absolute;
   top: .6rem;
   left: .6rem;
-  background: var(--gold-primary);
-  color: #fff;
+  background: var(--gold-gradient);
+  color: #171302;
   font-size: .65rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: .04em;
   padding: .25rem .55rem;
   border-radius: 3px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* ---------- Promo Banner ---------- */
+/* Khung Promo Banner */
 .promo-banner {
-  background: linear-gradient(90deg, var(--graphite-950), var(--graphite-900));
-  color: var(--gold-primary);
+  background: linear-gradient(90deg, #1e2229 0%, #282f3b 50%, #1e2229 100%);
+  color: #f1f5f9;
   font-size: .85rem;
   font-weight: 600;
   text-align: center;
-  padding: .55rem 1rem;
+  padding: .65rem 1rem;
   border-bottom: 1px solid var(--gold-border);
 }
-.promo-banner strong { text-transform: uppercase; letter-spacing: .03em; color: #fff; }
+.promo-banner strong { color: var(--gold-primary); text-transform: uppercase; }
 
-/* ---------- Toggle bộ sưu tập ---------- */
-.view-toggle {
-  display: inline-flex;
-  border: 1px solid var(--border-mid);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.view-toggle button {
-  border: none;
-  background: #fff;
-  color: var(--graphite-800);
-  padding: .4rem .9rem;
-  font-size: .8rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-.view-toggle button.active { background: var(--graphite-950); color: #fff; }
-.grid--collection { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-.grid--collection .car-card__media { aspect-ratio: 16/10; }
-
-/* ---------- Filter Panel ---------- */
-.layout-filter {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 2rem;
-  align-items: start;
-}
+/* Khung Lọc (Filter Panel) màu bạc kim đậm */
 .filter-panel {
-  background: #fff;
-  border: 1px solid var(--border-light);
+  background: #ffffff;
+  border: 1px solid var(--platinum-base);
   border-radius: var(--radius);
   padding: 1.4rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 .filter-panel fieldset {
   border: none;
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid var(--platinum-base);
   padding: .9rem 0;
   margin: 0;
 }
-.filter-panel fieldset:first-child { border-top: none; padding-top: 0; }
+.filter-panel fieldset:first-child { border-top: none; }
 .filter-panel legend {
   font-family: var(--font-display);
   font-size: .88rem;
   text-transform: uppercase;
-  color: var(--graphite-950);
+  color: var(--black-soft);
   margin-bottom: .6rem;
 }
-.filter-panel label {
-  display: flex;
-  gap: .5rem;
-  align-items: center;
-  font-size: .88rem;
-  margin-bottom: .45rem;
-  color: var(--graphite-700);
-}
 
-/* ---------- Trang Chi tiết (Product Detail) ---------- */
+/* Khung Chi tiết sản phẩm */
 .product-detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
-  background: #fff;
-  padding: 2rem;
-  border: 1px solid var(--border-light);
+  background: #ffffff;
+  padding: 2.2rem;
+  border: 1px solid var(--platinum-base);
   border-radius: var(--radius);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 .product-detail__gallery {
   background: #f1f5f9;
-  color: var(--graphite-600);
-  aspect-ratio: 1/1;
   border-radius: var(--radius);
+  border: 1px solid var(--platinum-base);
+  aspect-ratio: 1/1;
   display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border-light);
-}
-.spec-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
-.spec-table th, .spec-table td {
-  text-align: left;
-  padding: .55rem .4rem;
-  border-bottom: 1px solid var(--border-light);
-  font-size: .9rem;
-}
-.spec-table th { width: 40%; color: var(--graphite-600); font-weight: 600; }
-.qty-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-.qty-row input[type="number"] { 
-  width: 75px; 
-  padding: .45rem; 
-  border: 1px solid var(--border-mid); 
-  border-radius: var(--radius); 
 }
 
-/* ---------- Forms & Tables ---------- */
-.form-card {
-  background: #fff;
-  border: 1px solid var(--border-light);
+/* Bảng dữ liệu (Data Table) */
+.data-table { width: 100%; border-collapse: collapse; background: #fff; font-size: .9rem; }
+.data-table th, .data-table td {
+  padding: .85rem 1rem;
+  border-bottom: 1px solid var(--platinum-base);
+  text-align: left;
+}
+.data-table thead th {
+  background: linear-gradient(145deg, #3d4552, #2f3540);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: .8rem;
+  border-bottom: 2px solid var(--gold-primary);
+}
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--platinum-base);
   border-radius: var(--radius);
-  padding: 2rem;
+}
+
+/* Thẻ Form */
+.form-card {
+  background: #ffffff;
+  border: 1px solid var(--platinum-base);
+  border-radius: var(--radius);
+  padding: 2.2rem;
   max-width: 480px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
 }
 .form-card--wide { max-width: 720px; }
-.form-row { margin-bottom: 1.1rem; }
-.form-row label {
-  display: block;
-  font-size: .85rem;
-  font-weight: 700;
-  color: var(--graphite-900);
-  margin-bottom: .35rem;
-}
 .form-row input, .form-row select, .form-row textarea {
   width: 100%;
   padding: .65rem .75rem;
-  border: 1px solid var(--border-mid);
+  border: 1px solid var(--platinum-base);
   border-radius: var(--radius);
-  font-family: inherit;
-  font-size: .92rem;
   outline: none;
 }
 .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
   border-color: var(--gold-primary);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
 }
 
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  font-size: .9rem;
-}
-.data-table th, .data-table td {
-  padding: .8rem .9rem;
-  border-bottom: 1px solid var(--border-light);
-  text-align: left;
-}
-.data-table thead th {
-  background: var(--graphite-950);
-  color: #fff;
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: .03em;
-  text-transform: uppercase;
-  font-size: .78rem;
-  border-bottom: 2px solid var(--gold-primary);
-}
-.table-wrap { overflow-x: auto; border: 1px solid var(--border-light); border-radius: var(--radius); }
-.status-pill {
-  display: inline-block;
-  padding: .2rem .65rem;
-  border-radius: 999px;
-  font-size: .72rem;
-  font-weight: 700;
-}
-.status-pill--ok { background: rgba(22,163,74,.12); color: var(--ok-green); }
-.status-pill--pending { background: rgba(217,119,6,.12); color: var(--status-amber); }
-
-/* ---------- Cart summary ---------- */
-.cart-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: start; }
+/* Khung Tóm tắt Giỏ hàng (Summary Card) */
 .summary-card {
-  background: var(--graphite-950);
+  background: linear-gradient(145deg, #3d4552 0%, #292f39 100%);
   color: #fff;
   border-radius: var(--radius);
-  padding: 1.6rem;
+  padding: 1.8rem;
   border-top: 3px solid var(--gold-primary);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
-.summary-row { display: flex; justify-content: space-between; font-size: .9rem; margin-bottom: .6rem; }
-.summary-row.total { 
-  font-family: var(--font-display); 
-  font-size: 1.3rem; 
+.summary-row.total {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
   color: var(--gold-primary);
-  border-top: 1px solid var(--graphite-700); 
-  padding-top: .8rem; 
-  margin-top: .8rem; 
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: .8rem;
+  margin-top: .8rem;
 }
 
-/* ---------- Breadcrumb / Page banner ---------- */
+/* Page Banner */
 .page-banner {
-  background: linear-gradient(135deg, var(--graphite-950), var(--graphite-900));
+  background: radial-gradient(circle at 80% 50%, #2f3540 0%, var(--black-soft) 100%);
   color: #fff;
-  padding: 2rem 0;
+  padding: 2.2rem 0;
   border-bottom: 2px solid var(--gold-primary);
 }
-.page-banner h1 {
-  color: #fff !important;
-  margin: 0;
-}
-.breadcrumb {
-  font-size: .8rem;
-  color: var(--platinum-base);
-  margin-bottom: .4rem;
-}
-.breadcrumb a { color: var(--platinum-base); }
+.page-banner h1 { color: #fff !important; margin: 0; }
+.breadcrumb { font-size: .8rem; color: var(--platinum-base); margin-bottom: .4rem; }
 .breadcrumb a:hover { color: var(--gold-primary); }
 
-/* ---------- FOOTER ---------- */
+/* ---------- 6. FOOTER SANG TRỌNG ---------- */
 .site-footer {
-  background: var(--graphite-950);
+  background: var(--black-soft);
   color: var(--platinum-base);
   margin-top: 4rem;
   padding: 3rem 0 1.5rem;
@@ -653,19 +1033,19 @@ a { color: inherit; text-decoration: none; }
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
-.footer-grid h4 { color: #fff; font-size: .9rem; margin-bottom: .8rem; }
+.footer-grid h4 { color: #fff; font-size: .95rem; margin-bottom: .8rem; }
 .footer-grid ul { list-style: none; margin: 0; padding: 0; }
 .footer-grid li { margin-bottom: .45rem; font-size: .85rem; }
 .footer-grid a:hover { color: var(--gold-primary); }
 .footer-bottom {
-  border-top: 1px solid var(--graphite-800);
+  border-top: 1px solid rgba(255,255,255,0.08);
   padding-top: 1.2rem;
   font-size: .78rem;
   text-align: center;
-  color: var(--graphite-600);
+  color: var(--text-muted);
 }
 
-/* ---------- RESPONSIVE CHO LAPTOP & MOBILE ---------- */
+/* ---------- 7. RESPONSIVE LINH HOẠT ---------- */
 @media (max-width: 860px) {
   .hero .container { grid-template-columns: 1fr; }
   .layout-filter { grid-template-columns: 1fr; }
@@ -674,6 +1054,306 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 600px) {
   .site-header__main .container { flex-direction: column; align-items: stretch; }
-  .main-nav ul { gap: .9rem; justify-content: center; }
+  .main-nav ul { gap: .6rem; justify-content: center; }
   .search-form { width: 100%; }
+}
+/* ---------- CSS BỔ SUNG CHO LƯỚT 4 TRANG BỘ SƯU TẬP ---------- */
+.collection-slide {
+  display: none; /* Mặc định ẩn các trang */
+  animation: fadeInSlide 0.4s ease forwards;
+}
+
+.collection-slide.active {
+  display: block; /* Chỉ hiện trang đang chọn */
+}
+
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Nút xem chi tiết từng bộ sưu tập bên trong slide */
+.btn-slide-detail {
+  display: inline-block;
+  margin-top: 1.2rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.95), rgba(170, 132, 30, 0.95));
+  color: #171302 !important;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.6rem 1.4rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-slide-detail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.55);
+  color: #000 !important;
+}
+/* ---------- MŨI TÊN CHUYỂN BỘ SƯU TẬP ---------- */
+.hero-slider-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2.2rem 2.8rem; /* Chừa khoảng trống 2 bên cho mũi tên */
+}
+
+/* Ẩn các bộ sưu tập khác, chỉ hiển thị đúng 1 trang đang chọn */
+.collection-slide {
+  display: none;
+}
+
+.collection-slide.active {
+  display: block;
+  animation: slideFadeIn 0.35s ease-out forwards;
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Kiểu dáng 2 mũi tên lướt trang sang trọng */
+.arrow-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(203, 213, 225, 0.9);
+  color: #0f172a;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.arrow-prev {
+  left: 10px;
+}
+
+.arrow-next {
+  right: 10px;
+}
+
+.arrow-nav:hover {
+  background: #0f172a;
+  color: #d4af37; /* Đổi màu mũi tên sang vàng kim */
+  border-color: #0f172a;
+  transform: translateY(-50%) scale(1.08);
+}
+/* =========================================================
+   HEADER MỚI: HOTLINE RUNG + MENU 1 HÀNG + XE ĐẨY GIỎ HÀNG
+   ========================================================= */
+
+/* 1. TOPBAR VÀ ĐIỆN THOẠI RUNG */
+.header-top-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.hotline-box {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Biểu tượng điện thoại màu vàng kim và rung chuông liên tục */
+.phone-vibrate-icon {
+  display: inline-block;
+  color: #d4af37; /* Màu vàng hoàng gia */
+  font-size: 1.25rem;
+  filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6));
+  animation: phoneRing 1.4s ease-in-out infinite;
+}
+
+@keyframes phoneRing {
+  0% { transform: rotate(0deg) scale(1); }
+  5% { transform: rotate(14deg) scale(1.1); }
+  10% { transform: rotate(-14deg) scale(1.1); }
+  15% { transform: rotate(12deg) scale(1.1); }
+  20% { transform: rotate(-12deg) scale(1.1); }
+  25% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.hotline-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.hotline-label {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hotline-number {
+  color: #f1f5f9;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.hotline-number:hover {
+  color: #d4af37;
+}
+
+.hotline-divider {
+  color: #475569;
+  font-size: 0.8rem;
+}
+
+.shipping-note {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.top-auth .top-login-link {
+  color: #f1f5f9;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.top-auth .top-login-link:hover {
+  color: #d4af37;
+}
+
+/* 2. MENU VÀ TÌM KIẾM CÙNG NẰM TRÊN 1 DÒNG (NOWRAP) */
+.main-header-flex {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important; /* Tuyệt đối không rớt dòng */
+  gap: 1.5rem !important;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.main-nav ul {
+  display: flex !important;
+  flex-wrap: nowrap !important; /* Giữ 5 mục trên 1 dòng */
+  gap: 1.5rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap;
+}
+
+.main-nav a {
+  padding: 0.4rem 0 !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+
+/* 3. KHỐI TÌM KIẾM VÀ ICON XE ĐẨY */
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* Nút xe đẩy giỏ hàng cao cấp */
+.cart-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+}
+
+.cart-icon-btn:hover {
+  background: #1e293b;
+  border-color: #d4af37;
+  transform: translateY(-2px);
+}
+
+.cart-icon-btn:hover .cart-cart-symbol {
+  transform: scale(1.1);
+}
+
+.cart-cart-symbol {
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+/* Chấm đỏ/vàng đếm số lượng giỏ hàng đè lên góc xe đẩy */
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: linear-gradient(135deg, #f6e05e, #d4af37);
+  color: #171302;
+  font-size: 0.72rem;
+  font-weight: 800;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+/* Khung chứa ảnh mô hình xe */
+.car-card-img {
+  position: relative;
+  width: 100%;
+  height: 190px; /* Chiều cao chuẩn cố định của khung */
+  background: #f8fafc;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px; /* Đệm nhẹ để mô hình không bị dính sát mép */
+}
+
+/* Ảnh mô hình xe khớp khung, không bị méo hay vỡ tỉ lệ */
+.car-card-img img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Hiển thị trọn vẹn cả chiếc xe mô hình trong khung */
+  display: block;
+  margin: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng khi rê chuột vào */
+.car-card:hover .car-card-img img {
+  transform: scale(1.06);
+}
+
+/* Nút trái tim và nhãn Pre-order luôn nằm trên cùng */
+.car-card-img .badge-preorder,
+.car-card .btn-wishlist {
+  z-index: 3;
 }
