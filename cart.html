@@ -57,22 +57,83 @@
                         <tr><th>Mô hình</th><th>Tỉ lệ</th><th>Đơn giá</th><th>Số lượng</th><th>Thành tiền</th><th>Xoá</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Ferrari F40</td><td>1:18</td><td>2.450.000đ</td><td><input type="number" value="1" min="1" style="width:60px;"></td><td>2.450.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
-                        <tr><td>Lamborghini Huracán STO</td><td>1:24</td><td>980.000đ</td><td><input type="number" value="2" min="1" style="width:60px;"></td><td>1.960.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
-                        <tr><td>Nissan GT-R Skyline R34</td><td>1:18</td><td>1.750.000đ</td><td><input type="number" value="1" min="1" style="width:60px;"></td><td>1.750.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
+                        <tr data-product-id="1" data-unit-price="2450000" data-name="Ferrari F40"><td>Ferrari F40</td><td>1:18</td><td>2.450.000đ</td><td><input type="number" class="item-qty" value="1" min="1" style="width:60px;"></td><td class="item-subtotal">2.450.000đ</td><td><button class="btn btn-outline btn-sm btn-remove-item">Xoá</button></td></tr>
+                        <tr data-product-id="2" data-unit-price="980000" data-name="Lamborghini Huracán STO"><td>Lamborghini Huracán STO</td><td>1:24</td><td>980.000đ</td><td><input type="number" class="item-qty" value="2" min="1" style="width:60px;"></td><td class="item-subtotal">1.960.000đ</td><td><button class="btn btn-outline btn-sm btn-remove-item">Xoá</button></td></tr>
+                        <tr data-product-id="3" data-unit-price="1750000" data-name="Nissan GT-R Skyline R34"><td>Nissan GT-R Skyline R34</td><td>1:18</td><td>1.750.000đ</td><td><input type="number" class="item-qty" value="1" min="1" style="width:60px;"></td><td class="item-subtotal">1.750.000đ</td><td><button class="btn btn-outline btn-sm btn-remove-item">Xoá</button></td></tr>
                     </tbody>
                 </table>
             </div>
             <aside class="summary-card">
                 <h3 style="color:#fff;">Tóm tắt đơn hàng</h3>
-                <div class="summary-row"><span>Tạm tính</span><span>6.160.000đ</span></div>
+                <div class="summary-row"><span>Tạm tính</span><span id="cartSubtotal">6.160.000đ</span></div>
                 <div class="summary-row"><span>Phí vận chuyển</span><span>30.000đ</span></div>
-                <div class="summary-row total"><span>Tổng cộng</span><span>6.190.000đ</span></div>
-                <a href="login.html" class="btn btn-primary btn-block" style="margin-top:1rem;">Tiến hành đặt hàng</a>
-                <p class="form-hint" style="color:#ccc;">* Giao diện minh hoạ, số liệu là dữ liệu mẫu viết cứng trong HTML.</p>
+                <div class="summary-row total"><span>Tổng cộng</span><span id="cartTotal">6.190.000đ</span></div>
+                <button type="button" id="btnOpenCheckout" class="btn btn-primary btn-block" style="margin-top:1rem; cursor:pointer;">Tiến hành đặt hàng</button>
+
+                <!-- Thanh trạng thái kết nối ngrok/backend -->
+                <div style="margin-top:1.2rem; padding:0.75rem; background:rgba(255,255,255,0.08); border-radius:6px; font-size:0.8rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                        <span style="color:#ddd;">Trạng thái Server:</span>
+                        <span id="serverStatusBadge" style="padding:2px 8px; border-radius:10px; background:#64748b; color:#fff; font-weight:600;">Chưa kiểm tra</span>
+                    </div>
+                    <div style="display:flex; gap:6px;">
+                        <input type="text" id="customBackendUrl" placeholder="URL ngrok (VD: https://xxx.ngrok-free.app)" style="flex:1; padding:4px 8px; font-size:0.75rem; border-radius:4px; border:1px solid #555; background:#222; color:#fff;">
+                        <button type="button" id="btnSaveBackendUrl" class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem;">Lưu</button>
+                    </div>
+                </div>
             </aside>
         </div>
     </main>
+
+    <!-- Modal Đặt Hàng -->
+    <div id="checkoutModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center; padding:1rem;">
+        <div style="background:#fff; color:#1e293b; max-width:520px; width:100%; border-radius:8px; overflow:hidden; box-shadow:0 20px 25px -5px rgba(0,0,0,0.4);">
+            <div style="background:#0f172a; color:#fff; padding:1rem 1.25rem; display:flex; justify-content:space-between; align-items:center;">
+                <h3 style="margin:0; font-size:1.1rem; color:#fff;">Xác nhận thông tin giao hàng</h3>
+                <button type="button" id="btnCloseCheckout" style="background:none; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
+            </div>
+            <form id="orderForm" style="padding:1.25rem;">
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; font-weight:600; font-size:0.85rem; margin-bottom:4px;">Họ và tên người nhận (*)</label>
+                    <input type="text" id="recipientName" required placeholder="Ví dụ: Nguyễn Văn A" style="width:100%; padding:0.6rem; border:1px solid #cbd5e1; border-radius:4px; font-size:0.9rem;">
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; font-weight:600; font-size:0.85rem; margin-bottom:4px;">Số điện thoại (*)</label>
+                    <input type="tel" id="recipientPhone" required placeholder="Ví dụ: 0912345678" style="width:100%; padding:0.6rem; border:1px solid #cbd5e1; border-radius:4px; font-size:0.9rem;">
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; font-weight:600; font-size:0.85rem; margin-bottom:4px;">Địa chỉ nhận hàng (*)</label>
+                    <textarea id="shippingAddress" required rows="2" placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành..." style="width:100%; padding:0.6rem; border:1px solid #cbd5e1; border-radius:4px; font-size:0.9rem;"></textarea>
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:0.75rem; margin-bottom:1.25rem;">
+                    <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1rem; color:#dc2626;">
+                        <span>Tổng thanh toán:</span>
+                        <span id="modalCheckoutTotal">6.190.000đ</span>
+                    </div>
+                </div>
+                <div id="orderAlert" style="display:none; padding:0.75rem; border-radius:4px; margin-bottom:1rem; font-size:0.85rem;"></div>
+                <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+                    <button type="button" id="btnCancelCheckout" class="btn btn-outline" style="padding:0.5rem 1rem;">Hủy</button>
+                    <button type="submit" id="btnSubmitOrder" class="btn btn-primary" style="padding:0.5rem 1.25rem; font-weight:600;">Gửi đơn hàng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Thông Báo Đặt Hàng Thành Công -->
+    <div id="successModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:10000; align-items:center; justify-content:center; padding:1rem;">
+        <div style="background:#fff; color:#1e293b; max-width:480px; width:100%; border-radius:8px; padding:2rem; text-align:center; box-shadow:0 20px 25px -5px rgba(0,0,0,0.5);">
+            <div style="font-size:3.5rem; color:#16a34a; margin-bottom:1rem;">✓</div>
+            <h2 style="margin:0 0 0.5rem; color:#0f172a; font-size:1.4rem;">Đặt hàng thành công!</h2>
+            <p style="color:#64748b; font-size:0.9rem; margin-bottom:1.25rem;">Đơn hàng của bạn đã được lưu trực tiếp vào CSDL máy chủ.</p>
+            <div style="background:#f1f5f9; padding:1rem; border-radius:6px; margin-bottom:1.5rem; text-align:left; font-size:0.88rem;">
+                <div style="margin-bottom:6px;"><strong>Mã đơn hàng:</strong> <span id="successOrderCode" style="color:#2563eb; font-weight:700;">ORD-xxx</span></div>
+                <div style="margin-bottom:6px;"><strong>Tổng số tiền:</strong> <span id="successOrderTotal" style="color:#dc2626; font-weight:700;">0đ</span></div>
+                <div><strong>Trạng thái:</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:4px; font-weight:600;">Chờ xử lý (Pending)</span></div>
+            </div>
+            <button type="button" id="btnBackToHome" class="btn btn-primary" style="width:100%; padding:0.6rem;">Tiếp tục mua sắm</button>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="container">
@@ -111,6 +172,155 @@
             </div>
         </div>
     </footer>
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkoutModal = document.getElementById('checkoutModal');
+            const successModal = document.getElementById('successModal');
+            const btnOpenCheckout = document.getElementById('btnOpenCheckout');
+            const btnCloseCheckout = document.getElementById('btnCloseCheckout');
+            const btnCancelCheckout = document.getElementById('btnCancelCheckout');
+            const orderForm = document.getElementById('orderForm');
+            const btnSubmitOrder = document.getElementById('btnSubmitOrder');
+            const orderAlert = document.getElementById('orderAlert');
+            const serverStatusBadge = document.getElementById('serverStatusBadge');
+            const customBackendUrl = document.getElementById('customBackendUrl');
+            const btnSaveBackendUrl = document.getElementById('btnSaveBackendUrl');
+
+            // Hiển thị URL backend hiện tại
+            customBackendUrl.value = getApiBaseUrl();
+
+            // Kiểm tra trạng thái Server (Health check)
+            async function checkServerHealth() {
+                serverStatusBadge.textContent = 'Đang kiểm tra...';
+                serverStatusBadge.style.background = '#eab308';
+                const res = await apiFetch('/api/health');
+                if (res.ok && res.data && res.data.database === 'connected') {
+                    serverStatusBadge.textContent = 'Online (DB OK)';
+                    serverStatusBadge.style.background = '#16a34a';
+                } else if (res.ok) {
+                    serverStatusBadge.textContent = 'Server Online (Lỗi DB)';
+                    serverStatusBadge.style.background = '#ea580c';
+                } else {
+                    serverStatusBadge.textContent = 'Offline';
+                    serverStatusBadge.style.background = '#dc2626';
+                }
+            }
+            checkServerHealth();
+
+            // Lưu URL Backend mới (ngrok)
+            btnSaveBackendUrl.addEventListener('click', function () {
+                const url = customBackendUrl.value.trim();
+                setApiBaseUrl(url);
+                alert('Đã cập nhật URL Backend: ' + getApiBaseUrl());
+                checkServerHealth();
+            });
+
+            // Tính tổng tiền giỏ hàng
+            function calculateCart() {
+                let subtotal = 0;
+                const rows = document.querySelectorAll('tbody tr[data-product-id]');
+                rows.forEach(r => {
+                    const price = Number(r.getAttribute('data-unit-price') || 0);
+                    const qtyInput = r.querySelector('.item-qty');
+                    const qty = Number(qtyInput ? qtyInput.value : 1);
+                    const rowTotal = price * qty;
+                    const subtotalCell = r.querySelector('.item-subtotal');
+                    if (subtotalCell) subtotalCell.textContent = rowTotal.toLocaleString('vi-VN') + 'đ';
+                    subtotal += rowTotal;
+                });
+                const shipping = rows.length > 0 ? 30000 : 0;
+                const total = subtotal + shipping;
+                document.getElementById('cartSubtotal').textContent = subtotal.toLocaleString('vi-VN') + 'đ';
+                document.getElementById('cartTotal').textContent = total.toLocaleString('vi-VN') + 'đ';
+                document.getElementById('modalCheckoutTotal').textContent = total.toLocaleString('vi-VN') + 'đ';
+                return { subtotal, shipping, total, count: rows.length };
+            }
+
+            document.querySelectorAll('.item-qty').forEach(input => {
+                input.addEventListener('change', calculateCart);
+            });
+
+            document.querySelectorAll('.btn-remove-item').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    if (row) {
+                        row.remove();
+                        calculateCart();
+                    }
+                });
+            });
+
+            // Mở / đóng modal thanh toán
+            btnOpenCheckout.addEventListener('click', function () {
+                const cartData = calculateCart();
+                if (cartData.count === 0) {
+                    alert('Giỏ hàng đang trống!');
+                    return;
+                }
+                checkoutModal.style.display = 'flex';
+            });
+
+            function closeModal() {
+                checkoutModal.style.display = 'none';
+                orderAlert.style.display = 'none';
+            }
+            btnCloseCheckout.addEventListener('click', closeModal);
+            btnCancelCheckout.addEventListener('click', closeModal);
+
+            // Gửi đơn hàng lên Backend
+            orderForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                btnSubmitOrder.disabled = true;
+                btnSubmitOrder.textContent = 'Đang xử lý...';
+                orderAlert.style.display = 'none';
+
+                const recipientName = document.getElementById('recipientName').value.trim();
+                const recipientPhone = document.getElementById('recipientPhone').value.trim();
+                const shippingAddress = document.getElementById('shippingAddress').value.trim();
+
+                const items = [];
+                document.querySelectorAll('tbody tr[data-product-id]').forEach(r => {
+                    const productId = Number(r.getAttribute('data-product-id'));
+                    const unitPrice = Number(r.getAttribute('data-unit-price'));
+                    const quantity = Number(r.querySelector('.item-qty').value);
+                    items.push({ productId, unitPrice, quantity });
+                });
+
+                const payload = {
+                    customerId: 1,
+                    recipientName,
+                    recipientPhone,
+                    shippingAddress,
+                    items
+                };
+
+                const res = await apiFetch('/api/orders', {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+
+                btnSubmitOrder.disabled = false;
+                btnSubmitOrder.textContent = 'Gửi đơn hàng';
+
+                if (res.ok && res.data && res.data.success) {
+                    closeModal();
+                    document.getElementById('successOrderCode').textContent = res.data.orderCode;
+                    document.getElementById('successOrderTotal').textContent = Number(res.data.totalAmount).toLocaleString('vi-VN') + 'đ';
+                    successModal.style.display = 'flex';
+                } else {
+                    orderAlert.style.display = 'block';
+                    orderAlert.style.background = '#fee2e2';
+                    orderAlert.style.color = '#991b1b';
+                    orderAlert.textContent = (res.data && res.data.message) ? res.data.message : 'Không thể kết nối đến máy chủ Backend (ngrok/local). Vui lòng kiểm tra lại URL Server!';
+                }
+            });
+
+            document.getElementById('btnBackToHome').addEventListener('click', function () {
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
 </body>
 </html>

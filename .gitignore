@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+car-store-backend/node_modules/
+
+# Vercel
+.vercel/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# OS files
+Thumbs.db
+.DS_Store

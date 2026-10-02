@@ -14,6 +14,7 @@
     "body-parser": "^2.3.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "msnodesqlv8": "^5.5.0",
     "mssql": "^12.7.2"
   }
 }

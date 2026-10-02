@@ -476,11 +476,106 @@
 
     <!-- Script RBAC & Auth -->
     <script src="../assets/js/admin-auth.js"></script>
+    <script src="../assets/js/config.js"></script>
 
     <!-- Script tương tác Modal & Bộ lọc trạng thái đơn -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var currentActiveRow = null;
+            var modal = document.getElementById('orderModal');
+            var closeButtons = document.querySelectorAll('.js-close-modal');
+
+            // Nạp danh sách đơn hàng thực tế từ CSDL Backend nếu có
+            async function fetchRealOrders() {
+                try {
+                    var res = await apiFetch('/api/orders');
+                    if (res.ok && res.data && res.data.success && res.data.orders.length > 0) {
+                        var tbody = document.querySelector('#ordersTable tbody');
+                        if (!tbody) return;
+
+                        var statusMap = {
+                            'pending': { text: 'Chờ xử lý', class: 'badge--warning' },
+                            'shipping': { text: 'Đang giao', class: 'badge--info' },
+                            'completed': { text: 'Đã hoàn thành', class: 'badge--success' },
+                            'cancelled': { text: 'Đã hủy', class: 'badge--danger' }
+                        };
+
+                        var html = '';
+                        res.data.orders.forEach(function (o) {
+                            var st = statusMap[o.order_status] || { text: o.order_status || 'Chờ xử lý', class: 'badge--warning' };
+                            var dateStr = o.created_at ? new Date(o.created_at).toLocaleString('vi-VN') : 'Mới';
+                            var totalStr = Number(o.total_amount).toLocaleString('vi-VN') + 'đ';
+                            var address = o.shipping_address || 'Chưa cập nhật';
+                            var phone = o.recipient_phone || '---';
+                            var customer = o.recipient_name || 'Khách vãng lai';
+
+                            html += `
+                                <tr data-order-id="${o.order_code}"
+                                    data-customer="${customer}"
+                                    data-phone="${phone}"
+                                    data-address="${address}"
+                                    data-payment="COD"
+                                    data-items="${o.total_items || 1} sản phẩm xe mô hình"
+                                    data-total="${totalStr}"
+                                    data-status="${o.order_status || 'pending'}">
+                                    <td><strong style="color:var(--accent-red); font-family:monospace;">${o.order_code}</strong></td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--slate-900);">${customer}</div>
+                                        <div style="font-size:0.75rem; color:var(--slate-500);">${address}</div>
+                                    </td>
+                                    <td>${phone}</td>
+                                    <td><strong>${totalStr}</strong></td>
+                                    <td><span class="badge" style="background:#f1f5f9; color:#475569; font-weight:600;">COD</span></td>
+                                    <td><span class="badge ${st.class} js-status-pill">${st.text}</span></td>
+                                    <td>${dateStr}</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-outline btn-sm js-view-order" style="padding:0.3rem 0.6rem; font-size:0.8rem;">Xem chi tiết</button>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                        tbody.innerHTML = html;
+                        bindViewButtons();
+                    }
+                } catch (e) {
+                    console.warn('Không thể nạp đơn hàng từ CSDL:', e);
+                }
+            }
+
+            function bindViewButtons() {
+                var viewButtons = document.querySelectorAll('.js-view-order');
+                viewButtons.forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        var row = btn.closest('tr');
+                        currentActiveRow = row;
+
+                        var orderId = row.getAttribute('data-order-id');
+                        var customer = row.getAttribute('data-customer');
+                        var phone = row.getAttribute('data-phone');
+                        var address = row.getAttribute('data-address');
+                        var payment = row.getAttribute('data-payment');
+                        var items = row.getAttribute('data-items');
+                        var total = row.getAttribute('data-total');
+                        var status = row.getAttribute('data-status');
+
+                        document.getElementById('modalOrderTitle').textContent = 'Chi Tiết Đơn Hàng ' + orderId;
+                        document.getElementById('modalCustomerName').textContent = customer;
+                        document.getElementById('modalCustomerPhone').textContent = phone;
+                        document.getElementById('modalAddress').textContent = address;
+                        document.getElementById('modalPayment').textContent = payment;
+                        document.getElementById('modalOrderTotal').textContent = total;
+                        document.getElementById('modalItemsList').textContent = items;
+
+                        var statusSelect = document.getElementById('updateStatusSelect');
+                        if (statusSelect) statusSelect.value = status;
+
+                        modal.classList.add('is-active');
+                    });
+                });
+            }
+
+            fetchRealOrders();
+
             var modal = document.getElementById('orderModal');
             var closeButtons = document.querySelectorAll('.js-close-modal');
 
