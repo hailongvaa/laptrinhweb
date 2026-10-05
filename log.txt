@@ -1,11 +1,14 @@
 ================================================================================
-NHẬT KÝ CHI TIẾT CÁC THAY ĐỔI VÀ BỔ SUNG CỦA BẠN HÂN (THƯ MỤC "hân")
+NHẬT KÝ ĐỐI SOÁT & TÍCH HỢP ĐÓNG GÓP CỦA CÁC THÀNH VIÊN
 ĐỀ TÀI: WEBSITE THƯƠNG MẠI ĐIỆN TỬ BÁN MÔ HÌNH XE Ô TÔ (CARMODEL STORE)
-THỜI GIAN ĐỐI SOÁT & CẬP NHẬT: 2026-10-05
+THỜI GIAN CẬP NHẬT: 2026-10-05
 ================================================================================
 
-I. TỔNG QUAN PHÂN TÍCH
 --------------------------------------------------------------------------------
+PHẦN A: CÁC THAY ĐỔI & BỔ SUNG CỦA BẠN HÂN (THƯ MỤC "hân")
+--------------------------------------------------------------------------------
+
+I. TỔNG QUAN PHÂN TÍCH:
 1. Nguồn gốc mã nguồn:
    - Thư mục "hân" (CarModelStore_Website) là phiên bản được bạn Hân phát triển
      dựa trên bản template HTML/CSS ban đầu của nhóm.
@@ -16,12 +19,10 @@ I. TỔNG QUAN PHÂN TÍCH
 2. Kết quả cập nhật vào Project chính:
    - Toàn bộ các cải tiến tốt và tính năng JavaScript hữu ích của Hân đã được 
      tổng hợp, sửa lỗi và cập nhật đồng bộ vào project chính.
-   - Các tính năng nâng cao sẵn có của project (kết nối Backend API MySQL qua
-     ngrok/Vercel, phân hệ quản trị Admin RBAC) được giữ nguyên vẹn 100%.
+   - Các tính năng nâng cao sẵn có của project (kết nối Backend API qua ngrok/Vercel,
+     phân hệ quản trị Admin RBAC) được giữ nguyên vẹn 100%.
 
-
-II. CHI TIẾT TỪNG FILE ĐÃ ĐƯỢC CẬP NHẬT THEO CODE CỦA HÂN
---------------------------------------------------------------------------------
+II. CHI TIẾT TỪNG FILE ĐÃ ĐƯỢC CẬP NHẬT THEO CODE CỦA HÂN:
 
 1. FILE: cart.html (Giỏ hàng)
    * Những thứ Hân đã thay đổi / bổ sung:
@@ -39,7 +40,7 @@ II. CHI TIẾT TỪNG FILE ĐÃ ĐƯỢC CẬP NHẬT THEO CODE CỦA HÂN
      - Đã gắn bộ điều khiển [+] / [-] cho từng dòng sản phẩm.
      - Khi bấm [+] hoặc [-], số lượng tự động cập nhật và kích hoạt tính lại tiền.
      - Vẫn giữ nguyên vẹn Popup thanh toán gửi dữ liệu đơn hàng lên Backend Node.js
-       (POST /api/orders) và CSDL MySQL của project.
+       (POST /api/orders) và CSDL SQL Server của project.
 
 2. FILE: wishlist.html (Danh sách yêu thích)
    * Những thứ Hân đã thay đổi / bổ sung:
@@ -91,41 +92,87 @@ II. CHI TIẾT TỪNG FILE ĐÃ ĐƯỢC CẬP NHẬT THEO CODE CỦA HÂN
      - Đồng bộ cấu trúc Header sang chuẩn mới nhất: Topbar Hotline rung 1900-6868,
        link Đăng nhập góc phải, Menu 5 mục, Icon xe đẩy giỏ hàng có badge.
 
+III. CÁC NỘI DUNG GIỮ NGUYÊN & LÝ DO KHÔNG DÙNG BẢN CỦA HÂN:
+1. FILE: products.html và brands.html:
+   - File products.html của Hân bị ghi đè nhầm 100% bằng trang admin/products.html.
+   - File brands.html của Hân bị ghi đè nhầm 100% bằng trang admin/brands.html.
+   - Project chính GIỮ NGUYÊN 100% bản products.html và brands.html chuẩn để không
+     làm lộ giao diện Admin cho khách hàng.
+2. FILE: index.html (Trang chủ):
+   - Bản index.html ở thư mục gốc (40 KB) đã hoàn chỉnh đầy đủ Hero Banner Bạc Kim,
+     4 slide có ảnh HD Unsplash, bảng giá, sản phẩm bán chạy... Bản của Hân là bản
+     nháp rút gọn (19 KB) nên giữ nguyên bản gốc.
+3. FILE: assets/css/style.css:
+   - File style.css gốc (32 KB) đã có đầy đủ toàn bộ 135 CSS selector của Hân.
 
-III. CÁC NỘI DUNG GIỮ NGUYÊN & LÝ DO KHÔNG DÙNG BẢN CỦA HÂN
+
+--------------------------------------------------------------------------------
+PHẦN B: CÁC THAY ĐỔI & BỔ SUNG CỦA BẠN MAI (THƯ MỤC "mai")
 --------------------------------------------------------------------------------
 
-1. FILE: products.html và brands.html
-   * Phát hiện lỗi trong thư mục của Hân:
-     - File products.html của Hân bị ghi đè nhầm 100% bằng trang admin/products.html.
-     - File brands.html của Hân bị ghi đè nhầm 100% bằng trang admin/brands.html.
-   * Lý do không áp dụng:
-     - Nếu ghi đè, khách hàng truy cập trang mua sắm sẽ thấy giao diện quản trị Admin
-       thay vì danh sách sản phẩm và hãng xe của cửa hàng.
-     - Do đó, project chính GIỮ NGUYÊN 100% bản products.html và brands.html chuẩn.
+I. TỔNG QUAN PHÂN TÍCH:
+1. Vai trò của Bạn Mai:
+   - Bạn Mai (Thanh Mai) đảm nhiệm phần việc phát triển Cơ sở dữ liệu quan hệ (SQL)
+     và hoàn thiện giao diện danh mục mô hình xe (Sản phẩm & Chi tiết).
+   - Thư mục "mai" chứa 3 file kịch bản SQL Server chuẩn mực (bang1.sql, bang2.sql, bang3.sql).
 
-2. FILE: index.html (Trang chủ)
-   * Phiên bản index.html ở thư mục gốc của bạn hiện tại đã là bản hoàn chỉnh nhất
-     (chứa đầy đủ Hero Banner Bạc Kim, 4 slide bộ sưu tập có ảnh HD Unsplash,
-     thông số kỹ thuật, khu vực thương hiệu, sản phẩm bán chạy, đánh giá khách hàng...).
-   * Bản index.html của Hân là bản nháp cắt ngắn (19 KB so với 40 KB ở root),
-     do đó giữ nguyên bản gốc là tối ưu và đẹp mắt nhất.
+2. Đối chiếu với hệ thống cũ của bạn:
+   - Trước đây, file datadase/SQLQuery2.sql chỉ có 2 bảng tạm thời (orders, order_items)
+     và đã bị tháo bỏ các khóa ngoại FK vì chưa có bảng customers và products.
+   - Bạn Mai đã thiết kế lại toàn bộ mô hình dữ liệu quan hệ chuẩn 3NF với 4 bảng
+     thực thể đầy đủ, dữ liệu mẫu phong phú và câu lệnh truy vấn liên kết đa bảng.
 
-3. FILE: assets/css/style.css
-   * File style.css ở thư mục gốc của bạn có dung lượng 32 KB, đã bao gồm toàn bộ
-     135 CSS selector mà Hân dùng (hệ màu Platinum, animation rung chuông điện thoại,
-     style hotline, slider thẻ bộ sưu tập...). Do đó không cần ghi đè CSS.
+II. CHI TIẾT TỪNG NỘI DUNG BẠN MAI ĐÃ LÀM:
 
-4. PHÂN HỆ QUẢN TRỊ ADMIN (admin/):
-   * Giữ nguyên toàn bộ 5 trang HTML trong admin/, file admin.css và admin-auth.js
-     do bạn Long phụ trách.
+1. FILE: mai/bang1.sql (Khởi tạo CSDL & Thiết kế 4 Bảng - DDL)
+   * Xây dựng CSDL hoàn chỉnh gồm 4 bảng:
+     - customers: id, full_name, email (UNIQUE), phone (UNIQUE), address, created_at.
+     - products: id, product_code (UNIQUE), name, scale (tỉ lệ), manufacturer,
+       car_brand, price, stock_quantity, status (CHECK in_stock/pre_order/out_of_stock), created_at.
+     - orders: id, order_code, customer_id (Khóa ngoại FK nối customers.id),
+       recipient_name, recipient_phone, shipping_address, total_amount,
+       order_status (CHECK pending/confirmed/shipping/delivered/cancelled), created_at.
+     - order_items: id, order_id (FK nối orders.id ON DELETE CASCADE),
+       product_id (FK nối products.id), quantity (CHECK > 0), unit_price.
+
+2. FILE: mai/bang2.sql (Nạp dữ liệu mẫu - DML / Mock Data)
+   * Nạp sẵn bộ dữ liệu mẫu thực tế:
+     - 2 khách hàng mẫu (Nguyễn Văn An, Trần Thị Bình).
+     - 4 mô hình xe thật thuộc các hãng AutoArt, Bburago, Tomica với tỉ lệ 1:18, 1:24, 1:64
+       (Porsche 911 GT3 RS, Lamborghini Aventador SVJ, Honda Civic Type R FL5, Mercedes-AMG G63).
+     - 1 đơn hàng mẫu (ORD-2026-0001) và 2 chi tiết đơn hàng (mua Porsche + Lamborghini).
+
+3. FILE: mai/bang3.sql (Truy vấn kiểm tra & Báo cáo - DQL)
+   * Các câu lệnh SELECT tra cứu từng bảng.
+   * Câu lệnh JOIN 4 bảng kết nối orders + customers + order_items + products để
+     trích xuất toàn bộ thông tin chi tiết một đơn đặt hàng.
+
+4. NỘI DUNG GIAO DIỆN (products.html, product-detail.html, preorder.html - Commit tmai):
+   * Thay thế toàn bộ chữ giữ chỗ thô sơ ("Ảnh mô hình...") bằng link ảnh xe mô hình thật
+     độ phân giải cao từ CDN (hstatic.net).
+   * Chuẩn hóa lại mức giá bán của các mẫu xe sát với giá thị trường mô hình tĩnh.
+   * Gắn nút bấm lưu yêu thích (<button class="wishlist-btn">♡</button>) vào từng sản phẩm.
+
+III. CÁC HÀNH ĐỘNG ĐÃ THỰC HIỆN ĐỂ THAY THẾ & TÍCH HỢP THEO MAI:
+1. Nâng cấp file CSDL chính thức của dự án: datadase/SQLQuery2.sql
+   - Đã thay thế cấu trúc 2 bảng cũ thành hệ thống 4 bảng quan hệ chuẩn 100% của Mai.
+   - Thêm bộ dữ liệu mẫu khởi tạo (đảm bảo customer_id = 1 và product_id 1..6) để
+     tương thích tuyệt đối với Backend API Node.js (POST /api/orders) khi nhận đơn
+     từ giỏ hàng trên giao diện web.
+   - Bổ sung câu truy vấn JOIN 4 bảng của Mai vào cuối file để tiện kiểm tra nhanh.
+2. Lưu trữ đồng bộ các file SQL của Mai vào thư mục dự án:
+   - datadase/bang1_taobang.sql     (Lưu trữ script DDL tạo bảng của Mai)
+   - datadase/bang2_dulieumau.sql   (Lưu trữ script DML chèn dữ liệu của Mai)
+   - datadase/bang3_truyvan.sql     (Lưu trữ script DQL truy vấn báo cáo của Mai)
 
 
-IV. TỔNG KẾT TRẠNG THÁI HIỆN TẠI
 --------------------------------------------------------------------------------
-- Tất cả các trang đều đồng bộ 100% về Header, Hotline, Menu và Icon giỏ hàng.
-- Chức năng Giỏ hàng có đầy đủ nút tăng/giảm [+] [-], tính tiền động và gửi đơn API.
-- Chức năng Danh sách yêu thích hiển thị thẻ đẹp mắt và có nút xóa sản phẩm.
-- Chức năng Đăng ký / Đăng nhập hoạt động mượt mà cho cả Khách hàng và Admin.
-- Toàn bộ source code sẵn sàng 100% cho việc nộp bài và chấm điểm.
+TỔNG KẾT TRẠNG THÁI DỰ ÁN HIỆN TẠI
+--------------------------------------------------------------------------------
+- Giao diện: Đồng bộ 100% Header, Hotline rung, Giỏ hàng động [+]/[-], Yêu thích,
+  Đăng ký, Đăng nhập và ảnh mô hình thật độ nét cao.
+- Cơ sở dữ liệu: Hoàn thiện 100% theo thiết kế 4 bảng chuẩn hóa của bạn Mai, có
+  khóa ngoại chặt chẽ, dữ liệu mẫu và câu truy vấn JOIN báo cáo.
+- Kết nối hệ thống: Giao diện web <-> Backend Node.js (port 5000) <-> CSDL SQL Server
+  hoạt động mượt mà, thông suốt.
 ================================================================================
