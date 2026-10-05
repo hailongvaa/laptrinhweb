@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Quản lý mô hình | Quản trị CarModelStore</title>
+</head>
+<body class="admin-body">
+    <div class="admin-shell">
+        <aside class="admin-side">
+            <a href="dashboard.html" class="brand-logo">Car<span>Model</span>Admin</a>
+            <nav aria-label="Menu quản trị">
+                <ul>
+                    <li><a href="dashboard.html">Tổng quan</a></li>
+                <li><a href="products.html" aria-current="page">Quản lý mô hình</a></li>
+                <li><a href="brands.html">Quản lý hãng xe</a></li>
+                <li><a href="orders.html">Quản lý đơn hàng</a></li>
+                
+                </ul>
+            </nav>
+        </aside>
+        <div class="admin-main">
+            <div class="admin-topbar">
+                <div>
+                    <p class="breadcrumb" style="color:#777;"><a href="../index.html" style="color:#b8860b;">&larr; Về trang bán hàng</a></p>
+                    <h1 class="mt-0">Quản lý mô hình</h1>
+                </div>
+                <div class="header-actions" style="color:#111;">
+                    <span>Xin chào, <strong>Admin</strong></span>
+                    <a href="../login.html" class="btn btn-outline btn-sm">Đăng xuất</a>
+                </div>
+            </div>
+            
+            <div class="admin-toolbar">
+                <p class="text-muted mt-0">Tổng cộng 5 mô hình</p>
+                <a href="product-add.html" class="btn btn-primary">+ Thêm mô hình mới</a>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead><tr><th>Mã SP</th><th>Tên mô hình</th><th>Hãng xe</th><th>Tỉ lệ</th><th>Giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+                    <tbody>
+                        <tr><td>SP001</td><td>Ferrari F40</td><td>Ferrari</td><td>1:18</td><td>2.450.000đ</td>
+                            <td><span class="status-pill status-pill--ok">Còn hàng</span></td>
+                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
+                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>SP002</td><td>Ferrari 250 GTO</td><td>Ferrari</td><td>1:24</td><td>1.290.000đ</td>
+                            <td><span class="status-pill status-pill--ok">Còn hàng</span></td>
+                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
+                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>SP003</td><td>Lamborghini Huracán STO</td><td>Lamborghini</td><td>1:24</td><td>980.000đ</td>
+                            <td><span class="status-pill status-pill--pending">Hết hàng</span></td>
+                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
+                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>SP004</td><td>BMW M3 E30</td><td>BMW</td><td>1:18</td><td>1.650.000đ</td>
+                            <td><span class="status-pill status-pill--ok">Còn hàng</span></td>
+                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
+                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            <tr><td>SP005</td><td>Porsche 911 GT3 RS</td><td>Porsche</td><td>1:18</td><td>1.990.000đ</td>
+                            <td><span class="status-pill status-pill--ok">Còn hàng</span></td>
+                            <td><a class="btn btn-outline btn-sm" href="product-add.html">Sửa</a>
+                            <button class="btn btn-danger btn-sm">Xoá</button></td></tr>
+                            
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

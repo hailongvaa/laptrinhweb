@@ -9,47 +9,35 @@
     <title>Đăng ký | CarModel Store</title>
 </head>
 <body>
-    <!-- HEADER ĐỒNG BỘ: CÁC TRANG CHI TIẾT & CHỨC NĂNG -->
     <header class="site-header">
         <div class="site-header__top">
-            <div class="container header-top-flex">
-                <div class="hotline-box">
-                    <span class="phone-vibrate-icon">📞</span>
-                    <div class="hotline-text">
-                        <span class="hotline-label">Hotline tư vấn</span>
-                        <a href="tel:19006868" class="hotline-number">1900-6868</a>
-                    </div>
-                    <span class="hotline-divider">|</span>
-                    <span class="shipping-note">Giao hàng toàn quốc</span>
-                </div>
-                <div class="top-auth">
-                    <a href="login.html" class="top-login-link">Đăng nhập</a>
-                </div>
+            <div class="container">
+                <span>Hotline tư vấn: 1900-6868 &nbsp;|&nbsp; Giao hàng toàn quốc</span>
+                <a href="contact.html">Liên hệ cửa hàng</a>
             </div>
         </div>
         <div class="site-header__main">
-            <div class="container main-header-flex">
+            <div class="container">
                 <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
                 <nav class="main-nav" aria-label="Menu chính">
                     <ul>
                         <li><a href="index.html">Trang chủ</a></li>
-                        <li><a href="brands.html">Hãng xe</a></li>
-                        <li><a href="products.html">Sản phẩm</a></li>
-                        <li><a href="accessories.html">Phụ kiện</a></li>
-                        <li><a href="preorder.html">Sắp ra mắt</a></li>
-                        <li><a href="contact.html">Liên hệ</a></li>
+            <li><a href="brands.html">Hãng xe</a></li>
+            <li><a href="products.html">Tất cả mô hình</a></li>
+            <li><a href="accessories.html">Phụ kiện</a></li>
+            <li><a href="preorder.html">Sắp ra mắt</a></li>
+            <li><a href="wishlist.html">Yêu thích</a></li>
+            
                     </ul>
                 </nav>
-                <div class="header-right-actions">
-                    <form class="search-form" action="products.html" method="get" role="search">
-                        <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
-                        <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
-                        <button type="submit">Tìm</button>
-                    </form>
-                    <a href="cart.html" class="cart-icon-btn" title="Xem giỏ hàng" aria-label="Giỏ hàng">
-                        <span class="cart-cart-symbol">🛒</span>
-                        <span class="cart-badge">3</span>
-                    </a>
+                <form class="search-form" action="products.html" method="get" role="search">
+                    <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                    <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                    <button type="submit">Tìm</button>
+                </form>
+                <div class="header-actions">
+                    <a href="login.html">Đăng nhập</a>
+                    <a href="cart.html">Giỏ hàng <span class="cart-pill">3</span></a>
                 </div>
             </div>
         </div>
@@ -90,7 +78,6 @@
                     <ul>
                         <li><a href="brands.html">Theo hãng xe</a></li>
                         <li><a href="products.html">Tất cả mô hình</a></li>
-                        <li><a href="accessories.html">Phụ kiện</a></li>
                         <li><a href="cart.html">Giỏ hàng</a></li>
                     </ul>
                 </div>
@@ -99,7 +86,6 @@
                     <ul>
                         <li><a href="login.html">Đăng nhập</a></li>
                         <li><a href="register.html">Đăng ký</a></li>
-                        <li><a href="wishlist.html">Yêu thích</a></li>
                     </ul>
                 </div>
                 <div>
@@ -117,52 +103,5 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
-    <script>
-        document.querySelector('form[action="login.html"]').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const fullname = document.getElementById('fullname').value.trim();
-            const email = document.getElementById('reg-email').value.trim();
-            const password = document.getElementById('reg-password').value;
-
-            if (fullname === '' || email === '' || password === '') {
-                alert('Vui lòng nhập đầy đủ thông tin!');
-                return;
-            }
-
-            let users = JSON.parse(localStorage.getItem('carModelStoreUsers')) || [];
-
-            // Kiểm tra email đã tồn tại
-            const existed = users.find(user => (user.email || '').toLowerCase() === email.toLowerCase());
-
-            if (existed) {
-                alert('Email này đã được đăng ký!');
-                return;
-            }
-
-            // Lưu tài khoản
-            const newUser = {
-                fullname: fullname,
-                email: email,
-                password: password,
-                role: 'customer'
-            };
-            users.push(newUser);
-
-            localStorage.setItem('carModelStoreUsers', JSON.stringify(users));
-
-            // Đồng bộ phiên cho hệ thống auth
-            localStorage.setItem('cms_auth_user', JSON.stringify({
-                email: email,
-                name: fullname,
-                role: 'customer'
-            }));
-
-            alert('Đăng ký tài khoản thành công!');
-
-            // Chuyển sang trang đăng nhập
-            window.location.href = 'login.html';
-        });
-    </script>
 </body>
 </html>

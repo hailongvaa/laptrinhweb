@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Quản lý đơn hàng | Quản trị CarModelStore</title>
+</head>
+<body class="admin-body">
+    <div class="admin-shell">
+        <aside class="admin-side">
+            <a href="dashboard.html" class="brand-logo">Car<span>Model</span>Admin</a>
+            <nav aria-label="Menu quản trị">
+                <ul>
+                    <li><a href="dashboard.html">Tổng quan</a></li>
+                <li><a href="products.html">Quản lý mô hình</a></li>
+                <li><a href="brands.html">Quản lý hãng xe</a></li>
+                <li><a href="orders.html" aria-current="page">Quản lý đơn hàng</a></li>
+                
+                </ul>
+            </nav>
+        </aside>
+        <div class="admin-main">
+            <div class="admin-topbar">
+                <div>
+                    <p class="breadcrumb" style="color:#777;"><a href="../index.html" style="color:#b8860b;">&larr; Về trang bán hàng</a></p>
+                    <h1 class="mt-0">Quản lý đơn hàng</h1>
+                </div>
+                <div class="header-actions" style="color:#111;">
+                    <span>Xin chào, <strong>Admin</strong></span>
+                    <a href="../login.html" class="btn btn-outline btn-sm">Đăng xuất</a>
+                </div>
+            </div>
+            
+            <div class="admin-toolbar">
+                <p class="text-muted mt-0">Tổng cộng 4 đơn hàng</p>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead><tr><th>Mã đơn</th><th>Khách hàng</th><th>Ngày đặt</th><th>Tổng tiền</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+                    <tbody>
+                        <tr><td>#DH1032</td><td>Nguyễn Văn A</td><td>26/09/2026</td><td>2.450.000đ</td>
+                            <td><span class="status-pill status-pill--pending">Chờ xác nhận</span></td>
+                            <td><button class="btn btn-outline btn-sm">Xem</button></td></tr>
+                            <tr><td>#DH1031</td><td>Trần Thị B</td><td>25/09/2026</td><td>1.650.000đ</td>
+                            <td><span class="status-pill status-pill--ok">Đã giao</span></td>
+                            <td><button class="btn btn-outline btn-sm">Xem</button></td></tr>
+                            <tr><td>#DH1030</td><td>Lê Văn C</td><td>25/09/2026</td><td>1.990.000đ</td>
+                            <td><span class="status-pill status-pill--ok">Đã giao</span></td>
+                            <td><button class="btn btn-outline btn-sm">Xem</button></td></tr>
+                            <tr><td>#DH1029</td><td>Phạm Thị D</td><td>24/09/2026</td><td>980.000đ</td>
+                            <td><span class="status-pill status-pill--pending">Đã huỷ</span></td>
+                            <td><button class="btn btn-outline btn-sm">Xem</button></td></tr>
+                            
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

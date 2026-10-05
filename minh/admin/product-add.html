@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Thêm / Sửa mô hình | Quản trị CarModelStore</title>
+</head>
+<body class="admin-body">
+    <div class="admin-shell">
+        <aside class="admin-side">
+            <a href="dashboard.html" class="brand-logo">Car<span>Model</span>Admin</a>
+            <nav aria-label="Menu quản trị">
+                <ul>
+                    <li><a href="dashboard.html">Tổng quan</a></li>
+                <li><a href="products.html">Quản lý mô hình</a></li>
+                <li><a href="brands.html">Quản lý hãng xe</a></li>
+                <li><a href="orders.html">Quản lý đơn hàng</a></li>
+                
+                </ul>
+            </nav>
+        </aside>
+        <div class="admin-main">
+            <div class="admin-topbar">
+                <div>
+                    <p class="breadcrumb" style="color:#777;"><a href="../index.html" style="color:#b8860b;">&larr; Về trang bán hàng</a></p>
+                    <h1 class="mt-0">Thêm / Sửa mô hình</h1>
+                </div>
+                <div class="header-actions" style="color:#111;">
+                    <span>Xin chào, <strong>Admin</strong></span>
+                    <a href="../login.html" class="btn btn-outline btn-sm">Đăng xuất</a>
+                </div>
+            </div>
+            
+            <form class="form-card form-card--wide" action="products.html" method="post">
+                <div class="form-grid-2">
+                    <div class="form-row">
+                        <label for="p-name">Tên mô hình</label>
+                        <input type="text" id="p-name" name="name" placeholder="VD: Ferrari F40" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="p-brand">Hãng xe</label>
+                        <select id="p-brand" name="brand" required>
+                            <option value="">-- Chọn hãng xe --</option>
+                            <option>Ferrari</option>
+                            <option>Lamborghini</option>
+                            <option>BMW</option>
+                            <option>Mercedes-Benz</option>
+                            <option>Porsche</option>
+                            <option>Ford</option>
+                            <option>Toyota</option>
+                            <option>Nissan</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="p-scale">Tỉ lệ</label>
+                        <select id="p-scale" name="scale" required>
+                            <option value="">-- Chọn tỉ lệ --</option>
+                            <option>1:18</option>
+                            <option>1:24</option>
+                            <option>1:32</option>
+                            <option>1:64</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="p-price">Giá bán (VNĐ)</label>
+                        <input type="number" id="p-price" name="price" min="0" step="1000" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="p-material">Chất liệu</label>
+                        <input type="text" id="p-material" name="material" placeholder="VD: Hợp kim diecast + nhựa ABS">
+                    </div>
+                    <div class="form-row">
+                        <label for="p-stock">Tồn kho</label>
+                        <input type="number" id="p-stock" name="stock" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="p-image">Ảnh sản phẩm</label>
+                    <input type="file" id="p-image" name="image" accept="image/*">
+                </div>
+                <div class="form-row">
+                    <label for="p-desc">Mô tả</label>
+                    <textarea id="p-desc" name="description" rows="4" placeholder="Mô tả chi tiết mô hình..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Lưu mô hình</button>
+                <a href="products.html" class="btn btn-outline">Huỷ</a>
+                <p class="form-hint">* Form giao diện tĩnh &ndash; dữ liệu chưa được lưu thật (sẽ xử lý ở chương xử lý server sau).</p>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

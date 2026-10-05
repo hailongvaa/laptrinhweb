@@ -6,10 +6,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Liên hệ | CarModel Store</title>
+    <title>Hãng xe | CarModel Store</title>
 </head>
 <body>
-    <!-- HEADER ĐỒNG BỘ: TRANG LIÊN HỆ -->
+    <!-- HEADER ĐỒNG BỘ CHUẨN LUXURY -->
     <header class="site-header">
         <div class="site-header__top">
             <div class="container header-top-flex">
@@ -33,11 +33,11 @@
                 <nav class="main-nav" aria-label="Menu chính">
                     <ul>
                         <li><a href="index.html">Trang chủ</a></li>
-                        <li><a href="brands.html">Hãng xe</a></li>
+                        <li><a href="brands.html" aria-current="page">Hãng xe</a></li>
                         <li><a href="products.html">Sản phẩm</a></li>
                         <li><a href="accessories.html">Phụ kiện</a></li>
                         <li><a href="preorder.html">Sắp ra mắt</a></li>
-                        <li><a href="contact.html" aria-current="page">Liên hệ</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
                     </ul>
                 </nav>
                 <div class="header-right-actions">
@@ -57,36 +57,47 @@
 
     <div class="page-banner">
         <div class="container">
-            <p class="breadcrumb"><a href="index.html">Trang chủ</a> / Liên hệ</p>
-            <h1 class="mt-0">Liên hệ cửa hàng</h1>
+            <p class="breadcrumb"><a href="index.html">Trang chủ</a> / Hãng xe</p>
+            <h1 class="mt-0">Danh sách hãng xe</h1>
         </div>
     </div>
+
     <main id="main" class="section container">
-        <div class="form-card form-card--wide">
-            <p><strong>Địa chỉ:</strong> 123 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</p>
-            <p><strong>Hotline:</strong> 1900-6868 &nbsp;|&nbsp; <strong>Email:</strong> cskh@carmodelstore.vn</p>
-      <form action="#" method="post">
-    <!-- 1. Ô Họ tên -->
-    <div class="form-row">
-        <label for="name">Họ tên</label>
-        <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
-    </div>
-
-    <!-- 2. Ô Email khách hàng (thêm mới dưới họ tên) -->
-    <div class="form-row">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
-    </div>
-
-    <!-- 3. Ô Nội dung -->
-    <div class="form-row">
-        <label for="message">Nội dung</label>
-        <textarea id="message" name="message" rows="5" placeholder="Nhập câu hỏi hoặc thông tin mô hình bạn cần tư vấn..." required></textarea>
-    </div>
-
-    <!-- 4. Nút Gửi liên hệ -->
-    <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
-</form>
+        <p class="text-muted">Chọn một hãng xe để xem toàn bộ mô hình thuộc hãng đó. Đây là ví dụ minh hoạ
+        cách phân loại đa chiều: cùng một mô hình có thể xuất hiện lại ở trang "Tất cả mô hình" khi lọc theo tỉ lệ hoặc mức giá.</p>
+        <div class="grid grid--brands" style="margin-top:1.5rem;">
+                <a class="brand-card" href="brand-detail.html">
+                    Ferrari
+                    <small>6 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Lamborghini
+                    <small>7 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    BMW
+                    <small>8 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Mercedes-Benz
+                    <small>9 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Porsche
+                    <small>10 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Ford
+                    <small>11 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Toyota
+                    <small>12 mô hình</small>
+                </a>
+                <a class="brand-card" href="brand-detail.html">
+                    Nissan
+                    <small>13 mô hình</small>
+                </a>
         </div>
     </main>
 

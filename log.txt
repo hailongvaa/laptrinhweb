@@ -167,12 +167,58 @@ III. CÁC HÀNH ĐỘNG ĐÃ THỰC HIỆN ĐỂ THAY THẾ & TÍCH HỢP THEO M
 
 
 --------------------------------------------------------------------------------
+PHẦN C: CÁC THAY ĐỔI & BỔ SUNG CỦA BẠN MINH (THƯ MỤC "minh")
+--------------------------------------------------------------------------------
+
+I. TỔNG QUAN PHÂN TÍCH:
+1. Vai trò của Bạn Minh (Quang Minh):
+   - Phụ trách cụm màn hình: accessories.html (Phụ kiện trưng bày), brands.html (Hãng xe)
+     và brand-detail.html (Chi tiết thương hiệu).
+   - Phát hiện luồng điều hướng website bị thiếu liên kết đến trang "Phụ kiện" và
+     trang "Yêu thích".
+   - Tiến hành chuẩn hóa và bổ sung điều hướng trên toàn bộ 12 trang web của dự án.
+
+II. CHI TIẾT TỪNG NỘI DUNG BẠN MINH ĐÃ LÀM:
+
+1. Bổ sung liên kết "Phụ kiện" vào Menu chính (Header Navigation) trên toàn bộ website:
+   - Trên tất cả các trang khách hàng (index.html, brands.html, brand-detail.html,
+     products.html, product-detail.html, preorder.html, contact.html, cart.html,
+     login.html, register.html, wishlist.html, accessories.html):
+     + Đã chèn thêm: <li><a href="accessories.html">Phụ kiện</a></li> vào thanh điều hướng.
+     + Giúp người dùng ở mọi màn hình đều có thể chuyển hướng trực tiếp đến trang Phụ kiện.
+
+2. Bổ sung các liên kết còn thiếu ở Chân trang (Footer):
+   - Cột "Mua sắm": Thêm liên kết <li><a href="accessories.html">Phụ kiện</a></li>.
+   - Cột "Tài khoản": Thêm liên kết <li><a href="wishlist.html">Yêu thích</a></li>.
+   - Thống nhất cấu trúc Footer trên toàn bộ 12 file HTML của dự án.
+
+3. Chuẩn hóa Header Luxury trên cụm trang Hãng xe:
+   - File brands.html và brand-detail.html:
+     + Làm sạch menu điều hướng, gỡ bỏ các liên kết chết (#) hoặc định dạng thụt dòng sai.
+     + Đồng bộ thanh Topbar Hotline rung 1900-6868, link Đăng nhập và icon giỏ hàng.
+
+4. Xây dựng danh mục sản phẩm trang Phụ kiện (accessories.html):
+   - Xây dựng 6 sản phẩm phụ kiện mô hình chuyên dụng: Tủ trưng bày mica 4 tầng,
+     Đế mica trong suốt (bộ 5), Sa bàn gara sửa xe, Sa bàn trạm xăng cổ điển,
+     Tủ kính trưng bày để bàn, Bộ đèn LED nền cảm biến chạm.
+   - Đồng bộ trang accessories.html với menu chuẩn và footer đầy đủ của hệ thống.
+
+III. CÁC HÀNH ĐỘNG ĐÃ THỰC HIỆN ĐỂ THAY THẾ & TÍCH HỢP THEO MINH:
+- Đã chạy rà soát và cập nhật đồng bộ liên kết <li><a href="accessories.html">Phụ kiện</a></li>
+  lên toàn bộ thanh Menu chính (main-nav) của 12 trang HTML.
+- Đã đồng bộ liên kết Phụ kiện và Yêu thích vào chân trang Footer của toàn bộ 12 file.
+- Chuẩn hóa menu và Header của brands.html, brand-detail.html và accessories.html theo mẫu của Minh.
+
+
+--------------------------------------------------------------------------------
 TỔNG KẾT TRẠNG THÁI DỰ ÁN HIỆN TẠI
 --------------------------------------------------------------------------------
-- Giao diện: Đồng bộ 100% Header, Hotline rung, Giỏ hàng động [+]/[-], Yêu thích,
-  Đăng ký, Đăng nhập và ảnh mô hình thật độ nét cao.
-- Cơ sở dữ liệu: Hoàn thiện 100% theo thiết kế 4 bảng chuẩn hóa của bạn Mai, có
-  khóa ngoại chặt chẽ, dữ liệu mẫu và câu truy vấn JOIN báo cáo.
+- Giao diện: Đồng bộ 100% Header, Hotline rung, Menu 6 mục (gồm cả Phụ kiện của Minh),
+  Footer 4 cột có đầy đủ Yêu thích và Phụ kiện, Giỏ hàng động [+]/[-] của Hân,
+  Danh sách yêu thích có nút xóa của Hân, Đăng ký/Đăng nhập và ảnh mô hình thật của Mai.
+- Cơ sở dữ liệu: Hoàn thiện 100% theo thiết kế 4 bảng chuẩn hóa của bạn Mai (customers,
+  products, orders, order_items), có khóa ngoại chặt chẽ, dữ liệu mẫu và câu lệnh JOIN.
 - Kết nối hệ thống: Giao diện web <-> Backend Node.js (port 5000) <-> CSDL SQL Server
   hoạt động mượt mà, thông suốt.
 ================================================================================
+

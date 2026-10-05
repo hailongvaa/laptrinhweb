@@ -6,10 +6,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Liên hệ | CarModel Store</title>
+    <title>Đăng nhập | CarModel Store</title>
 </head>
 <body>
-    <!-- HEADER ĐỒNG BỘ: TRANG LIÊN HỆ -->
+    <!-- HEADER ĐỒNG BỘ: CÁC TRANG CHI TIẾT & CHỨC NĂNG -->
     <header class="site-header">
         <div class="site-header__top">
             <div class="container header-top-flex">
@@ -35,9 +35,9 @@
                         <li><a href="index.html">Trang chủ</a></li>
                         <li><a href="brands.html">Hãng xe</a></li>
                         <li><a href="products.html">Sản phẩm</a></li>
-                        <li><a href="accessories.html">Phụ kiện</a></li>
+                         <li><a href="accessories.html">Phụ kiện</a></li>   
                         <li><a href="preorder.html">Sắp ra mắt</a></li>
-                        <li><a href="contact.html" aria-current="page">Liên hệ</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
                     </ul>
                 </nav>
                 <div class="header-right-actions">
@@ -55,38 +55,22 @@
         </div>
     </header>
 
-    <div class="page-banner">
-        <div class="container">
-            <p class="breadcrumb"><a href="index.html">Trang chủ</a> / Liên hệ</p>
-            <h1 class="mt-0">Liên hệ cửa hàng</h1>
-        </div>
-    </div>
-    <main id="main" class="section container">
-        <div class="form-card form-card--wide">
-            <p><strong>Địa chỉ:</strong> 123 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</p>
-            <p><strong>Hotline:</strong> 1900-6868 &nbsp;|&nbsp; <strong>Email:</strong> cskh@carmodelstore.vn</p>
-      <form action="#" method="post">
-    <!-- 1. Ô Họ tên -->
-    <div class="form-row">
-        <label for="name">Họ tên</label>
-        <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
-    </div>
-
-    <!-- 2. Ô Email khách hàng (thêm mới dưới họ tên) -->
-    <div class="form-row">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
-    </div>
-
-    <!-- 3. Ô Nội dung -->
-    <div class="form-row">
-        <label for="message">Nội dung</label>
-        <textarea id="message" name="message" rows="5" placeholder="Nhập câu hỏi hoặc thông tin mô hình bạn cần tư vấn..." required></textarea>
-    </div>
-
-    <!-- 4. Nút Gửi liên hệ -->
-    <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
-</form>
+    <main id="main" class="section container center" style="max-width:100%;">
+        <div class="form-card" style="margin:0 auto; text-align:left;">
+            <h1>Đăng nhập</h1>
+            <p class="text-muted" style="margin-top:0;">Đăng nhập để theo dõi đơn hàng và lưu mô hình yêu thích.</p>
+            <form action="account.html" method="post">
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="ban@vidu.com">
+                </div>
+                <div class="form-row">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                <p class="form-hint">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+            </form>
         </div>
     </main>
 
@@ -103,7 +87,6 @@
                     <ul>
                         <li><a href="brands.html">Theo hãng xe</a></li>
                         <li><a href="products.html">Tất cả mô hình</a></li>
-                        <li><a href="accessories.html">Phụ kiện</a></li>
                         <li><a href="cart.html">Giỏ hàng</a></li>
                     </ul>
                 </div>
@@ -112,7 +95,6 @@
                     <ul>
                         <li><a href="login.html">Đăng nhập</a></li>
                         <li><a href="register.html">Đăng ký</a></li>
-                        <li><a href="wishlist.html">Yêu thích</a></li>
                     </ul>
                 </div>
                 <div>
