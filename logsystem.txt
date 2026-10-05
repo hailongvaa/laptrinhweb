@@ -1,0 +1,196 @@
+================================================================================
+                        NHẬT KÝ HỆ THỐNG DỰ ÁN - LOGSYSTEM
+               HỆ THỐNG BÁN MÔ HÌNH XE Ô TÔ CAO CẤP (CAR STORE)
+              MÔN HỌC: LẬP TRÌNH WEB & ỨNG DỤNG CƠ SỞ DỮ LIỆU
+================================================================================
+Thời gian cập nhật: 10/2026
+Phiên bản: 2.0 (Clean Architecture & Full Integration)
+Trạng thái: Hoàn tất cấu trúc, đồng bộ mã nguồn toàn bộ thành viên
+
+--------------------------------------------------------------------------------
+I. TỔNG QUAN TÁI CẤU TRÚC VÀ LÀM SẠCH HỆ THỐNG (SYSTEM RESTRUCTURING)
+--------------------------------------------------------------------------------
+1. Mục tiêu tái cấu trúc:
+   - Sắp xếp và quy hoạch lại toàn bộ cây thư mục dự án theo chuẩn chuyên nghiệp.
+   - Giúp giảng viên, người chấm bài và các thành viên dễ theo dõi, dễ quan sát luồng 
+     hoạt động và thẩm định mã nguồn mà không bị rối mắt bởi các thư mục trùng lặp.
+   - Tích hợp toàn diện các tính năng của từng thành viên (Hân, Mai, Minh, Long) vào
+     phiên bản chính thức chạy trên trình duyệt và máy chủ.
+   - Bảo toàn 100% dữ liệu gốc của các bạn, đưa vào thư mục đóng gói lưu trữ chuẩn.
+
+2. Bảng đối chiếu thay đổi thư mục & tập tin (Trước vs Sau):
+
+   +------------------------+---------------------------------------+-------------------------------------------------------------+
+   | Tên / Đường dẫn CŨ     | Vị trí / Tên MỚI                      | Ý nghĩa & Lý do điều chỉnh                                  |
+   +------------------------+---------------------------------------+-------------------------------------------------------------+
+   | /datadase/             | /database/                            | Sửa lỗi chính tả ('datadase' -> 'database').                |
+   |   - script.sql         |   - 00_full_setup.sql                 | Kịch bản 1-click tạo DB, bảng, nạp dữ liệu và truy vấn JOIN.|
+   |   - tables.sql         |   - 01_create_tables.sql              | Định nghĩa DDL 4 bảng quan hệ chuẩn 3NF.                   |
+   |   - data.sql           |   - 02_insert_mock_data.sql           | Dữ liệu mẫu xe mô hình, người dùng, đơn hàng.               |
+   |   - queries.sql        |   - 03_queries_and_reports.sql        | Kịch bản truy vấn báo cáo liên bảng (JOIN 4 bảng).          |
+   |   - Solution1/         |   - Solution1/                        | File đồ án SQL Server Management Studio (SSMS).             |
+   +------------------------+---------------------------------------+-------------------------------------------------------------+
+   | /hân/                  | /members_contributions/               | Gom nhóm toàn bộ đóng góp độc lập của Hân vào khu lưu trữ.  |
+   | (thư mục rải rác root) |  01_han_cart_and_auth/                | Tránh làm bẩn thư mục gốc, lưu trữ mã nguồn để chấm chéo.   |
+   +------------------------+---------------------------------------+-------------------------------------------------------------+
+   | /mai/                  | /members_contributions/               | Gom nhóm các file SQL và bản thảo DB của Mai.               |
+   | (thư mục rải rác root) |  02_mai_database_sql/                 | Tách biệt file nháp và file database production của dự án.  |
+   +------------------------+---------------------------------------+-------------------------------------------------------------+
+   | /minh/                 | /members_contributions/               | Gom nhóm bản chỉnh sửa navigation và phụ kiện của Minh.     |
+   | (thư mục rải rác root) |  03_minh_navigation_and_accessories/ | Giữ nguyên chứng tích đóng góp, mã đã được merge vào root.  |
+   +------------------------+---------------------------------------+-------------------------------------------------------------+
+   | 12 trang HTML gốc      | Giữ nguyên tên chuẩn tiếng Anh        | Đảm bảo KHÔNG làm vỡ liên kết (href), đường dẫn CSS/JS,     |
+   | (index, products, ...) | tại thư mục gốc (Root)                | cấu hình server Vercel (vercel.json) và API Backend.        |
+   +------------------------+---------------------------------------+-------------------------------------------------------------+
+   | README.md              | README.md (Cập nhật toàn diện)        | Tài liệu hóa kiến trúc hệ thống, hướng dẫn khởi chạy.       |
+   | log.txt                | log.txt (Gốc) & logsytem.txt (Tổng hợp)| Ghi chép chi tiết toàn bộ lịch sử code và thay đổi dự án.   |
+   +------------------------+---------------------------------------+-------------------------------------------------------------+
+
+--------------------------------------------------------------------------------
+II. CHI TIẾT TÍCH HỢP ĐÓNG GÓP CỦA TỪNG THÀNH VIÊN
+--------------------------------------------------------------------------------
+
+1. BẠN HÂN (HÂN) - Chức năng Giỏ hàng, Đăng ký/Đăng nhập & Yêu thích:
+   - File đóng góp gốc: /members_contributions/01_han_cart_and_auth/
+   - Các tính năng đã tích hợp vào hệ sinh thái chính:
+     * cart.html:
+       + Thêm bộ nút tăng/giảm số lượng [+] và [-] trực quan cho từng sản phẩm.
+       + Bổ sung logic JavaScript tính toán lại Tạm tính, Phí vận chuyển, Giảm giá và
+         Tổng thanh toán ngay khi thay đổi số lượng hoặc xóa sản phẩm.
+       + Hỗ trợ định dạng tiền tệ VNĐ chuẩn hóa (toLocaleString('vi-VN')).
+     * register.html & login.html:
+       + Bổ sung chức năng lưu thông tin đăng ký vào Web Storage (localStorage: 'registeredUser').
+       + Kiểm tra mật khẩu xác nhận trùng khớp khi đăng ký.
+       + Bổ sung logic kiểm tra thông tin đăng nhập từ localStorage ('currentUser') và 
+         chuyển hướng người dùng về trang chủ (index.html).
+     * wishlist.html:
+       + Thêm hàm removeWishlist(button) cho phép xóa nhanh sản phẩm khỏi danh sách yêu thích
+         và tự động cập nhật số lượng badge yêu thích hiển thị trên giao diện.
+
+2. BẠN MAI (MAI) - Cơ sở dữ liệu quan hệ (RDBMS SQL Server) & Chuẩn hóa dữ liệu:
+   - File đóng góp gốc: /members_contributions/02_mai_database_sql/
+   - Các kịch bản và dữ liệu đã chuẩn hóa vào /database/:
+     * Mô hình quan hệ chuẩn hóa 3NF gồm 4 bảng:
+       + customers (Khách hàng): customer_id, full_name, email, phone, address, created_at.
+       + products (Sản phẩm xe mô hình): product_id, name, brand, scale, price, stock, image_url.
+       + orders (Đơn hàng): order_id, customer_id, order_date, total_amount, status, payment_method.
+       + order_items (Chi tiết đơn hàng): item_id, order_id, product_id, quantity, unit_price.
+     * Bộ dữ liệu mẫu phong phú: Đầy đủ các dòng siêu xe danh tiếng (Ferrari SF90, Porsche 911 GT3, 
+       Rolls-Royce Phantom, Lamborghini Aventador...) với tỷ lệ thu nhỏ 1:18, 1:24, 1:64.
+     * Ảnh sản phẩm Unsplash CDN chất lượng cao: Tích hợp trực tiếp vào DB và giao diện web.
+     * Kịch bản báo cáo chuyên sâu: Câu lệnh truy vấn JOIN 4 bảng thống kê toàn bộ lịch sử mua hàng,
+       tính tổng doanh thu và liệt kê chi tiết từng chiếc xe được đặt mua.
+
+3. BẠN MINH (MINH) - Trải nghiệm điều hướng (Navigation), Phụ kiện & Luxury Header:
+   - File đóng góp gốc: /members_contributions/03_minh_navigation_and_accessories/
+   - Các hạng mục đã chuẩn hóa và lan tỏa trên toàn bộ 12 trang web:
+     * Đồng bộ Navigation Bar trên TẤT CẢ 12 file HTML:
+       Bổ sung mục menu 'Phụ kiện' (<a href="accessories.html">Phụ kiện</a>) giúp khách hàng
+       dễ dàng truy cập trang phụ kiện mô hình từ bất kỳ trang nào.
+     * Đồng bộ Footer trên TẤT CẢ 12 file HTML:
+       Bổ sung liên kết đến 'Phụ kiện' (accessories.html) và 'Danh sách yêu thích' (wishlist.html)
+       vào khối 'Liên kết nhanh' (Quick Links) ở chân trang.
+     * Chuẩn hóa Header Luxury:
+       Đồng bộ cấu trúc Header nền tối sang trọng, kèm biểu tượng tìm kiếm, giỏ hàng, tài khoản
+       cho brands.html, brand-detail.html và accessories.html.
+
+4. BẠN LONG (LONG) / KIẾN TRÚC HỆ THỐNG - Quản trị Admin, Backend API & Bảo mật:
+   - Backend Node.js / Express (/car-store-backend/):
+     * Cung cấp RESTful API đầy đủ: Xác thực (Auth JWT), Sản phẩm, Khách hàng, Đơn hàng, Thống kê.
+     * Hỗ trợ lưu trữ dữ liệu dạng JSON File Database và kết nối SQL Server linh hoạt.
+   - Module Quản trị nâng cao (/admin/):
+     * Hệ thống Dashboard trực quan với biểu đồ doanh thu Chart.js.
+     * Quản lý sản phẩm (CRUD): Thêm mới, chỉnh sửa, xóa mô hình xe.
+     * Quản lý đơn hàng: Xem danh sách, cập nhật trạng thái đơn (Đang xử lý, Đang giao, Đã giao, Hủy).
+     * Phân quyền quản trị (Role-Based Access Control - RBAC) và bảo vệ phiên làm việc qua admin-auth.js.
+
+--------------------------------------------------------------------------------
+III. SƠ ĐỒ CÂY THƯ MỤC CHUẨN HÓA DỰ ÁN (PROJECT DIRECTORY TREE)
+--------------------------------------------------------------------------------
+d:\laptrinhweb\
+│
+├── index.html                   # Trang chủ: Banner, Sản phẩm nổi bật, Khuyến mãi
+├── products.html                # Danh mục sản phẩm mô hình xe hơi
+├── product-detail.html          # Chi tiết thông số mô hình xe, giá, ảnh phóng to
+├── accessories.html             # Danh mục phụ kiện mô hình (hộp mica, đèn led, sa bàn)
+├── brands.html                  # Danh sách thương hiệu xe (Ferrari, Porsche, Rolls-Royce...)
+├── brand-detail.html            # Chi tiết thương hiệu và các xe thuộc hãng
+├── cart.html                    # Giỏ hàng: Tăng/giảm số lượng [+]/[-], tính tiền tự động
+├── wishlist.html                # Danh sách sản phẩm yêu thích (Wishlist)
+├── preorder.html                # Đặt hàng trước các mẫu xe giới hạn (Pre-order)
+├── contact.html                 # Liên hệ, bản đồ và form phản hồi
+├── login.html                   # Đăng nhập (Client Web Storage + Admin JWT)
+├── register.html                # Đăng ký tài khoản khách hàng
+│
+├── admin/                       # [PHÂN HỆ QUẢN TRỊ ADMIN]
+│   ├── index.html               # Admin Dashboard (Thống kê doanh thu, đơn hàng, khách hàng)
+│   ├── products.html            # Admin: Quản lý danh mục & thêm/sửa/xóa sản phẩm
+│   ├── orders.html              # Admin: Quản lý đơn hàng & trạng thái vận chuyển
+│   ├── customers.html           # Admin: Quản lý danh sách khách hàng
+│   ├── reports.html             # Admin: Báo cáo phân tích doanh thu & bán hàng
+│   ├── admin.css                # CSS giao diện quản trị Admin hiện đại
+│   └── admin-auth.js            # Kiểm tra quyền đăng nhập, bảo vệ tuyến đường Admin
+│
+├── assets/                      # [TÀI NGUYÊN TĨNH HỆ THỐNG]
+│   ├── css/
+│   │   └── style.css            # Stylesheet toàn trang, hiệu ứng Luxury Car Store
+│   └── js/
+│       ├── main.js              # Xử lý giao diện, giỏ hàng, thông báo toast, modal
+│       └── products.js          # Dữ liệu sản phẩm mẫu chạy offline không cần backend
+│
+├── database/                    # [CƠ SỞ DỮ LIỆU SQL SERVER] (Đã chuẩn hóa từ datadase/)
+│   ├── 00_full_setup.sql        # 1-Click Script: Tạo DB, 4 bảng, nạp data & truy vấn
+│   ├── 01_create_tables.sql     # DDL: Tạo 4 bảng quan hệ chuẩn 3NF
+│   ├── 02_insert_mock_data.sql  # DML: Nạp dữ liệu mô hình xe, khách hàng, đơn hàng
+│   ├── 03_queries_and_reports.sql # SQL Báo cáo: Truy vấn JOIN 4 bảng doanh thu
+│   └── Solution1/               # Dự án SSMS (SQL Server Management Studio)
+│
+├── car-store-backend/           # [MÁY CHỦ BACKEND NODE.JS REST API]
+│   ├── server.js                # Điểm khởi chạy máy chủ Express (Port 5000)
+│   ├── package.json             # Khai báo thư viện (express, cors, dotenv, jsonwebtoken...)
+│   ├── data/                    # JSON database lưu trữ khi chạy không có SQL Server
+│   │   ├── users.json           # Dữ liệu tài khoản quản trị & khách hàng
+│   │   ├── products.json        # Dữ liệu sản phẩm xe mô hình
+│   │   └── orders.json          # Dữ liệu đơn hàng đặt qua web
+│   └── routes/                  # Tuyến API định tuyến (Auth, Products, Orders, ...)
+│
+├── members_contributions/       # [LƯU TRỮ MÃ NGUỒN ĐÓNG GÓP CỦA THÀNH VIÊN]
+│   ├── 01_han_cart_and_auth/    # Bản nộp gốc của bạn Hân (Cart buttons, Auth Storage)
+│   ├── 02_mai_database_sql/     # Bản nộp gốc của bạn Mai (SQL queries, data mẫu)
+│   └── 03_minh_navigation_and_accessories/ # Bản nộp gốc của bạn Minh (Menu, Accessories)
+│
+├── README.md                    # Tài liệu hướng dẫn sử dụng và thuyết minh đề tài
+├── log.txt                      # Lịch sử ghi nhận đóng góp chi tiết từng lần merge
+├── logsytem.txt                 # Nhật ký hệ thống toàn phần (File này)
+├── vercel.json                  # Cấu hình triển khai tự động lên Vercel Cloud
+└── .gitignore                   # Loại trừ các file rác, node_modules khỏi Git
+
+--------------------------------------------------------------------------------
+IV. HƯỚNG DẪN KHỞI CHẠY HỆ THỐNG (QUICK START GUIDE)
+--------------------------------------------------------------------------------
+1. Chạy giao diện Web (Frontend):
+   - Cách 1: Sử dụng VS Code Extension "Live Server", mở thư mục dự án và nhấn "Go Live"
+     tại trang `index.html`.
+   - Cách 2: Mở trực tiếp file `index.html` bằng trình duyệt Chrome, Edge, Firefox.
+
+2. Cài đặt Cơ sở dữ liệu (Database SQL Server):
+   - Mở SQL Server Management Studio (SSMS).
+   - Mở file `database/00_full_setup.sql` và nhấn `Execute (F5)`.
+   - Toàn bộ cơ sở dữ liệu `CarStoreDB`, 4 bảng quan hệ, dữ liệu mẫu và báo cáo 
+     sẽ được khởi tạo tự động trong 1 giây.
+
+3. Chạy Máy chủ API (Backend Node.js - Tùy chọn nâng cao):
+   - Mở Terminal/PowerShell tại thư mục `car-store-backend`:
+     cd d:\laptrinhweb\car-store-backend
+     npm install
+     npm start
+   - Máy chủ API sẽ lắng nghe tại: http://localhost:5000/
+
+4. Truy cập Phân hệ Quản trị (Admin):
+   - Mở trình duyệt và truy cập: `admin/index.html` hoặc đăng nhập qua `login.html`.
+   - Tài khoản mẫu quản trị:
+     * Email: admin@carstore.vn / Mật khẩu: admin123
+
+================================================================================
+KẾT THÚC BẢN GHI NHẬT KÝ HỆ THỐNG - ĐÃ SẴN SÀNG ĐÁP ỨNG ĐÁNH GIÁ & CHẤM ĐIỂM
+================================================================================
