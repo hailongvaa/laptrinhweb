@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Yêu thích | CarModel Store</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__top">
+            <div class="container">
+                <span>Hotline tư vấn: 1900-6868 &nbsp;|&nbsp; Giao hàng toàn quốc</span>
+                <a href="contact.html">Liên hệ cửa hàng</a>
+            </div>
+        </div>
+        <div class="site-header__main">
+            <div class="container">
+                <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
+                <nav class="main-nav" aria-label="Menu chính">
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="brands.html">Hãng xe</a></li>
+            <li><a href="products.html">Tất cả mô hình</a></li>
+            <li><a href="accessories.html">Phụ kiện</a></li>
+            <li><a href="preorder.html">Sắp ra mắt</a></li>
+            <li><a href="wishlist.html" aria-current="page">Yêu thích</a></li>
+            
+                    </ul>
+                </nav>
+                <form class="search-form" action="products.html" method="get" role="search">
+                    <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                    <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                    <button type="submit">Tìm</button>
+                </form>
+                <div class="header-actions">
+                    <a href="login.html">Đăng nhập</a>
+                    <a href="cart.html">Giỏ hàng <span class="cart-pill">3</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-banner">
+        <div class="container">
+            <p class="breadcrumb"><a href="index.html">Trang chủ</a> / Yêu thích</p>
+            <h1 class="mt-0">Danh sách yêu thích của bạn</h1>
+        </div>
+    </div>
+    <main id="main" class="section container">
+        <p class="text-muted">Mô hình bạn đã lưu bằng nút <strong>♡</strong> trên các trang sản phẩm sẽ hiển thị ở đây
+        (lưu tạm trên trình duyệt bằng localStorage &ndash; ở các chương sau sẽ đồng bộ theo tài khoản thật qua PHP/MySQL).</p>
+        <div id="wishlist-empty" class="text-muted" style="margin-top:1.5rem; display:none;">
+            Bạn chưa lưu mô hình nào. Hãy bấm biểu tượng ♡ trên trang <a href="products.html">Tất cả mô hình</a> để thêm vào đây.
+        </div>
+        <div class="grid" id="wishlist-grid" data-product-grid style="margin-top:1.5rem;"></div>
+    </main>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const wishlistGrid = document.getElementById("wishlist-grid");
+    const emptyMessage = document.getElementById("wishlist-empty");
+
+    let wishlist = JSON.parse(localStorage.getItem("cms_wishlist")) || [];
+
+    if (wishlist.length === 0) {
+        emptyMessage.style.display = "block";
+        wishlistGrid.innerHTML = "";
+        return;
+    }
+
+    emptyMessage.style.display = "none";
+
+    wishlistGrid.innerHTML = wishlist.map(function (id) {
+        return `
+            <article class="car-card">
+                <div class="car-card__media">
+                    <div style="
+                        height:180px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        background:#f3f3f3;
+                        font-size:1.2rem;
+                    ">
+                        ❤️ Mô hình yêu thích
+                    </div>
+                </div>
+
+                <div class="car-card__body">
+                    <h3>Mô hình #${id}</h3>
+
+                    <p class="text-muted">
+                        Sản phẩm đã được lưu vào danh sách yêu thích.
+                    </p>
+
+                    <button
+                        class="btn btn-primary btn-block"
+                        onclick="removeWishlist('${id}')">
+                        Xóa khỏi yêu thích
+                    </button>
+                </div>
+            </article>
+        `;
+    }).join("");
+});
+
+function removeWishlist(id) {
+
+    let wishlist =
+        JSON.parse(localStorage.getItem("cms_wishlist")) || [];
+
+    wishlist = wishlist.filter(function (item) {
+        return String(item) !== String(id);
+    });
+
+    localStorage.setItem(
+        "cms_wishlist",
+        JSON.stringify(wishlist)
+    );
+
+    location.reload();
+}
+</script>
+    
+            <div class="footer-grid">
+                <div>
+                    <h4>CarModelStore</h4>
+                    <p style="font-size:.85rem;">Chuyên mô hình ô tô thu nhỏ tỉ lệ 1:18 - 1:64 cho người sưu tầm.
+                    Đồ án môn Lập trình Web &ndash; Chương 1 &amp; 2.</p>
+                </div>
+                <div>
+                    <h4>Mua sắm</h4>
+                    <ul>
+                        <li><a href="brands.html">Theo hãng xe</a></li>
+                        <li><a href="products.html">Tất cả mô hình</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Tài khoản</h4>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="register.html">Đăng ký</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn đặt hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 CarModelStore &ndash; Bài tập Chương 1 &amp; 2, môn Lập trình Web. Nhóm 05.
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

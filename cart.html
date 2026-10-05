@@ -9,35 +9,46 @@
     <title>Giỏ hàng | CarModel Store</title>
 </head>
 <body>
+    <!-- HEADER ĐỒNG BỘ: CÁC TRANG CHI TIẾT & CHỨC NĂNG -->
     <header class="site-header">
         <div class="site-header__top">
-            <div class="container">
-                <span>Hotline tư vấn: 1900-6868 &nbsp;|&nbsp; Giao hàng toàn quốc</span>
-                <a href="contact.html">Liên hệ cửa hàng</a>
+            <div class="container header-top-flex">
+                <div class="hotline-box">
+                    <span class="phone-vibrate-icon">📞</span>
+                    <div class="hotline-text">
+                        <span class="hotline-label">Hotline tư vấn</span>
+                        <a href="tel:19006868" class="hotline-number">1900-6868</a>
+                    </div>
+                    <span class="hotline-divider">|</span>
+                    <span class="shipping-note">Giao hàng toàn quốc</span>
+                </div>
+                <div class="top-auth">
+                    <a href="login.html" class="top-login-link">Đăng nhập</a>
+                </div>
             </div>
         </div>
         <div class="site-header__main">
-            <div class="container">
+            <div class="container main-header-flex">
                 <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
                 <nav class="main-nav" aria-label="Menu chính">
                     <ul>
                         <li><a href="index.html">Trang chủ</a></li>
-            <li><a href="brands.html">Hãng xe</a></li>
-            <li><a href="products.html">Tất cả mô hình</a></li>
-            <li><a href="accessories.html">Phụ kiện</a></li>
-            <li><a href="preorder.html">Sắp ra mắt</a></li>
-            <li><a href="wishlist.html">Yêu thích</a></li>
-            
+                        <li><a href="brands.html">Hãng xe</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="preorder.html">Sắp ra mắt</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
                     </ul>
                 </nav>
-                <form class="search-form" action="products.html" method="get" role="search">
-                    <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
-                    <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
-                    <button type="submit">Tìm</button>
-                </form>
-                <div class="header-actions">
-                    <a href="login.html">Đăng nhập</a>
-                    <a href="cart.html">Giỏ hàng <span class="cart-pill">3</span></a>
+                <div class="header-right-actions">
+                    <form class="search-form" action="products.html" method="get" role="search">
+                        <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                        <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                        <button type="submit">Tìm</button>
+                    </form>
+                    <a href="cart.html" class="cart-icon-btn" title="Xem giỏ hàng" aria-label="Giỏ hàng">
+                        <span class="cart-cart-symbol">🛒</span>
+                        <span class="cart-badge">3</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -217,29 +228,85 @@
                 checkServerHealth();
             });
 
-            // Tính tổng tiền giỏ hàng
+            // Tính tổng tiền giỏ hàng & đồng bộ số lượng badge
             function calculateCart() {
                 let subtotal = 0;
+                let totalQuantity = 0;
                 const rows = document.querySelectorAll('tbody tr[data-product-id]');
                 rows.forEach(r => {
                     const price = Number(r.getAttribute('data-unit-price') || 0);
                     const qtyInput = r.querySelector('.item-qty');
-                    const qty = Number(qtyInput ? qtyInput.value : 1);
+                    let qty = parseInt(qtyInput ? qtyInput.value : 1) || 1;
+                    if (qty < 1) {
+                        qty = 1;
+                        if (qtyInput) qtyInput.value = 1;
+                    }
                     const rowTotal = price * qty;
                     const subtotalCell = r.querySelector('.item-subtotal');
                     if (subtotalCell) subtotalCell.textContent = rowTotal.toLocaleString('vi-VN') + 'đ';
                     subtotal += rowTotal;
+                    totalQuantity += qty;
                 });
                 const shipping = rows.length > 0 ? 30000 : 0;
                 const total = subtotal + shipping;
                 document.getElementById('cartSubtotal').textContent = subtotal.toLocaleString('vi-VN') + 'đ';
                 document.getElementById('cartTotal').textContent = total.toLocaleString('vi-VN') + 'đ';
                 document.getElementById('modalCheckoutTotal').textContent = total.toLocaleString('vi-VN') + 'đ';
-                return { subtotal, shipping, total, count: rows.length };
+
+                // Cập nhật số lượng trên icon giỏ hàng Header
+                document.querySelectorAll('.cart-badge, .cart-pill').forEach(badge => {
+                    badge.textContent = totalQuantity;
+                });
+
+                return { subtotal, shipping, total, count: rows.length, totalQuantity };
             }
 
-            document.querySelectorAll('.item-qty').forEach(input => {
-                input.addEventListener('change', calculateCart);
+            // Gắn bộ điều khiển tăng / giảm số lượng (+ / -) cho từng sản phẩm
+            document.querySelectorAll('tbody tr[data-product-id]').forEach(row => {
+                const qtyInput = row.querySelector('.item-qty');
+                if (!qtyInput) return;
+
+                qtyInput.min = 1;
+
+                const wrapper = document.createElement('div');
+                wrapper.style.display = 'inline-flex';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.gap = '4px';
+
+                const minusBtn = document.createElement('button');
+                minusBtn.type = 'button';
+                minusBtn.textContent = '-';
+                minusBtn.className = 'btn btn-outline btn-sm';
+                minusBtn.style.padding = '2px 8px';
+                minusBtn.style.lineHeight = '1';
+
+                const plusBtn = document.createElement('button');
+                plusBtn.type = 'button';
+                plusBtn.textContent = '+';
+                plusBtn.className = 'btn btn-outline btn-sm';
+                plusBtn.style.padding = '2px 8px';
+                plusBtn.style.lineHeight = '1';
+
+                minusBtn.addEventListener('click', function () {
+                    let val = parseInt(qtyInput.value) || 1;
+                    if (val > 1) {
+                        qtyInput.value = val - 1;
+                        calculateCart();
+                    }
+                });
+
+                plusBtn.addEventListener('click', function () {
+                    let val = parseInt(qtyInput.value) || 1;
+                    qtyInput.value = val + 1;
+                    calculateCart();
+                });
+
+                qtyInput.addEventListener('change', calculateCart);
+
+                qtyInput.parentNode.insertBefore(wrapper, qtyInput);
+                wrapper.appendChild(minusBtn);
+                wrapper.appendChild(qtyInput);
+                wrapper.appendChild(plusBtn);
             });
 
             document.querySelectorAll('.btn-remove-item').forEach(btn => {
@@ -251,6 +318,8 @@
                     }
                 });
             });
+
+            calculateCart();
 
             // Mở / đóng modal thanh toán
             btnOpenCheckout.addEventListener('click', function () {

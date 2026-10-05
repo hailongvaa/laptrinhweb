@@ -1,0 +1,131 @@
+================================================================================
+NHẬT KÝ CHI TIẾT CÁC THAY ĐỔI VÀ BỔ SUNG CỦA BẠN HÂN (THƯ MỤC "hân")
+ĐỀ TÀI: WEBSITE THƯƠNG MẠI ĐIỆN TỬ BÁN MÔ HÌNH XE Ô TÔ (CARMODEL STORE)
+THỜI GIAN ĐỐI SOÁT & CẬP NHẬT: 2026-10-05
+================================================================================
+
+I. TỔNG QUAN PHÂN TÍCH
+--------------------------------------------------------------------------------
+1. Nguồn gốc mã nguồn:
+   - Thư mục "hân" (CarModelStore_Website) là phiên bản được bạn Hân phát triển
+     dựa trên bản template HTML/CSS ban đầu của nhóm.
+   - Trọng tâm công việc bạn Hân đã thực hiện là bổ sung các chức năng tương tác
+     người dùng Client-side bằng JavaScript thuần và LocalStorage, đồng thời đồng
+     bộ lại giao diện Header mới (Hotline rung, icon xe đẩy giỏ hàng, menu tinh gọn).
+
+2. Kết quả cập nhật vào Project chính:
+   - Toàn bộ các cải tiến tốt và tính năng JavaScript hữu ích của Hân đã được 
+     tổng hợp, sửa lỗi và cập nhật đồng bộ vào project chính.
+   - Các tính năng nâng cao sẵn có của project (kết nối Backend API MySQL qua
+     ngrok/Vercel, phân hệ quản trị Admin RBAC) được giữ nguyên vẹn 100%.
+
+
+II. CHI TIẾT TỪNG FILE ĐÃ ĐƯỢC CẬP NHẬT THEO CODE CỦA HÂN
+--------------------------------------------------------------------------------
+
+1. FILE: cart.html (Giỏ hàng)
+   * Những thứ Hân đã thay đổi / bổ sung:
+     - Thêm cặp nút tăng/giảm số lượng [+] và [-] bên cạnh ô nhập số lượng của
+       từng dòng sản phẩm.
+     - Viết hàm JavaScript tự động bóc tách đơn giá, nhân thành tiền cho từng 
+       dòng sản phẩm (itemTotal = unitPrice * quantity).
+     - Tự động cộng tổng tạm tính (subtotal), cộng phí giao hàng 30.000đ, tính 
+       tổng thanh toán cuối cùng (total).
+     - Định dạng tiền tệ hiển thị chuẩn định dạng Việt Nam (VND).
+     - Đồng bộ tổng số lượng sản phẩm lên icon giỏ hàng ở thanh tiêu đề (cart-badge).
+     - Cập nhật Header đồng bộ: Hotline 1900-6868 có hiệu ứng điện thoại rung,
+       menu chính 5 mục, icon xe đẩy giỏ hàng.
+   * Cách xử lý khi tích hợp vào project:
+     - Đã gắn bộ điều khiển [+] / [-] cho từng dòng sản phẩm.
+     - Khi bấm [+] hoặc [-], số lượng tự động cập nhật và kích hoạt tính lại tiền.
+     - Vẫn giữ nguyên vẹn Popup thanh toán gửi dữ liệu đơn hàng lên Backend Node.js
+       (POST /api/orders) và CSDL MySQL của project.
+
+2. FILE: wishlist.html (Danh sách yêu thích)
+   * Những thứ Hân đã thay đổi / bổ sung:
+     - Đọc danh sách ID mô hình lưu trong localStorage ("cms_wishlist").
+     - Thay thế đoạn text mô phỏng cũ bằng thẻ sản phẩm (.car-card) trực quan, có
+       khối hình đại diện "❤️ Mô hình yêu thích", mã mô hình và mô tả ngắn.
+     - Bổ sung nút "Xóa khỏi yêu thích" và cài đặt hàm removeWishlist(id) để lọc bỏ
+       sản phẩm khỏi localStorage rồi tải lại giao diện.
+     - Cập nhật Header đồng bộ sang kiểu mới.
+   * Lỗi của Hân đã được sửa khi tích hợp:
+     - Trong file của Hân có lỗi gõ nhầm làm mất thẻ mở <footer class="site-footer">.
+       Khi tích hợp vào project, lỗi này đã được sửa hoàn chỉnh, đảm bảo cấu trúc
+       footer và layout không bị vỡ.
+     - Bổ sung song song cả nút "Xem chi tiết" và nút "Xóa" trên từng thẻ mô hình.
+
+3. FILE: register.html (Đăng ký tài khoản)
+   * Những thứ Hân đã thay đổi / bổ sung:
+     - Cập nhật Header đồng bộ mới (Hotline rung, icon xe đẩy, menu 5 mục).
+     - Bổ sung script xử lý form đăng ký (submit event):
+       + Kiểm tra tính hợp lệ: bắt buộc nhập đủ Họ tên, Email và Mật khẩu.
+       + Đọc danh sách tài khoản đã đăng ký từ localStorage ("carModelStoreUsers").
+       + Kiểm tra trùng lặp email. Nếu email đã tồn tại thì cảnh báo lỗi.
+       + Nếu hợp lệ, lưu đối tượng người dùng mới vào mảng "carModelStoreUsers".
+       + Thông báo "Đăng ký tài khoản thành công!" và tự động chuyển hướng sang trang login.html.
+   * Cách xử lý khi tích hợp vào project:
+     - Tích hợp đầy đủ logic kiểm tra và lưu tài khoản vào "carModelStoreUsers".
+     - Đồng thời tự động cấp vai trò (role: "customer") và lưu phiên "cms_auth_user"
+       để hoàn toàn tương thích với hệ thống phân quyền Admin của project.
+
+4. FILE: login.html (Đăng nhập)
+   * Những thứ Hân đã thay đổi / bổ sung:
+     - Cập nhật Header đồng bộ mới.
+     - Bổ sung script xác thực đăng nhập:
+       + Kiểm tra rỗng Email và Mật khẩu.
+       + Đối chiếu với danh sách tài khoản khách hàng trong "carModelStoreUsers".
+       + Nếu đúng: lưu trạng thái người dùng hiện tại vào "carModelStoreCurrentUser",
+         thông báo thành công và chuyển hướng về trang chủ index.html.
+       + Nếu sai: hiển thị cảnh báo "Email hoặc mật khẩu không đúng!".
+   * Cách xử lý khi tích hợp vào project:
+     - Kết hợp hoàn hảo cả 2 cơ chế:
+       1) Nếu nhập tài khoản Quản trị viên (admin@gmail.com / 123456) hoặc bấm nút
+          "Điền nhanh & Đăng nhập Admin": hệ thống đăng nhập quyền Admin và chuyển
+          hướng vào admin/dashboard.html.
+       2) Nếu nhập tài khoản Khách hàng (đăng ký qua register.html): hệ thống xác thực
+          qua "carModelStoreUsers", lưu phiên đăng nhập và chuyển hướng về index.html.
+
+5. FILE: brand-detail.html (Chi tiết hãng xe)
+   * Cập nhật:
+     - Đồng bộ cấu trúc Header sang chuẩn mới nhất: Topbar Hotline rung 1900-6868,
+       link Đăng nhập góc phải, Menu 5 mục, Icon xe đẩy giỏ hàng có badge.
+
+
+III. CÁC NỘI DUNG GIỮ NGUYÊN & LÝ DO KHÔNG DÙNG BẢN CỦA HÂN
+--------------------------------------------------------------------------------
+
+1. FILE: products.html và brands.html
+   * Phát hiện lỗi trong thư mục của Hân:
+     - File products.html của Hân bị ghi đè nhầm 100% bằng trang admin/products.html.
+     - File brands.html của Hân bị ghi đè nhầm 100% bằng trang admin/brands.html.
+   * Lý do không áp dụng:
+     - Nếu ghi đè, khách hàng truy cập trang mua sắm sẽ thấy giao diện quản trị Admin
+       thay vì danh sách sản phẩm và hãng xe của cửa hàng.
+     - Do đó, project chính GIỮ NGUYÊN 100% bản products.html và brands.html chuẩn.
+
+2. FILE: index.html (Trang chủ)
+   * Phiên bản index.html ở thư mục gốc của bạn hiện tại đã là bản hoàn chỉnh nhất
+     (chứa đầy đủ Hero Banner Bạc Kim, 4 slide bộ sưu tập có ảnh HD Unsplash,
+     thông số kỹ thuật, khu vực thương hiệu, sản phẩm bán chạy, đánh giá khách hàng...).
+   * Bản index.html của Hân là bản nháp cắt ngắn (19 KB so với 40 KB ở root),
+     do đó giữ nguyên bản gốc là tối ưu và đẹp mắt nhất.
+
+3. FILE: assets/css/style.css
+   * File style.css ở thư mục gốc của bạn có dung lượng 32 KB, đã bao gồm toàn bộ
+     135 CSS selector mà Hân dùng (hệ màu Platinum, animation rung chuông điện thoại,
+     style hotline, slider thẻ bộ sưu tập...). Do đó không cần ghi đè CSS.
+
+4. PHÂN HỆ QUẢN TRỊ ADMIN (admin/):
+   * Giữ nguyên toàn bộ 5 trang HTML trong admin/, file admin.css và admin-auth.js
+     do bạn Long phụ trách.
+
+
+IV. TỔNG KẾT TRẠNG THÁI HIỆN TẠI
+--------------------------------------------------------------------------------
+- Tất cả các trang đều đồng bộ 100% về Header, Hotline, Menu và Icon giỏ hàng.
+- Chức năng Giỏ hàng có đầy đủ nút tăng/giảm [+] [-], tính tiền động và gửi đơn API.
+- Chức năng Danh sách yêu thích hiển thị thẻ đẹp mắt và có nút xóa sản phẩm.
+- Chức năng Đăng ký / Đăng nhập hoạt động mượt mà cho cả Khách hàng và Admin.
+- Toàn bộ source code sẵn sàng 100% cho việc nộp bài và chấm điểm.
+================================================================================

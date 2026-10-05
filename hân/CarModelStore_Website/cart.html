@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Giỏ hàng | CarModel Store</title>
+</head>
+<body>
+    <!-- HEADER ĐỒNG BỘ: CÁC TRANG CHI TIẾT & CHỨC NĂNG -->
+    <header class="site-header">
+        <div class="site-header__top">
+            <div class="container header-top-flex">
+                <div class="hotline-box">
+                    <span class="phone-vibrate-icon">📞</span>
+                    <div class="hotline-text">
+                        <span class="hotline-label">Hotline tư vấn</span>
+                        <a href="tel:19006868" class="hotline-number">1900-6868</a>
+                    </div>
+                    <span class="hotline-divider">|</span>
+                    <span class="shipping-note">Giao hàng toàn quốc</span>
+                </div>
+                <div class="top-auth">
+                    <a href="login.html" class="top-login-link">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+        <div class="site-header__main">
+            <div class="container main-header-flex">
+                <a href="index.html" class="brand-logo">Car<span>Model</span>Store</a>
+                <nav class="main-nav" aria-label="Menu chính">
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="brands.html">Hãng xe</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="preorder.html">Sắp ra mắt</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </nav>
+                <div class="header-right-actions">
+                    <form class="search-form" action="products.html" method="get" role="search">
+                        <label for="q" class="sr-only" style="position:absolute;left:-9999px;">Tìm mô hình</label>
+                        <input type="search" id="q" name="q" placeholder="Tìm hãng xe, dòng xe, tỉ lệ...">
+                        <button type="submit">Tìm</button>
+                    </form>
+                    <a href="cart.html" class="cart-icon-btn" title="Xem giỏ hàng" aria-label="Giỏ hàng">
+                        <span class="cart-cart-symbol">🛒</span>
+                        <span class="cart-badge">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-banner">
+        <div class="container">
+            <p class="breadcrumb"><a href="index.html">Trang chủ</a> / Giỏ hàng</p>
+            <h1 class="mt-0">Giỏ hàng của bạn</h1>
+        </div>
+    </div>
+    <main id="main" class="section container">
+        <div class="cart-layout">
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Mô hình</th><th>Tỉ lệ</th><th>Đơn giá</th><th>Số lượng</th><th>Thành tiền</th><th>Xoá</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ferrari F40</td><td>1:18</td><td>2.450.000đ</td><td><input type="number" value="1" min="1" style="width:60px;"></td><td>2.450.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
+                        <tr><td>Lamborghini Huracán STO</td><td>1:24</td><td>980.000đ</td><td><input type="number" value="2" min="1" style="width:60px;"></td><td>1.960.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
+                        <tr><td>Nissan GT-R Skyline R34</td><td>1:18</td><td>1.750.000đ</td><td><input type="number" value="1" min="1" style="width:60px;"></td><td>1.750.000đ</td><td><button class="btn btn-outline btn-sm">Xoá</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <aside class="summary-card">
+                <h3 style="color:#fff;">Tóm tắt đơn hàng</h3>
+                <div class="summary-row"><span>Tạm tính</span><span>6.160.000đ</span></div>
+                <div class="summary-row"><span>Phí vận chuyển</span><span>30.000đ</span></div>
+                <div class="summary-row total"><span>Tổng cộng</span><span>6.190.000đ</span></div>
+                <a href="login.html" class="btn btn-primary btn-block" style="margin-top:1rem;">Tiến hành đặt hàng</a>
+                <p class="form-hint" style="color:#ccc;">* Giao diện minh hoạ, số liệu là dữ liệu mẫu viết cứng trong HTML.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>CarModelStore</h4>
+                    <p style="font-size:.85rem;">Chuyên mô hình ô tô thu nhỏ tỉ lệ 1:18 - 1:64 cho người sưu tầm.
+                    Đồ án môn Lập trình Web &ndash; Chương 1 &amp; 2.</p>
+                </div>
+                <div>
+                    <h4>Mua sắm</h4>
+                    <ul>
+                        <li><a href="brands.html">Theo hãng xe</a></li>
+                        <li><a href="products.html">Tất cả mô hình</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Tài khoản</h4>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="register.html">Đăng ký</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn đặt hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 CarModelStore &ndash; Bài tập Chương 1 &amp; 2, môn Lập trình Web. Nhóm 05.
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const table = document.querySelector('.data-table');
+    const rows = table ? table.querySelectorAll('tbody tr') : [];
+
+    const summaryRows = document.querySelectorAll('.summary-row');
+    const totalRow = document.querySelector('.summary-row.total');
+
+    function getPrice(text) {
+        return parseInt(text.replace(/\./g, '').replace(/[^\d]/g, '')) || 0;
+    }
+
+    function formatPrice(number) {
+        return number.toLocaleString('vi-VN') + 'đ';
+    }
+
+    function updateCart() {
+        let subtotal = 0;
+        let totalQuantity = 0;
+
+        rows.forEach(function (row) {
+            const cells = row.querySelectorAll('td');
+
+            if (cells.length < 4) return;
+
+            const price = getPrice(cells[2].textContent);
+            const quantityInput = cells[3].querySelector('input');
+
+            if (!quantityInput) return;
+
+            let quantity = parseInt(quantityInput.value) || 1;
+
+            if (quantity < 1) {
+                quantity = 1;
+                quantityInput.value = 1;
+            }
+
+            const itemTotal = price * quantity;
+
+            subtotal += itemTotal;
+            totalQuantity += quantity;
+
+            // Tạo ô thành tiền nếu chưa có
+            let moneyCell = cells[4];
+
+            if (!moneyCell) {
+                moneyCell = document.createElement('td');
+                row.appendChild(moneyCell);
+            }
+
+            moneyCell.textContent = formatPrice(itemTotal);
+        });
+
+        const shipping = 30000;
+        const total = subtotal + shipping;
+
+        // Cập nhật phần tạm tính
+        if (summaryRows.length >= 1) {
+            summaryRows[0].querySelector('span:last-child').textContent =
+                formatPrice(subtotal);
+        }
+
+        // Cập nhật phí vận chuyển
+        if (summaryRows.length >= 2) {
+            summaryRows[1].querySelector('span:last-child').textContent =
+                formatPrice(shipping);
+        }
+
+        // Cập nhật tổng cộng
+        if (totalRow) {
+            totalRow.querySelector('span:last-child').textContent =
+                formatPrice(total);
+        }
+
+        // Cập nhật số trên giỏ hàng
+        document.querySelectorAll('.cart-badge, .cart-pill').forEach(function (badge) {
+            badge.textContent = totalQuantity;
+        });
+    }
+
+    // Thêm nút tăng / giảm số lượng
+    rows.forEach(function (row) {
+        const cells = row.querySelectorAll('td');
+
+        if (cells.length < 4) return;
+
+        const input = cells[3].querySelector('input');
+
+        if (!input) return;
+
+        input.min = 1;
+        input.value = input.value || 1;
+
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.gap = '5px';
+
+        const minus = document.createElement('button');
+        minus.type = 'button';
+        minus.textContent = '-';
+
+        const plus = document.createElement('button');
+        plus.type = 'button';
+        plus.textContent = '+';
+
+        minus.addEventListener('click', function () {
+            let value = parseInt(input.value) || 1;
+
+            if (value > 1) {
+                input.value = value - 1;
+                updateCart();
+            }
+        });
+
+        plus.addEventListener('click', function () {
+            let value = parseInt(input.value) || 1;
+
+            input.value = value + 1;
+            updateCart();
+        });
+
+        input.addEventListener('change', updateCart);
+
+        input.parentNode.insertBefore(wrapper, input);
+        wrapper.appendChild(minus);
+        wrapper.appendChild(input);
+        wrapper.appendChild(plus);
+    });
+
+    updateCart();
+});
+</script>
+
+</body>
+</html>
+
