@@ -1,7 +1,7 @@
 ================================================================================
 NHẬT KÝ ĐỐI SOÁT & TÍCH HỢP ĐÓNG GÓP CỦA CÁC THÀNH VIÊN
 ĐỀ TÀI: WEBSITE THƯƠNG MẠI ĐIỆN TỬ BÁN MÔ HÌNH XE Ô TÔ (CARMODEL STORE)
-THỜI GIAN CẬP NHẬT: 2026-10-05
+THỜI GIAN CẬP NHẬT: 2026-10-06
 ================================================================================
 
 --------------------------------------------------------------------------------
@@ -211,14 +211,93 @@ III. CÁC HÀNH ĐỘNG ĐÃ THỰC HIỆN ĐỂ THAY THẾ & TÍCH HỢP THEO M
 
 
 --------------------------------------------------------------------------------
-TỔNG KẾT TRẠNG THÁI DỰ ÁN HIỆN TẠI
+PHẦN D: CÁC THAY ĐỔI & ĐỒNG BỘ CSDL "BANG DATA.SQL" CỦA BẠN MAI (TMAI)
+THỜI GIAN: 2026-10-06
 --------------------------------------------------------------------------------
-- Giao diện: Đồng bộ 100% Header, Hotline rung, Menu 6 mục (gồm cả Phụ kiện của Minh),
+
+I. TỔNG QUAN PHÂN TÍCH & YÊU CẦU:
+1. Nguồn gốc & Bối cảnh:
+   - Bạn Mai (tmai) nộp bổ sung file truy vấn kiểm tra dữ liệu "bang data.sql" 
+     (tương ứng "plan/bang dattamai.sql") với mục tiêu kiểm tra dữ liệu các bảng 
+     đã tạo của hệ thống: users, brands, products, accessories.
+   - Đồng thời bạn Mai cung cấp các file API Client ("plan/api.js", "plan/config.js", 
+     "plan/main.js") gọi đến các endpoint GET /api/products, POST /api/contact.
+2. Vấn đề phát sinh khi đối soát với hệ thống cũ:
+   - Tên cơ sở dữ liệu bị lệch: File của Mai dùng "USE CarModelStoreDB;", trong khi 
+     backend cũ đang kết nối "car_order_db" (hoặc "diecast_car_shop").
+   - Lệch cấu trúc bảng: File của Mai truy vấn 4 bảng (users, brands, products, accessories),
+     nhưng trong CSDL cũ chỉ có 4 bảng (customers, products, orders, order_items), 
+     thiếu bảng brands, accessories và thiếu 2 bảng đơn hàng trong file truy vấn của Mai.
+   - Khi chạy "bang data.sql" trên SQL Server sẽ gặp lỗi "Invalid object name".
+
+II. CÁC THAY ĐỔI ĐÃ THỰC HIỆN ĐỂ ĐỒNG BỘ TOÀN DIỆN (THEO TMAI):
+
+1. Chuẩn hóa Cơ sở dữ liệu CarModelStoreDB:
+   - Thống nhất tên CSDL chính thức của đề tài là: "CarModelStoreDB".
+   - Nâng cấp kịch bản "database/00_full_setup.sql" để tự động khởi tạo CSDL 
+     CarModelStoreDB, đồng thời hỗ trợ dự phòng linh hoạt với "car_order_db".
+
+2. Mở rộng và chuẩn hóa hệ thống 6 Bảng quan hệ chuẩn 3NF:
+   - Bảng users: Lưu tài khoản Người dùng & Quản trị viên (id, username, password, 
+     full_name, email, phone, address, role, created_at) phục vụ login.html và register.html.
+   - Khởi tạo VIEW customers: Ánh xạ từ bảng users để tương thích ngược 100% với 
+     mọi mã nguồn và câu lệnh cũ dùng customers.
+   - Bảng brands: Lưu danh mục 9 thương hiệu xe đối tác (Ferrari, Lamborghini, Porsche, 
+     Mercedes-Benz, BMW, Nissan, Honda, Ford, Toyota) phục vụ brands.html & brand-detail.html.
+   - Bảng products: Lưu 6 mô hình xe hoàn chỉnh kèm brand_id (khóa ngoại nối brands), 
+     mã SKU, tỉ lệ, hãng sản xuất, giá bán, tồn kho, trạng thái (in_stock, pre_order, 
+     out_of_stock, bestseller), link ảnh Unsplash, đánh giá sao phục vụ products.html.
+   - Bảng accessories: Lưu 4 phụ kiện trưng bày (Hộp Mica, Đế xoay 360, Bộ vệ sinh, 
+     Garage diorama LED) phục vụ accessories.html.
+   - Bảng orders: Lưu đơn hàng nhận từ giỏ hàng (cart.html) và hiển thị trên admin/orders.html.
+   - Bảng order_items: Lưu chi tiết sản phẩm trong từng đơn (khóa ngoại nối orders & products).
+
+3. Cập nhật và hoàn thiện file "database/bang data.sql":
+   - Tự động nhận diện CSDL: Tự động kiểm tra và ưu tiên "CarModelStoreDB", chuyển an toàn 
+     sang "car_order_db" nếu cần.
+   - Truy vấn đầy đủ toàn bộ 6 bảng của hệ thống:
+     + SELECT * FROM users;          (Danh sách tài khoản & khách hàng)
+     + SELECT * FROM brands;         (Danh sách thương hiệu xe)
+     + SELECT * FROM products;       (Danh sách mô hình xe)
+     + SELECT * FROM accessories;    (Danh sách phụ kiện trưng bày)
+     + SELECT * FROM orders;         (Danh sách đơn đặt hàng)
+     + SELECT * FROM order_items;    (Danh sách chi tiết đơn hàng)
+   - Bổ sung câu lệnh JOIN báo cáo toàn diện: Kết nối Khách hàng + Đơn hàng + Sản phẩm 
+     để kiểm tra dòng chảy dữ liệu thực tế.
+   - Đồng bộ hóa tương tự cho các file "database/01_create_tables.sql", 
+     "database/02_insert_mock_data.sql", "database/03_queries_and_reports.sql" 
+     và "plan/bang dattamai.sql".
+
+4. Nâng cấp Máy chủ Backend Node.js ("car-store-backend/server.js"):
+   - Cấu hình Connection Pool đa tầng: Tự động ưu tiên kết nối tới "CarModelStoreDB", 
+     nếu chưa có sẽ tự động dự phòng kết nối sang "car_order_db".
+   - Bổ sung các API RESTful phục vụ kết nối động theo code của Mai:
+     + GET /api/products: Lấy danh sách mô hình xe từ CSDL (hỗ trợ lọc theo query ?status=...).
+     + GET /api/brands: Lấy danh sách thương hiệu xe từ CSDL.
+     + GET /api/accessories: Lấy danh sách phụ kiện từ CSDL.
+     + POST /api/contact: Tiếp nhận dữ liệu form liên hệ từ contact.html.
+   - Giữ nguyên vẹn 100% các API cốt lõi hiện có: GET /api/health, GET /api/orders, 
+     POST /api/orders.
+
+5. Kiểm thử & Vận hành thực tế trên hệ thống:
+   - Đã chạy thực thi nạp dữ liệu vào SQL Server máy tính qua sqlcmd thành công 100%.
+   - Chạy kiểm tra file "database/bang data.sql" xuất kết quả đầy đủ, sạch đẹp, không lỗi.
+   - Khởi động thử nghiệm Backend server.js, kết nối CSDL thành công tới CarModelStoreDB, 
+     test API health và API products trả về dữ liệu chuẩn xác.
+
+
+--------------------------------------------------------------------------------
+TỔNG KẾT TRẠNG THÁI DỰ ÁN HIỆN TẠI (CẬP NHẬT MỚI NHẤT)
+--------------------------------------------------------------------------------
+- Giao diện (Frontend): Đồng bộ 100% Header, Hotline rung, Menu 6 mục (gồm cả Phụ kiện của Minh),
   Footer 4 cột có đầy đủ Yêu thích và Phụ kiện, Giỏ hàng động [+]/[-] của Hân,
   Danh sách yêu thích có nút xóa của Hân, Đăng ký/Đăng nhập và ảnh mô hình thật của Mai.
-- Cơ sở dữ liệu: Hoàn thiện 100% theo thiết kế 4 bảng chuẩn hóa của bạn Mai (customers,
-  products, orders, order_items), có khóa ngoại chặt chẽ, dữ liệu mẫu và câu lệnh JOIN.
-- Kết nối hệ thống: Giao diện web <-> Backend Node.js (port 5000) <-> CSDL SQL Server
+- Cơ sở dữ liệu (Database): Hoàn thiện 100% với 6 bảng chuẩn hóa 3NF (users, brands,
+  products, accessories, orders, order_items), có VIEW customers tương thích ngược,
+  khóa ngoại chặt chẽ, dữ liệu mẫu phong phú và file "bang data.sql" khớp hoàn toàn với chương trình.
+- Máy chủ (Backend): Node.js Express RESTful API kết nối thông minh với CarModelStoreDB,
+  hỗ trợ đầy đủ các dịch vụ API (health, orders, products, brands, accessories, contact).
+- Kết nối hệ thống: Giao diện web <-> Backend Node.js (port 5000) <-> CSDL SQL Server (CarModelStoreDB)
   hoạt động mượt mà, thông suốt.
 ================================================================================
 

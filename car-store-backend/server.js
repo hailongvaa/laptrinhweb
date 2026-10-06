@@ -14,14 +14,13 @@ app.use(cors({
 app.use(express.json());
 
 // Cấu hình kết nối SQL Server máy tính cá nhân bằng Windows Authentication qua ODBC Driver
-const dbConfig = {
-    connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=car_order_db;Trusted_Connection=yes;'
-};
-
-// Fallback configuration nếu Driver 17 không khả dụng thì dùng Driver 18
-const dbConfigFallback = {
-    connectionString: 'Driver={ODBC Driver 18 for SQL Server};Server=localhost;Database=car_order_db;Trusted_Connection=yes;TrustServerCertificate=yes;'
-};
+// Ưu tiên CSDL CarModelStoreDB, tự động dự phòng sang car_order_db
+const dbConfigs = [
+    { name: 'CarModelStoreDB (ODBC 17)', conn: 'Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=CarModelStoreDB;Trusted_Connection=yes;' },
+    { name: 'CarModelStoreDB (ODBC 18)', conn: 'Driver={ODBC Driver 18 for SQL Server};Server=localhost;Database=CarModelStoreDB;Trusted_Connection=yes;TrustServerCertificate=yes;' },
+    { name: 'car_order_db (ODBC 17)', conn: 'Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=car_order_db;Trusted_Connection=yes;' },
+    { name: 'car_order_db (ODBC 18)', conn: 'Driver={ODBC Driver 18 for SQL Server};Server=localhost;Database=car_order_db;Trusted_Connection=yes;TrustServerCertificate=yes;' }
+];
 
 let dbPool = null;
 
@@ -29,21 +28,17 @@ async function getDbPool() {
     if (dbPool && dbPool.connected) {
         return dbPool;
     }
-    try {
-        dbPool = await new sql.ConnectionPool(dbConfig).connect();
-        console.log('✅ Đã kết nối SQL Server thành công (ODBC Driver 17)');
-        return dbPool;
-    } catch (err17) {
-        console.warn('⚠️ Thử lại với ODBC Driver 18:', err17.message);
+    for (const cfg of dbConfigs) {
         try {
-            dbPool = await new sql.ConnectionPool(dbConfigFallback).connect();
-            console.log('✅ Đã kết nối SQL Server thành công (ODBC Driver 18)');
+            dbPool = await new sql.ConnectionPool({ connectionString: cfg.conn }).connect();
+            console.log(`✅ Đã kết nối SQL Server thành công (${cfg.name})`);
             return dbPool;
-        } catch (err18) {
-            console.error('❌ Lỗi kết nối CSDL SQL Server:', err18.message);
-            throw err18;
+        } catch (e) {
+            // Thử tiếp cấu hình kế tiếp
         }
     }
+    console.error('❌ Không thể kết nối tới cơ sở dữ liệu SQL Server');
+    throw new Error('Không thể kết nối SQL Server với bất kỳ cấu hình nào');
 }
 
 // 0. API Kiểm tra sức khỏe (Health check) - Dùng để test kết nối từ Vercel qua ngrok
@@ -172,6 +167,64 @@ app.post('/api/orders', async (req, res) => {
         res.status(500).json({ success: false, message: 'Lỗi máy chủ khi tạo đơn hàng.', error: error.message });
     }
 });
+
+// 3. API Lấy danh sách Sản phẩm (hỗ trợ lọc status: bestseller, preorder, in_stock)
+app.get('/api/products', async (req, res) => {
+    try {
+        const pool = await getDbPool();
+        const { status } = req.query;
+        let query = `
+            SELECT id, product_code, name, scale, manufacturer, car_brand as brand, 
+                   price, stock_quantity, status, image_url as image, 
+                   description, rating, reviews
+            FROM products
+        `;
+        if (status) {
+            query += ` WHERE status = '${status.replace(/'/g, "''")}'`;
+        }
+        query += ` ORDER BY id ASC`;
+        const result = await pool.request().query(query);
+        res.json(result.recordset);
+    } catch (error) {
+        console.error('Lỗi khi lấy danh sách sản phẩm:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// 4. API Lấy danh sách Thương hiệu
+app.get('/api/brands', async (req, res) => {
+    try {
+        const pool = await getDbPool();
+        const result = await pool.request().query('SELECT * FROM brands ORDER BY id ASC');
+        res.json(result.recordset);
+    } catch (error) {
+        console.error('Lỗi khi lấy danh sách thương hiệu:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// 5. API Lấy danh sách Phụ kiện
+app.get('/api/accessories', async (req, res) => {
+    try {
+        const pool = await getDbPool();
+        const result = await pool.request().query('SELECT * FROM accessories ORDER BY id ASC');
+        res.json(result.recordset);
+    } catch (error) {
+        console.error('Lỗi khi lấy danh sách phụ kiện:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// 6. API Tiếp nhận Liên hệ (phục vụ form contact.html)
+app.post('/api/contact', async (req, res) => {
+    const { name, email, message } = req.body;
+    if (!name || !email || !message) {
+        return res.status(400).json({ success: false, message: 'Vui lòng điền đủ thông tin liên hệ.' });
+    }
+    console.log(`📩 Nhận liên hệ từ: ${name} (${email}): ${message}`);
+    res.json({ success: true, message: 'Đã nhận liên hệ thành công!' });
+});
+
 
 // Chạy server tại port 5000 (hoặc PORT trong biến môi trường)
 const PORT = process.env.PORT || 5000;
