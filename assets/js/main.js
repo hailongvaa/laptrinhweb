@@ -5,6 +5,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   initWishlistButtons();
   initViewToggle();
+  initContactForm();
 });
 
 function getWishlist() {
@@ -64,3 +65,52 @@ function initViewToggle() {
     });
   });
 }
+
+// Trang liên hệ: HTML5 (required, type=email) kiểm tra trước; khi hợp lệ gửi POST /api/contact.
+// Nếu chưa bật server (mở file trực tiếp) thì chạy chế độ demo: vẫn hiện thông báo nhưng ghi rõ chưa gửi.
+function initContactForm() {
+  var form = document.getElementById("contactForm");
+  var box = document.getElementById("contactSuccess");
+  if (!form || !box) return;
+  var text = document.getElementById("contactSuccessText");
+  var title = box.querySelector("strong");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var data = {
+      name: form.elements["name"].value.trim(),
+      email: form.elements["email"].value.trim(),
+      message: form.elements["message"].value.trim()
+    };
+    function done(t, msg) {
+      title.textContent = t;
+      text.textContent = msg;
+      form.reset();
+      box.hidden = false;
+      box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    var baseUrl = "";
+    if (typeof window.getApiBaseUrl === "function") {
+      baseUrl = window.getApiBaseUrl();
+    } else if (window.API_BASE) {
+      baseUrl = window.API_BASE;
+    }
+
+    fetch((baseUrl || "") + "/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+      body: JSON.stringify(data)
+    })
+      .then(function (r) {
+        if (r.ok) return done("Đã gửi thành công!", "Cảm ơn " + data.name + " đã liên hệ. Chúng tôi sẽ phản hồi qua email trong thời gian sớm nhất.");
+        return r.json().then(function (j) { alert(j.message || j.error || "Gửi không thành công, vui lòng thử lại."); });
+      })
+      .catch(function () {
+        done("Chế độ demo", "Chưa kết nối máy chủ nên liên hệ của bạn chưa được lưu. Hãy bật backend: cd car-store-backend rồi node server.js");
+      });
+  });
+
+  form.addEventListener("input", function () { box.hidden = true; });
+}
+

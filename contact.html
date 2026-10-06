@@ -65,29 +65,51 @@
         <div class="form-card form-card--wide">
             <p><strong>Địa chỉ:</strong> 123 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</p>
             <p><strong>Hotline:</strong> 1900-6868 &nbsp;|&nbsp; <strong>Email:</strong> cskh@carmodelstore.vn</p>
-      <form action="#" method="post">
-    <!-- 1. Ô Họ tên -->
-    <div class="form-row">
-        <label for="name">Họ tên</label>
-        <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
-    </div>
+            <form id="contactForm" action="#" method="post">
+                <!-- 1. Ô Họ tên -->
+                <div class="form-row">
+                    <label for="name">Họ tên</label>
+                    <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
+                </div>
 
-    <!-- 2. Ô Email khách hàng (thêm mới dưới họ tên) -->
-    <div class="form-row">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
-    </div>
+                <!-- 2. Ô Email khách hàng -->
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                </div>
 
-    <!-- 3. Ô Nội dung -->
-    <div class="form-row">
-        <label for="message">Nội dung</label>
-        <textarea id="message" name="message" rows="5" placeholder="Nhập câu hỏi hoặc thông tin mô hình bạn cần tư vấn..." required></textarea>
-    </div>
+                <!-- 3. Ô Nội dung -->
+                <div class="form-row">
+                    <label for="message">Nội dung</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Nhập câu hỏi hoặc thông tin mô hình bạn cần tư vấn..." required></textarea>
+                </div>
 
-    <!-- 4. Nút Gửi liên hệ -->
-    <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
-</form>
+                <!-- 4. Nút Gửi liên hệ -->
+                <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
+            </form>
+
+            <!-- Thông báo sau khi gửi (ẩn mặc định, kích hoạt bằng main.js) -->
+            <div class="form-success" id="contactSuccess" role="status" aria-live="polite" hidden>
+                <span class="form-success__icon" aria-hidden="true">&#10003;</span>
+                <div>
+                    <strong>Đã gửi thành công!</strong>
+                    <p id="contactSuccessText">Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi qua email trong thời gian sớm nhất.</p>
+                </div>
+            </div>
         </div>
+
+        <!-- BẢN ĐỒ SHOWROOM GOOGLE MAPS -->
+        <section class="map-card" aria-labelledby="map-title">
+            <div class="map-card__head">
+                <h2 id="map-title">Đường tới showroom</h2>
+                <a class="map-card__link" href="https://www.google.com/maps/search/?api=1&amp;query=123+Nguy%E1%BB%85n+Tr%C3%A3i%2C+Qu%E1%BA%ADn+1%2C+TP.+H%E1%BB%93+Ch%C3%AD+Minh" target="_blank" rel="noopener">Mở trong Google Maps &rarr;</a>
+            </div>
+            <p class="text-muted map-card__addr">123 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</p>
+            <div class="map-card__frame">
+                <iframe title="Bản đồ showroom CarModel Store" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=123+Nguy%E1%BB%85n+Tr%C3%A3i%2C+Qu%E1%BA%ADn+1%2C+TP.+H%E1%BB%93+Ch%C3%AD+Minh&amp;output=embed"></iframe>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -129,6 +151,7 @@
             </div>
         </div>
     </footer>
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

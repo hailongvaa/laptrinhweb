@@ -1357,3 +1357,97 @@ a { color: inherit; text-decoration: none; }
 .car-card .btn-wishlist {
   z-index: 3;
 }
+
+/* ==========================================================
+   BỔ SUNG TỪ PHƯƠNG LINH (TV1): FORM LIÊN HỆ & BẢN ĐỒ SHOWROOM
+   ========================================================== */
+.footer-intro {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Hộp thông báo gửi liên hệ thành công (ẩn mặc định, kích hoạt qua main.js) */
+.form-success {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  margin-top: 1.2rem;
+  padding: 1rem 1.2rem;
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+  border-left-width: 5px;
+  border-radius: var(--radius);
+  color: #065f46;
+  animation: fadeInSlide 0.35s ease forwards;
+}
+.form-success[hidden] {
+  display: none;
+}
+.form-success p {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+}
+.form-success__icon {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #fff;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Khung hiển thị bản đồ Google Maps Showroom */
+.map-card {
+  max-width: 720px;
+  margin-top: 1.5rem;
+  padding: 1.4rem 1.6rem 1.6rem;
+  background: #fff;
+  border: 1px solid var(--platinum-base);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+.map-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.map-card__head h2 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+.map-card__link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  transition: color 0.2s;
+}
+.map-card__link:hover {
+  color: var(--gold-primary);
+  text-decoration: underline;
+}
+.map-card__addr {
+  margin: 0.3rem 0 0.9rem;
+  font-size: 0.88rem;
+}
+.map-card__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--platinum-base);
+  background: #eef1f5;
+}
+.map-card__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

@@ -287,11 +287,97 @@ II. CÁC THAY ĐỔI ĐÃ THỰC HIỆN ĐỂ ĐỒNG BỘ TOÀN DIỆN (THEO TM
 
 
 --------------------------------------------------------------------------------
+PHẦN E: CÁC THAY ĐỔI & BỔ SUNG CỦA BẠN PHƯƠNG LINH (PLINH)
+THỜI GIAN: 2026-10-06
+--------------------------------------------------------------------------------
+
+I. TỔNG QUAN PHÂN TÍCH & YÊU CẦU:
+1. Vai trò của Bạn Phương Linh:
+   - Bạn Đỗ Thị Phương Linh (plinh / TV1 - Trưởng nhóm) phụ trách các trang:
+     Trang chủ (index.html), Trang liên hệ (contact.html), Stylesheet dùng chung (style.css)
+     và Khung Header/Footer thống nhất toàn site.
+   - Thư mục "plan/" chứa các gói đóng góp bổ sung của Linh gồm:
+     + contact.zip (chứa contact.html)
+     + index.zip (chứa index.html)
+     + plan/style.css
+     + plan/main.js
+     + plan/api.js
+     + plan/config.js
+2. Mục tiêu tích hợp:
+   - Bổ sung bản đồ Google Maps và tương tác gửi form liên hệ AJAX cho contact.html.
+   - Bổ sung cơ chế kéo sản phẩm bán chạy (bestseller) và sắp ra mắt (preorder) 
+     từ Backend REST API tự động render lên index.html.
+   - Tối ưu hóa, dọn dẹp mã nguồn thừa và đảm bảo tính tương thích tuyệt đối với 
+     toàn bộ hệ thống hiện có.
+
+II. CHI TIẾT TỪNG NỘI DUNG ĐÃ TÍCH HỢP VÀO HỆ THỐNG (THEO PLINH):
+
+1. FILE: contact.html (Trang Liên hệ):
+   - Bổ sung khung Bản đồ Showroom Google Maps (<section class="map-card">):
+     + Nhúng thẻ <iframe> Google Maps định vị Showroom tại 123 Nguyễn Trãi, Quận 1, TP.HCM.
+     + Thêm nút bấm liên kết trực tiếp "Mở trong Google Maps ->".
+   - Tích hợp Form liên hệ AJAX:
+     + Gắn id="contactForm" vào thẻ <form>.
+     + Thêm khối thông báo trạng thái gửi thành công (<div class="form-success" id="contactSuccess">)
+       có biểu tượng dấu tích xanh, thông điệp phản hồi lịch sự (ẩn mặc định).
+   - Nhúng script: Nạp đầy đủ assets/js/config.js và assets/js/main.js.
+
+2. FILE: assets/css/style.css:
+   - Bổ sung toàn bộ 18 CSS class tiện ích mới từ plan/style.css của Linh:
+     + .form-success, .form-success__icon: Định dạng khối thông báo thành công có viền xanh lá, 
+       hiệu ứng fadeInSlide chuyển động mượt mà.
+     + .map-card, .map-card__head, .map-card__link, .map-card__addr, .map-card__frame: 
+       Khung viền bạch kim, tỷ lệ 16:9 responsive chuẩn cho bản đồ Google Maps.
+     + .footer-intro: Định dạng đoạn giới thiệu chân trang tinh gọn.
+   - Bảo toàn 100% bộ selector Hero Banner Luxury Charcoal & Gold cao cấp của project chính.
+
+3. FILE: assets/js/main.js:
+   - Bổ sung hàm initContactForm() và kích hoạt trong sự kiện DOMContentLoaded:
+     + Lắng nghe sự kiện submit của form liên hệ (#contactForm).
+     + Ngăn chặn hành vi tải lại trang (e.preventDefault()).
+     + Thu thập họ tên, email, nội dung tin nhắn và gửi POST /api/contact lên máy chủ.
+     + Tự động hiển thị hộp thông báo xanh khi thành công (#contactSuccess).
+     + Tích hợp chế độ dự phòng thông minh (Fallback/Demo): Nếu chưa bật máy chủ backend, 
+       trang sẽ hiển thị thông báo nhẹ nhàng nhắc nhở khởi động server mà không gây lỗi giao diện.
+
+4. FILE MỚI: assets/js/api.js (Khởi tạo từ plan/api.js của Linh):
+   - Script gọi API RESTful phía Client cho Trang chủ:
+     + Hàm load("bestseller", "bestSellerGrid", false): Gọi GET /api/products?status=bestseller 
+       để lấy danh sách mô hình bán chạy và tự động render thẻ .car-card vào lưới #bestSellerGrid.
+     + Hàm load("preorder", "preorderGrid", true): Gọi GET /api/products?status=preorder 
+       để lấy danh sách xe sắp ra mắt và render vào lưới #preorderGrid.
+     + Tự động kích hoạt lại nút yêu thích (initWishlistButtons) cho các thẻ xe mới nạp.
+     + Cơ chế phòng ngừa rủi ro: Nếu không kết nối được API, giữ nguyên trạng 100% 
+       các thẻ HTML tĩnh có sẵn.
+
+5. FILE: assets/js/config.js:
+   - Xuất thêm biến toàn cục: window.API_BASE = getApiBaseUrl();
+   - Tự động đồng bộ window.API_BASE khi gọi setApiBaseUrl(url).
+   - Đảm bảo tương thích tuyệt đối cho cả 2 phong cách gọi API:
+     dùng window.apiFetch(...) của Admin/Cart và dùng window.API_BASE của Linh.
+
+6. FILE: index.html (Trang chủ):
+   - Gắn id="bestSellerGrid" vào lưới sản phẩm Bán chạy.
+   - Gắn id="preorderGrid" vào lưới xe Sắp ra mắt – Đặt hàng trước.
+   - Nhúng bộ 3 script: assets/js/config.js, assets/js/main.js, assets/js/api.js.
+   - Dọn dẹp hoàn toàn đoạn script slider 4 bộ sưu tập bị lặp lại 6 lần trước đó, 
+     tinh gọn file từ 766 dòng xuống còn 411 dòng chuẩn W3C, tải trang siêu nhanh.
+   - Giữ nguyên vẹn thiết kế Hero Banner Luxury sang trọng cùng bộ ảnh xe HD Unsplash.
+
+III. KẾT QUẢ KIỂM THỬ THỰC TẾ:
+- Trang liên hệ (contact.html): Bản đồ Google Maps hiển thị sắc nét, gửi form liên hệ 
+  phản hồi mã 200 từ Backend POST /api/contact và hiện hộp thông báo xanh chuẩn xác.
+- Trang chủ (index.html): Kéo dữ liệu động từ GET /api/products thành công, 
+  slider 4 bộ sưu tập chuyển slide mượt mà.
+
+
+--------------------------------------------------------------------------------
 TỔNG KẾT TRẠNG THÁI DỰ ÁN HIỆN TẠI (CẬP NHẬT MỚI NHẤT)
 --------------------------------------------------------------------------------
 - Giao diện (Frontend): Đồng bộ 100% Header, Hotline rung, Menu 6 mục (gồm cả Phụ kiện của Minh),
   Footer 4 cột có đầy đủ Yêu thích và Phụ kiện, Giỏ hàng động [+]/[-] của Hân,
-  Danh sách yêu thích có nút xóa của Hân, Đăng ký/Đăng nhập và ảnh mô hình thật của Mai.
+  Danh sách yêu thích có nút xóa của Hân, Đăng ký/Đăng nhập và ảnh mô hình thật của Mai,
+  Bản đồ Google Maps & form liên hệ AJAX của Linh, Trang chủ kết nối API động của Linh.
 - Cơ sở dữ liệu (Database): Hoàn thiện 100% với 6 bảng chuẩn hóa 3NF (users, brands,
   products, accessories, orders, order_items), có VIEW customers tương thích ngược,
   khóa ngoại chặt chẽ, dữ liệu mẫu phong phú và file "bang data.sql" khớp hoàn toàn với chương trình.

@@ -23,6 +23,7 @@ function setApiBaseUrl(url) {
     } else {
         localStorage.setItem('CMS_BACKEND_URL', url.trim().replace(/\/+$/, ''));
     }
+    window.API_BASE = getApiBaseUrl();
 }
 
 // 4. Wrapper gọi API chuyên dụng, tự động bỏ qua màn hình chặn của ngrok miễn phí
@@ -52,3 +53,5 @@ async function apiFetch(endpoint, options = {}) {
 window.getApiBaseUrl = getApiBaseUrl;
 window.setApiBaseUrl = setApiBaseUrl;
 window.apiFetch = apiFetch;
+window.API_BASE = getApiBaseUrl();
+
